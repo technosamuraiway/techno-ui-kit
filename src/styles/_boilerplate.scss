@@ -1,0 +1,81 @@
+html {
+  box-sizing: border-box;
+  font-size: 100%;
+
+  
+  /* stylelint-disable-next-line order/properties-order */
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  all: unset;
+}
+
+input,
+button,
+select,
+textarea,
+optgroup,
+option,
+a {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+  color: inherit;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:visited {
+  color: inherit;
+}
+
+body {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+ 
+
+  /* stylelint-disable-next-line order/order */
+  margin: 0;
+  
+  /* stylelint-disable-next-line order/properties-order */
+  min-height: 100vh;
+
+  /* stylelint-disable-next-line order/properties-order */
+  padding: 0;
+
+  font-family: var(--font-family-inter), sans-serif;
+  line-height: var(--line-height-m);
+  color: var(--color-light-100);
+
+  background-color: var(--color-dark-900);
+}
+
+// To ensure that Input fields are not the default color when selecting from a list of previously entered values.
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus input:-webkit-autofill,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  background: linear-gradient(
+    rgb(255 255 255 / 0%) 0%,
+    rgb(0 174 255 / 4%) 50%,
+    rgb(255 255 255 / 0%) 51%,
+    rgb(0 174 255 / 3%) 100%
+  );
+  box-shadow: 0 0 0 1000px transparent inset;
+  transition: background-color 50000000000s ease-in-out 0s;
+
+  -webkit-text-fill-color: var(--color-light-100);
+}

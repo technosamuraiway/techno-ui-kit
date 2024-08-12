@@ -1,0 +1,119 @@
+.typography {
+  margin: 0;
+}
+
+.large {
+  @extend.typography;
+
+  font-size: var(--font-size-xxl);
+  font-weight: var(--font-weight-semi-bold);
+  line-height: var(--line-height-l);
+}
+
+.h1 {
+  @extend.typography;
+
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-l);
+}
+
+.h2 {
+  @extend.typography;
+
+  font-size: var(--font-size-l);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-m);
+}
+
+.h3 {
+  @extend.typography;
+
+  font-size: var(--font-size-m);
+  font-weight: var(--font-weight-semi-bold);
+  line-height: var(--line-height-m);
+}
+
+.regular-text-16 {
+  @extend.typography;
+
+  font-size: var(--font-size-m);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-m);
+}
+
+.bold-text-16 {
+  @extend.typography;
+
+  font-size: var(--font-size-m);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-m);
+}
+
+.regular-text-14 {
+  @extend.typography;
+
+  font-size: var(--font-size-s);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-m);
+}
+
+.medium-text-14 {
+  @extend.typography;
+
+  font-size: var(--font-size-s);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-m);
+}
+
+.bold-text-14 {
+  @extend.typography;
+
+  font-size: var(--font-size-s);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-m);
+}
+
+.small-text {
+  @extend.typography;
+
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-s);
+}
+
+.semi-bold-small-text {
+  @extend.typography;
+  
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semi-bold);
+  line-height: var(--line-height-s);
+}
+
+.regular-link,
+.regular-link:visited {
+  cursor: pointer;
+
+  margin: 0;
+
+  font-size: var(--font-size-s);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-m);
+  color: var(--Primary-500);
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+}
+
+.small-link,
+.small-link:visited {
+  cursor: pointer;
+
+  margin: 0;
+
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-s);
+  color: var(--Primary-500);
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+}

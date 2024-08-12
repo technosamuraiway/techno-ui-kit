@@ -1,0 +1,18 @@
+:root {
+    /* outlines */
+    --color-outline-focus: var(--color-info-900);
+    --outline-focus: 2px solid var(--color-outline-focus);
+  
+    /* transitions */
+    --transition-duration-basic: 200ms;
+  
+    /* border-radius */
+    --border-radius-s: 0.25rem;
+  
+    /* header */
+    --header-height: 60px;
+  
+    /* max-width */
+    --horizontal-padding: 16px;
+    --max-width: 1006px; // calc(1005px + var(--horizontal-padding) * 2)
+  }
