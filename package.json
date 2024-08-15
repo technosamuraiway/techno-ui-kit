@@ -1,5 +1,5 @@
 {
-  "name": "flashcards",
+  "name": "techno-ui-kit",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -54,6 +54,7 @@
     "eslint-plugin-react-refresh": "^0.4.7",
     "eslint-plugin-storybook": "^0.8.0",
     "sass": "^1.77.6",
+    "semantic-release": "^24.0.0",
     "storybook": "^8.1.11",
     "storybook-dark-mode": "^4.0.2",
     "stylelint": "^16.6.1",
