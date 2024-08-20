@@ -34,19 +34,8 @@ a:visited {
 }
 
 body {
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-  }
-
-  /* stylelint-disable-next-line order/order */
-  margin: 0;
-
-  /* stylelint-disable-next-line order/properties-order */
   min-height: 100vh;
-
-  /* stylelint-disable-next-line order/properties-order */
+  margin: 0;
   padding: 0;
 
   font-family: var(--font-family-inter), sans-serif;
@@ -54,6 +43,12 @@ body {
   color: var(--color-light-100);
 
   background-color: var(--color-dark-900);
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
 }
 
 // To ensure that Input fields are not the default color when selecting from a list of previously entered values.
