@@ -1,6 +1,6 @@
 import './button.css'
 
-interface ButtonProps {
+export interface ButtonProps {
   /**
    * What background color to use
    */
