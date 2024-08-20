@@ -1,15 +1,14 @@
 {
-  "name": "techno-ui-kit",
-  "private": true,
-  "version": "0.0.0",
+  "name": "@technosamurai/techno-ui-kit",
+  "private": false,
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
+    "dev": "storybook dev -p 6006",
+    "build": "vite build && tsc -b",
     "preview": "vite preview",
     "format": "prettier --write src",
     "lint": "eslint src --ext .jsx,.js,.tsx,.ts  --no-error-on-unmatched-pattern --fix && stylelint --fix src/{,*/}*.{scss,css} --allow-empty-input",
-    "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
   "dependencies": {
