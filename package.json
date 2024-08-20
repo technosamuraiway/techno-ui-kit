@@ -1,15 +1,21 @@
 {
-  "name": "flashcards",
-  "private": true,
-  "version": "0.0.0",
+  "name": "@technosamurai/techno-ui-kit",
+  "private": false,
+  "version": "0.0.1",
   "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "dist/style.css"
+  ],
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
+    "dev": "storybook dev -p 6006",
+    "build": "vite build && tsc -b",
     "preview": "vite preview",
     "format": "prettier --write src",
     "lint": "eslint src --ext .jsx,.js,.tsx,.ts  --no-error-on-unmatched-pattern --fix && stylelint --fix src/{,*/}*.{scss,css} --allow-empty-input",
-    "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
   "dependencies": {
@@ -54,6 +60,7 @@
     "eslint-plugin-react-refresh": "^0.4.7",
     "eslint-plugin-storybook": "^0.8.0",
     "sass": "^1.77.6",
+    "semantic-release": "^24.0.0",
     "storybook": "^8.1.11",
     "storybook-dark-mode": "^4.0.2",
     "stylelint": "^16.6.1",
