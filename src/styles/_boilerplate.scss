@@ -2,7 +2,6 @@ html {
   box-sizing: border-box;
   font-size: 100%;
 
-  
   /* stylelint-disable-next-line order/properties-order */
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -35,6 +34,16 @@ a:visited {
 }
 
 body {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  /* stylelint-disable-next-line order/order */
+  margin: 0;
+
+  /* stylelint-disable-next-line order/properties-order */
   min-height: 100vh;
   margin: 0;
   padding: 0;
