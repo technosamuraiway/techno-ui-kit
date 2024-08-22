@@ -65,4 +65,15 @@ export const WithFlags: Story = {
     ],
     variant: 'withFlags',
   },
+  // Добавляем функцию для имитации смены языка
+  play: async ({ args }) => {
+    const changeLangHandler = () => {}
+
+    // Имитация вызова changeLangHandler при выборе опции
+    args.options.forEach(option => {
+      if (option.name === args.variant) {
+        changeLangHandler()
+      }
+    })
+  },
 }

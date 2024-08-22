@@ -1,6 +1,9 @@
 .body {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Горизонтальное центрирование */
-  height: 100vh; /* Если хотите центрировать по всей высоте экрана */
+  align-items: center;
+
+  height: 100vh;
+
+  background-color: black; /* Если хотите центрировать по всей высоте экрана */
 }

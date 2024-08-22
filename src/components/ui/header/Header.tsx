@@ -17,14 +17,30 @@ export type HeaderProps<T extends ElementType = 'header'> = {
   withNotifications?: boolean
 } & ComponentPropsWithoutRef<T>
 
-export const Header = <T extends ElementType = 'header'>(props: HeaderProps<T>) => {
+export const Header = <T extends ElementType = 'header'>(
+  props: { changeLangHandler?: (locale: string) => void } & HeaderProps<T>
+) => {
   const {
     as: Component = 'header',
+    changeLangHandler = () => {}, // Пустая функция по умолчанию
     className,
     withAuthButtons = false,
     withNotifications = false,
     ...rest
   } = props
+
+  const languageOptions = [
+    { IconComponent: FlagUnitedIcon, locale: 'en', name: 'English' },
+    { IconComponent: FlagRussiaIcon, locale: 'ru', name: 'Russian' },
+  ]
+
+  const handleLanguageChange = (name: string) => {
+    const selectedLanguage = languageOptions.find(option => option.name === name)
+
+    if (selectedLanguage && changeLangHandler) {
+      changeLangHandler(selectedLanguage.locale)
+    }
+  }
 
   return (
     <Component className={`${s.header} ${className}`} {...rest}>
@@ -42,10 +58,11 @@ export const Header = <T extends ElementType = 'header'>(props: HeaderProps<T>) 
         )}
         <div className={s.languageSwitcher}>
           <SelectBox
-            options={[
-              { IconComponent: FlagUnitedIcon, name: 'English' },
-              { IconComponent: FlagRussiaIcon, name: 'Russian' },
-            ]}
+            onSelectChange={handleLanguageChange}
+            options={languageOptions.map(option => ({
+              IconComponent: option.IconComponent,
+              name: option.name,
+            }))}
             variant={'withFlags'}
           />
         </div>
