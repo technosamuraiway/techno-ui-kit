@@ -15,6 +15,7 @@ type SelectOption = {
 export type SelectBoxProps<T extends ElementType = 'div'> = {
   as?: T
   disabled?: boolean
+  onSelectChange?: (value: string) => void // Измененное имя пропа
   options: SelectOption[]
   variant?: 'default' | 'withFlags' // Accept options with name and optional icon component
 } & ComponentPropsWithoutRef<T>
@@ -22,16 +23,30 @@ export type SelectBoxProps<T extends ElementType = 'div'> = {
 export const SelectBox = <T extends ElementType = 'div'>(
   props: Omit<ComponentPropsWithoutRef<T>, keyof SelectBoxProps<T>> & SelectBoxProps<T>
 ) => {
-  const { as: Component = 'div', disabled, options, variant = 'default', ...rest } = props
+  const {
+    as: Component = 'div',
+    disabled,
+    onSelectChange,
+    options,
+    variant = 'default',
+    ...rest
+  } = props
   const [selectedOption, setSelectedOption] = useState(options[0].name) // Default to first option
   const [isOpen, setIsOpen] = useState(false)
+
+  const handleValueChange = (value: string) => {
+    setSelectedOption(value)
+    if (onSelectChange) {
+      onSelectChange(value) // Вызываем переданную функцию при изменении значения
+    }
+  }
 
   return (
     <Component {...rest} className={`${styles.container} ${styles[variant]}`}>
       <Select.Root
         disabled={disabled}
         onOpenChange={open => setIsOpen(open)}
-        onValueChange={value => setSelectedOption(value)}
+        onValueChange={handleValueChange} // Используем нашу функцию обработки
         value={selectedOption}
       >
         <Select.Trigger
