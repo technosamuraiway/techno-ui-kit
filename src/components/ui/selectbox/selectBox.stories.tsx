@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { FlagRussiaIcon } from '../../../assets/icons/flagRussia'
-import { FlagUnitedIcon } from '../../../assets/icons/flagUnited'
+import EnFlag from '../../../assets/icons/enFlag.webp'
+import RuFlag from '../../../assets/icons/ruFlag.webp'
 import { SelectBox, SelectBoxProps } from './SelectBox'
 
 const meta = {
@@ -60,8 +60,8 @@ export const WithFlags: Story = {
   args: {
     disabled: false,
     options: [
-      { IconComponent: FlagUnitedIcon, name: 'English' },
-      { IconComponent: FlagRussiaIcon, name: 'Russian' },
+      { IconComponent: EnFlag, name: 'English' },
+      { IconComponent: RuFlag, name: 'Russian' },
     ],
     variant: 'withFlags',
   },
