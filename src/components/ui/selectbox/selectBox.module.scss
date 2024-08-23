@@ -55,7 +55,8 @@
 
 .withFlagsTrigger {
   background-color: var(--Dark-500);
-  border: 1px solid var(--Dark-100); // Different background for this variant
+  border: 1px solid var(--Dark-100);
+
   &:hover {
     background-color: var(--Dark-500);
     border: 1px solid var(--Dark-100);
@@ -81,9 +82,9 @@
 }
 
 .flagIcon {
-  width: 1.25rem; /* 20px converted to rem */
-  height: 1.25rem; /* 20px converted to rem */
-  border-radius: 50%; /* Circular flag icons */
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 50%;
 }
 
 .languageItem {
