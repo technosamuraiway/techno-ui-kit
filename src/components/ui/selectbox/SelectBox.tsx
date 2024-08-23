@@ -1,15 +1,14 @@
-import React, { ComponentPropsWithoutRef, ElementType, useState } from 'react'
+import { ComponentPropsWithoutRef, ElementType, useState } from 'react'
 
+import { DownIcon } from '@/assets/icons/downIcon'
+import { UpIcon } from '@/assets/icons/upIcon'
 import * as Select from '@radix-ui/react-select'
 import clsx from 'clsx'
 
 import styles from './selectBox.module.scss'
 
-import { DownIcon } from '../../../assets/icons/downIcon'
-import { UpIcon } from '../../../assets/icons/upIcon'
-
 type SelectOption = {
-  IconComponent?: React.FC
+  IconComponent?: { png: string; webp: string }
   name: string
 }
 
@@ -59,7 +58,12 @@ export const SelectBox = <T extends ElementType = 'div'>(
               {options.map(option =>
                 option.name === selectedOption ? (
                   <div className={styles.selectedLanguage} key={option.name}>
-                    {option.IconComponent && <option.IconComponent />}
+                    {option.IconComponent && (
+                      <picture className={styles.imgFlag}>
+                        <source srcSet={option.IconComponent?.webp} type={'image/webp'} />
+                        <img alt={`${option.name} - flag`} src={option.IconComponent?.png} />
+                      </picture>
+                    )}
                     <span>{selectedOption}</span>
                   </div>
                 ) : null
@@ -75,7 +79,12 @@ export const SelectBox = <T extends ElementType = 'div'>(
                 <Select.Item className={styles.item} key={option.name} value={option.name}>
                   <Select.ItemText>
                     <div className={styles.languageItem}>
-                      {option.IconComponent && <option.IconComponent />}
+                      {option.IconComponent && (
+                        <picture className={styles.imgFlag}>
+                          <source srcSet={option.IconComponent?.webp} type={'image/webp'} />
+                          <img alt={`${option.name} - flag`} src={option.IconComponent?.png} />
+                        </picture>
+                      )}
                       <span>{option.name}</span>
                     </div>
                   </Select.ItemText>
