@@ -9,7 +9,7 @@ import { DownIcon } from '../../../assets/icons/downIcon'
 import { UpIcon } from '../../../assets/icons/upIcon'
 
 type SelectOption = {
-  IconComponent?: string
+  IconComponent?: { png: string; webp: string }
   name: string
 }
 
@@ -59,8 +59,11 @@ export const SelectBox = <T extends ElementType = 'div'>(
               {options.map(option =>
                 option.name === selectedOption ? (
                   <div className={styles.selectedLanguage} key={option.name}>
-                    {variant === 'withFlags' && (
-                      <img alt={`${option.name} - flag`} src={option.IconComponent} />
+                    {option.IconComponent && (
+                      <picture className={styles.imgFlag}>
+                        <source srcSet={option.IconComponent?.webp} type={'image/webp'} />
+                        <img alt={`${option.name} - flag`} src={option.IconComponent?.png} />
+                      </picture>
                     )}
                     <span>{selectedOption}</span>
                   </div>
@@ -77,8 +80,11 @@ export const SelectBox = <T extends ElementType = 'div'>(
                 <Select.Item className={styles.item} key={option.name} value={option.name}>
                   <Select.ItemText>
                     <div className={styles.languageItem}>
-                      {variant === 'withFlags' && (
-                        <img alt={`${option.name} - flag`} src={option.IconComponent} />
+                      {option.IconComponent && (
+                        <picture className={styles.imgFlag}>
+                          <source srcSet={option.IconComponent?.webp} type={'image/webp'} />
+                          <img alt={`${option.name} - flag`} src={option.IconComponent?.png} />
+                        </picture>
                       )}
                       <span>{option.name}</span>
                     </div>
