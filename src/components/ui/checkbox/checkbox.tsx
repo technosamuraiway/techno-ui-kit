@@ -2,6 +2,7 @@ import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
 
 import * as CheckboxRadix from '@radix-ui/react-checkbox'
 import * as LabelRadix from '@radix-ui/react-label'
+import clsx from 'clsx'
 
 import s from './checkbox.module.scss'
 
@@ -31,7 +32,7 @@ export const Checkbox = forwardRef<ElementRef<typeof CheckboxRadix.Root>, Checkb
     },
     ref
   ) => (
-    <div className={`${s.container} ${s[position]}`}>
+    <div className={clsx(s.container, s[position])}>
       <LabelRadix.Root asChild>
         <Typography
           aria-disabled={disabled}

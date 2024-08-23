@@ -17,7 +17,7 @@ const meta = {
     variant: {
       control: 'radio',
       description: 'Select box variant',
-      options: ['default', 'withFlags'], // Add variant options
+      options: ['default', 'withFlags'],
     },
   },
   component: SelectBox,
@@ -65,11 +65,10 @@ export const WithFlags: Story = {
     ],
     variant: 'withFlags',
   },
-  // Добавляем функцию для имитации смены языка
+
   play: async ({ args }) => {
     const changeLangHandler = () => {}
 
-    // Имитация вызова changeLangHandler при выборе опции
     args.options.forEach(option => {
       if (option.name === args.variant) {
         changeLangHandler()
