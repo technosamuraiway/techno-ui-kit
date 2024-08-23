@@ -1,12 +1,11 @@
 import { ComponentPropsWithoutRef, ElementType, useState } from 'react'
 
+import { DownIcon } from '@/assets/icons/downIcon'
+import { UpIcon } from '@/assets/icons/upIcon'
 import * as Select from '@radix-ui/react-select'
 import clsx from 'clsx'
 
 import styles from './selectBox.module.scss'
-
-import { DownIcon } from '../../../assets/icons/downIcon'
-import { UpIcon } from '../../../assets/icons/upIcon'
 
 type SelectOption = {
   IconComponent?: { png: string; webp: string }
