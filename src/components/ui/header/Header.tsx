@@ -3,6 +3,7 @@ import { ComponentPropsWithoutRef, ElementType } from 'react'
 import { FlagRussiaIcon } from '@/assets/icons/flagRussia'
 import { FlagUnitedIcon } from '@/assets/icons/flagUnited'
 import { Notifications } from '@/assets/icons/notifications'
+import clsx from 'clsx'
 
 import s from './header.module.scss'
 
@@ -12,18 +13,19 @@ import { Typography } from '../typography'
 
 export type HeaderProps<T extends ElementType = 'header'> = {
   as?: T
+  changeLangHandler?: (locale: string) => void
   className?: string
+  onLogoClick?: () => void
   withAuthButtons?: boolean
   withNotifications?: boolean
 } & ComponentPropsWithoutRef<T>
 
-export const Header = <T extends ElementType = 'header'>(
-  props: { changeLangHandler?: (locale: string) => void } & HeaderProps<T>
-) => {
+export const Header = <T extends ElementType = 'header'>(props: HeaderProps<T>) => {
   const {
     as: Component = 'header',
-    changeLangHandler = () => {}, // Пустая функция по умолчанию
+    changeLangHandler = () => {},
     className,
+    onLogoClick = () => {},
     withAuthButtons = false,
     withNotifications = false,
     ...rest
@@ -43,8 +45,8 @@ export const Header = <T extends ElementType = 'header'>(
   }
 
   return (
-    <Component className={`${s.header} ${className}`} {...rest}>
-      <div className={s.leftSection}>
+    <Component className={clsx(s.header, className)} {...rest}>
+      <div className={s.leftSection} onClick={onLogoClick}>
         <Typography className={s.logo} variant={'large'}>
           Inctagram
         </Typography>

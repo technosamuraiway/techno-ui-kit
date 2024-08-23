@@ -1,6 +1,7 @@
 import React, { ComponentPropsWithoutRef, ElementType, useState } from 'react'
 
 import * as Select from '@radix-ui/react-select'
+import clsx from 'clsx'
 
 import styles from './selectBox.module.scss'
 
@@ -8,16 +9,16 @@ import { DownIcon } from '../../../assets/icons/downIcon'
 import { UpIcon } from '../../../assets/icons/upIcon'
 
 type SelectOption = {
-  IconComponent?: React.FC // Optional flag icon component
+  IconComponent?: React.FC
   name: string
 }
 
 export type SelectBoxProps<T extends ElementType = 'div'> = {
   as?: T
   disabled?: boolean
-  onSelectChange?: (value: string) => void // Измененное имя пропа
+  onSelectChange?: (value: string) => void
   options: SelectOption[]
-  variant?: 'default' | 'withFlags' // Accept options with name and optional icon component
+  variant?: 'default' | 'withFlags'
 } & ComponentPropsWithoutRef<T>
 
 export const SelectBox = <T extends ElementType = 'div'>(
@@ -37,16 +38,16 @@ export const SelectBox = <T extends ElementType = 'div'>(
   const handleValueChange = (value: string) => {
     setSelectedOption(value)
     if (onSelectChange) {
-      onSelectChange(value) // Вызываем переданную функцию при изменении значения
+      onSelectChange(value)
     }
   }
 
   return (
-    <Component {...rest} className={`${styles.container} ${styles[variant]}`}>
+    <Component {...rest} className={clsx(styles.container, styles[variant])}>
       <Select.Root
         disabled={disabled}
         onOpenChange={open => setIsOpen(open)}
-        onValueChange={handleValueChange} // Используем нашу функцию обработки
+        onValueChange={handleValueChange}
         value={selectedOption}
       >
         <Select.Trigger
