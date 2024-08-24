@@ -1,7 +1,9 @@
 import { ComponentPropsWithoutRef, ElementType } from 'react'
 
-import { FlagRussiaIcon } from '@/assets/icons/flagRussia'
-import { FlagUnitedIcon } from '@/assets/icons/flagUnited'
+import EnFlagPng from '@/assets/icons/flags/enFlag.png'
+import EnFlagWebp from '@/assets/icons/flags/enFlag.webp'
+import RuFlagPng from '@/assets/icons/flags/ruFlag.png'
+import RuFlagWebp from '@/assets/icons/flags/ruFlag.webp'
 import { Notifications } from '@/assets/icons/notifications'
 import clsx from 'clsx'
 
@@ -32,8 +34,8 @@ export const Header = <T extends ElementType = 'header'>(props: HeaderProps<T>) 
   } = props
 
   const languageOptions = [
-    { IconComponent: FlagUnitedIcon, locale: 'en', name: 'English' },
-    { IconComponent: FlagRussiaIcon, locale: 'ru', name: 'Russian' },
+    { IconComponent: { png: EnFlagPng, webp: EnFlagWebp }, locale: 'en', name: 'English' },
+    { IconComponent: { png: RuFlagPng, webp: RuFlagWebp }, locale: 'ru', name: 'Russian' },
   ]
 
   const handleLanguageChange = (name: string) => {
