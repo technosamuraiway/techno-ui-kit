@@ -1,0 +1,50 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.textArea {
+  resize: none;
+
+  padding: 8px;
+
+  font-size: 14px;
+  color: var(--Light-100);
+
+  background-color: var(--Dark-700);
+  border: 1px solid var(--Dark-300);
+  outline: none;
+
+  &:hover {
+    border-color: var(--Light-100);
+  }
+
+  &:focus {
+    border-color: var(--Primary-500);
+  }
+}
+
+.errorBorder {
+  border-color: var(--Danger-500);
+}
+
+.errorText {
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--Danger-500);
+}
+
+.disabled {
+  .textArea {
+    cursor: not-allowed;
+    color: var(--Dark-300);
+    background-color: var(--Dark-500);
+    border-color: var(--Dark-500);
+  }
+}
+
+.error {
+  .textArea {
+    border-color: var(--Danger-500);
+  }
+}
