@@ -1,0 +1,22 @@
+name: Publish to NPM
+
+on: 
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Merge develop => storybook-deploy 🚀
+        uses: devmasx/merge-branch@1.4.0
+        with:
+          type: now
+          from_branch: develop
+          target_branch: storybook-deploy
+          github_token: ${{ github.token }}
+          access: 'public'
