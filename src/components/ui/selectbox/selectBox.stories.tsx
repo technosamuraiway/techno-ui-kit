@@ -63,7 +63,7 @@ export const WithFlags: Story = {
     disabled: false,
     options: [
       { IconComponent: { png: EnFlagPng, webp: EnFlagWebp }, name: 'English' },
-      { IconComponent: { png: RuFlagPng, webp: RuFlagWebp }, name: 'Russian' },
+      { IconComponent: { png: RuFlagPng, webp: RuFlagWebp }, name: 'Русский' },
     ],
     variant: 'withFlags',
   },
