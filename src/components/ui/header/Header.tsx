@@ -35,7 +35,7 @@ export const Header = <T extends ElementType = 'header'>(props: HeaderProps<T>) 
 
   const languageOptions = [
     { IconComponent: { png: EnFlagPng, webp: EnFlagWebp }, locale: 'en', name: 'English' },
-    { IconComponent: { png: RuFlagPng, webp: RuFlagWebp }, locale: 'ru', name: 'Русский' },
+    { IconComponent: { png: RuFlagPng, webp: RuFlagWebp }, locale: 'ru', name: 'Russian' },
   ]
 
   const handleLanguageChange = (name: string) => {
