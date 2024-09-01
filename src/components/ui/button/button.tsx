@@ -31,4 +31,3 @@ export const Button = <T extends ElementType = 'button'>(props: ButtonProps<T>) 
     </Component>
   )
 }
-// for PR changes
