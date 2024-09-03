@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 
 import { useState } from 'react'
 
-import { TextField } from './textField'
+import { TextField } from './TextField'
 
 const meta = {
   argTypes: {
