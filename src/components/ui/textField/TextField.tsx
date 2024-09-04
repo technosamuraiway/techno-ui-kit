@@ -1,41 +1,48 @@
-import React, {
-  ChangeEvent,
-  ComponentPropsWithoutRef,
-  ElementRef,
-  forwardRef,
-  useState,
-} from 'react'
+import { ChangeEvent, ComponentPropsWithoutRef, ElementRef, forwardRef, useState } from 'react'
 
-import cx from 'clsx'
+import { CloseIcon } from '@/assets/icons/closeIcon'
+import { EyeClosedIcon } from '@/assets/icons/eyeClosedIcon'
+import { EyeIcon } from '@/assets/icons/eyeIcon'
+import { SearchIcon } from '@/assets/icons/searchIcon'
+import { Typography } from '@/components'
+import clsx from 'clsx'
 
-import s from './textField.module.scss'
-
-import { CloseIcon } from '../../../assets/icons/closeIcon'
-import { EyeClosedIcon } from '../../../assets/icons/eyeClosedIcon'
-import { EyeIcon } from '../../../assets/icons/eyeIcon'
-import { SearchIcon } from '../../../assets/icons/searchIcon'
-import { Typography } from '../typography'
+import s from './TextField.module.scss'
 
 export type TextFieldProps = {
   error?: string
+  inputClassName?: string
   label?: string
   onChangeValue?: (value: string) => void
 } & ComponentPropsWithoutRef<'input'>
 
 export const TextField = forwardRef<ElementRef<'input'>, TextFieldProps>(
-  ({ children, error, label, onChange, onChangeValue, type = 'text', value, ...rest }, ref) => {
+  (
+    {
+      children,
+      error,
+      inputClassName,
+      label,
+      onChange,
+      onChangeValue,
+      type = 'text',
+      value,
+      ...rest
+    },
+    ref
+  ) => {
     const [show, setShow] = useState(false)
-    const showPass = () => setShow(prev => (prev ? false : true))
+    const showPass = () => setShow(prev => !prev)
 
     const isShowClearButton =
       type === 'search' && value !== undefined && value.toString().length > 0
     const showError = !!error && error.length > 0
-    const classInput = cx(s[type], s.input, showError && s.error)
+    const classInput = clsx(s[type], s.input, showError && s.error, inputClassName)
 
     const clearButton = onChange && (
       <button
         className={s.buttonIcon}
-        onClick={() => onChange({ target: { value: '' } } as React.ChangeEvent<HTMLInputElement>)}
+        onClick={() => onChange({ target: { value: '' } } as ChangeEvent<HTMLInputElement>)}
         type={'button'}
       >
         <CloseIcon />
@@ -54,7 +61,7 @@ export const TextField = forwardRef<ElementRef<'input'>, TextFieldProps>(
     }
 
     return (
-      <div className={s.box + ' ' + rest.className}>
+      <div className={clsx(s.box, rest.className)}>
         <Typography as={'label'} className={s.label} variant={'regular-text-14'}>
           {type === 'search' ? '' : label}
         </Typography>
