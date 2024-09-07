@@ -189,22 +189,21 @@
   color: var(--Primary-700); /* Today */
 }
 
-.datePicker {
-  &[data-invalid] {
-    .group {
-      border-color: var(--Danger-500, #cc1439);
-    }
+.datePickerWrapper.data-invalid {
+  .group {
+    border-color: var(--Danger-500, #cc1439);
+  }
 
-    .dateInput,
-    .dateSegment,
-    .fieldError,
-    .separator {
-      color: var(--Danger-500);
-    }
+  .dateInput,
+  .dateSegment,
+  .customError,
+  .errorMessage,
+  .separator {
+    color: var(--Danger-500);
+  }
 
-    .calendarIcon {
-      fill: var(--Danger-500);
-    }
+  .calendarIcon {
+    fill: var(--Danger-500);
   }
 }
 
