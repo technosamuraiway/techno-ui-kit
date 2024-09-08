@@ -1,0 +1,14 @@
+.trigger {
+  background-color: yellow;
+}
+
+.content {
+  width: var(--radix-select-trigger-width);
+  max-height: var(--radix-select-content-available-height);
+}
+
+.item {
+  &[data-disabled] {
+    color: orange;
+  }
+}
