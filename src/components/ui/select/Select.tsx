@@ -2,15 +2,22 @@ import { CSSProperties, ComponentPropsWithRef, useState } from 'react'
 
 import { DownIcon } from '@/assets/icons/downIcon'
 import { UpIcon } from '@/assets/icons/upIcon'
+import { Typography } from '@/components'
 import * as S from '@radix-ui/react-select'
 import { clsx } from 'clsx'
 
 import s from './Select.module.scss'
 
 /*
+ * ⛔ Конфигурация размеров select происходит через props => selectHeight и selectWidth
+ *     selectHeight - высота выпадающего списка
+ *     selectWidth - ирина trigger и выпадающего списка
+ *
  *  1. для выравнивания ширины trigger и content => тегу Content добавили атрибут position={'popper'}
  *     в стилях для s.content добавить => width: var(--radix-select-trigger-width); max-height: var(--radix-select-content-available-height)
  *  2. именно тег Viewport добавляет функционал навигации и выбора клавиатурой
+ *  3. тег picture увеличивает ширину своего теге, т.е. если img имеет ширину 24px, то picture становиться себе ширину 32px
+ *     => будем управлять размерами иконок через props
  * */
 
 export type OptionType = {
@@ -21,75 +28,117 @@ export type OptionType = {
 }
 
 interface iSelect extends ComponentPropsWithRef<typeof S.Root> {
+  containerStyle?: CSSProperties
+  contentStyle?: CSSProperties
   currentValue?: string
   disabled?: boolean
+  iconHeight?: string
+  iconStyle?: string
+  iconWidth?: string
+  label?: string
+  labelStyle?: CSSProperties
   options: OptionType[]
-  selectStyle?: CSSProperties
+  selectHeight?: string
+  selectWidth?: string
   triggerStyle?: CSSProperties
 }
 
 export const Select = ({
+  containerStyle,
+  contentStyle,
   currentValue,
   disabled,
+  iconHeight = '24px',
+  iconWidth = '24px',
+  label,
+  labelStyle,
   onValueChange,
   options,
-  selectStyle,
+  selectHeight,
+  selectWidth,
   triggerStyle,
+
   ...rest
 }: iSelect) => {
   const [isOpen, setIsOpen] = useState(false)
-  const option = options.find(option => option.value === currentValue)
+  const optionIsNotFind = { label: 'not-found', value: 'not-found' }
+  const option = options.find(option => option.value === currentValue) || optionIsNotFind
 
   return (
-    <S.Root
-      disabled={disabled}
-      onOpenChange={setIsOpen}
-      onValueChange={onValueChange}
-      value={currentValue}
-      {...rest}
-    >
-      <S.Trigger className={clsx(s.trigger, triggerStyle)}>
-        {option?.icon && <SelectIcon icon={option?.icon} value={option?.value} />}
-        <S.Value>{option?.label}</S.Value>
-        <S.Icon>{isOpen ? <UpIcon /> : <DownIcon />}</S.Icon>
-      </S.Trigger>
+    <div className={clsx(s.container, containerStyle)} style={{ width: selectWidth }}>
+      <Typography
+        as={'label'}
+        className={clsx(s.label, labelStyle)}
+        htmlFor={`${label?.toLowerCase()}`}
+        variant={'regular-text-14'}
+      >
+        {label}
+      </Typography>
 
-      <S.Portal>
-        <S.Content className={clsx(s.content, selectStyle)} position={'popper'} side={'bottom'}>
-          <S.Viewport>
-            {options.map(option => (
-              <S.Item
-                className={s.item}
-                disabled={option.disabled}
-                key={option.value}
-                value={option.value}
-              >
-                {option.icon && <SelectIcon icon={option.icon} value={option.value} />}
-                <S.ItemText>{option.label}</S.ItemText>
-              </S.Item>
-            ))}
-          </S.Viewport>
-        </S.Content>
-      </S.Portal>
-    </S.Root>
+      <S.Root
+        disabled={disabled}
+        onOpenChange={setIsOpen}
+        onValueChange={onValueChange}
+        value={currentValue}
+        {...rest}
+      >
+        <S.Trigger className={clsx(s.trigger, triggerStyle)}>
+          <SelectOption iconHeight={iconHeight} iconWidth={iconWidth} option={option} />
+          {isOpen ? <UpIcon /> : <DownIcon />}
+        </S.Trigger>
+
+        <S.Portal>
+          <S.Content
+            className={clsx(s.content, contentStyle)}
+            position={'popper'}
+            side={'bottom'}
+            style={{ height: selectHeight }}
+          >
+            <S.Viewport>
+              {options.map(item => (
+                <S.Item
+                  className={s.item}
+                  disabled={item.disabled}
+                  key={item.value}
+                  value={item.value}
+                >
+                  <SelectOption iconHeight={iconHeight} iconWidth={iconWidth} option={item} />
+                </S.Item>
+              ))}
+            </S.Viewport>
+          </S.Content>
+        </S.Portal>
+      </S.Root>
+    </div>
   )
 }
 
-/* SelectIcon для отображения иконка в s.Trigger и S.Item */
-const SelectIcon = ({ icon, value }: Omit<OptionType, 'label'>) => {
-  /* Проверяем наличие icon и value, чтобы избежать обращения к свойствам undefined */
-  if (!icon) {
-    return null
-  }
+/* SelectOption для отображение контента в Trigger и Item */
+interface iSelectOption {
+  iconHeight?: string
+  iconWidth?: string
+  option: OptionType
+}
 
-  const { png, webp } = icon
+const SelectOption = ({ iconHeight, iconWidth, option }: iSelectOption) => {
+  const { icon, label, value } = option
 
   return (
-    <S.Icon>
-      <picture>
-        <source srcSet={webp} type={'image/webp'} />
-        <img alt={`${value} - flag`} src={png} />
-      </picture>
-    </S.Icon>
+    <>
+      {option.icon && (
+        <picture style={{ height: iconHeight, width: iconWidth }}>
+          <source srcSet={icon?.webp} type={'image/webp'} />
+          <img
+            alt={`${value} - flag`}
+            src={icon?.png}
+            style={{ height: iconHeight, width: iconWidth }}
+          />
+        </picture>
+      )}
+
+      <Typography as={'span'} variant={'regular-text-14'}>
+        {label}
+      </Typography>
+    </>
   )
 }

@@ -35,16 +35,26 @@ const meta: Meta<typeof Select> = {
 export default meta
 
 /* компонент-обертка, имитирует комопнент, в котором будет применятся Select */
-const Wrapper: FC<{ isDisabled?: boolean; options: OptionType[] }> = ({ isDisabled, options }) => {
+const Wrapper: FC<{
+  isDisabled?: boolean
+  label?: string
+  options: OptionType[]
+  selectHeight?: string
+}> = ({ isDisabled, label, options, selectHeight }) => {
   const [currentValue, setCurrentValue] = useState('en')
 
   return (
-    <Select
-      currentValue={currentValue}
-      disabled={isDisabled}
-      onValueChange={setCurrentValue}
-      options={options}
-    />
+    <div>
+      <Select
+        currentValue={currentValue}
+        disabled={isDisabled}
+        label={label}
+        onValueChange={setCurrentValue}
+        options={options}
+        selectHeight={selectHeight}
+        selectWidth={'200px'}
+      />
+    </div>
   )
 }
 
@@ -63,4 +73,12 @@ export const Disabled = {
 
 export const WithDisabledItem = {
   render: () => <Wrapper options={optionsWithDisabledOption} />,
+}
+
+export const WithLabel = {
+  render: () => <Wrapper label={'It is a label'} options={options} />,
+}
+
+export const WithFixedHeight = {
+  render: () => <Wrapper options={options} selectHeight={'400px'} />,
 }
