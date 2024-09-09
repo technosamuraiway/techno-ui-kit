@@ -8,7 +8,7 @@ import RuFlagPng from '../../../assets/icons/flags/ruFlag.png'
 import RuFlagWebp from '../../../assets/icons/flags/ruFlag.webp'
 import { OptionType, Select } from './Select'
 
-/* options как пример */
+/* options как пример без иконки */
 const options: OptionType[] = [
   { label: 'English', value: 'en' },
   { label: 'Russian', value: 'ru' },
@@ -20,7 +20,7 @@ const optionsWitIcons: OptionType[] = [
   { icon: { png: RuFlagPng, webp: RuFlagWebp }, label: 'Russian', value: 'ru' },
 ]
 
-/* options с один заблокиравонным вариантом */
+/* options как пример без иконки с одним заблокиравонным вариантом */
 const optionsWithDisabledOption: OptionType[] = [
   { label: 'English', value: 'en' },
   { disabled: true, label: 'Russian', value: 'ru' },
@@ -44,17 +44,15 @@ const Wrapper: FC<{
   const [currentValue, setCurrentValue] = useState('en')
 
   return (
-    <div>
-      <Select
-        currentValue={currentValue}
-        disabled={isDisabled}
-        label={label}
-        onValueChange={setCurrentValue}
-        options={options}
-        selectHeight={selectHeight}
-        selectWidth={'200px'}
-      />
-    </div>
+    <Select
+      currentValue={currentValue}
+      disabled={isDisabled}
+      label={label}
+      onValueChange={setCurrentValue}
+      options={options}
+      selectHeight={selectHeight}
+      selectWidth={'200px'}
+    />
   )
 }
 

@@ -16,7 +16,7 @@ import s from './Select.module.scss'
  *  1. для выравнивания ширины trigger и content => тегу Content добавили атрибут position={'popper'}
  *     в стилях для s.content добавить => width: var(--radix-select-trigger-width); max-height: var(--radix-select-content-available-height)
  *  2. именно тег Viewport добавляет функционал навигации и выбора клавиатурой
- *  3. тег picture увеличивает ширину своего теге, т.е. если img имеет ширину 24px, то picture становиться себе ширину 32px
+ *  3. тег picture увеличивает ширину своего тега, т.е. если img имеет ширину 24px, то picture становиться себе ширину 32px
  *     => будем управлять размерами иконок через props
  * */
 
@@ -30,11 +30,8 @@ export type OptionType = {
 interface iSelect extends ComponentPropsWithRef<typeof S.Root> {
   containerStyle?: CSSProperties
   contentStyle?: CSSProperties
-  currentValue?: string
+  currentValue: string
   disabled?: boolean
-  iconHeight?: string
-  iconStyle?: string
-  iconWidth?: string
   label?: string
   labelStyle?: CSSProperties
   options: OptionType[]
@@ -48,8 +45,6 @@ export const Select = ({
   contentStyle,
   currentValue,
   disabled,
-  iconHeight = '24px',
-  iconWidth = '24px',
   label,
   labelStyle,
   onValueChange,
@@ -57,7 +52,6 @@ export const Select = ({
   selectHeight,
   selectWidth,
   triggerStyle,
-
   ...rest
 }: iSelect) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -83,7 +77,7 @@ export const Select = ({
         {...rest}
       >
         <S.Trigger className={clsx(s.trigger, triggerStyle)}>
-          <SelectOption iconHeight={iconHeight} iconWidth={iconWidth} option={option} />
+          <SelectOption {...option} />
           {isOpen ? <UpIcon /> : <DownIcon />}
         </S.Trigger>
 
@@ -102,7 +96,7 @@ export const Select = ({
                   key={item.value}
                   value={item.value}
                 >
-                  <SelectOption iconHeight={iconHeight} iconWidth={iconWidth} option={item} />
+                  <SelectOption {...item} />
                 </S.Item>
               ))}
             </S.Viewport>
@@ -114,25 +108,13 @@ export const Select = ({
 }
 
 /* SelectOption для отображение контента в Trigger и Item */
-interface iSelectOption {
-  iconHeight?: string
-  iconWidth?: string
-  option: OptionType
-}
-
-const SelectOption = ({ iconHeight, iconWidth, option }: iSelectOption) => {
-  const { icon, label, value } = option
-
+const SelectOption = ({ icon, label, value }: OptionType) => {
   return (
     <>
-      {option.icon && (
-        <picture style={{ height: iconHeight, width: iconWidth }}>
+      {icon && (
+        <picture className={s.picture}>
           <source srcSet={icon?.webp} type={'image/webp'} />
-          <img
-            alt={`${value} - flag`}
-            src={icon?.png}
-            style={{ height: iconHeight, width: iconWidth }}
-          />
+          <img alt={`${value} - flag`} src={icon?.png} />
         </picture>
       )}
 

@@ -1,4 +1,5 @@
 * {
+  user-select: none; /* Для современных браузеров */
   box-sizing: border-box;
 }
 
@@ -13,6 +14,8 @@ button {
 
 .trigger,
 .item {
+  cursor: pointer;
+
   display: flex;
   column-gap: 12px;
   align-items: center;
@@ -30,9 +33,14 @@ button {
 .content {
   border: 1px solid var(--Dark-100);
   border-radius: 2px;
+
+  &[data-state='open'] {
+    border-color: var(--Light-100);
+  }
 }
 
 .label {
+  cursor: pointer;
   color: var(--Light-900);
 }
 
@@ -42,18 +50,42 @@ button {
   }
 
   &[data-state='open'] {
-    border-color: orange;
+    border-bottom: none;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  &[data-disabled] {
+    color: var(--Dark-100);
   }
 }
 
 .item {
+  &:hover {
+    color: var(--Primary-500);
+    background-color: var(--Dark-300);
+    outline: none;
+  }
 }
 
 .content {
   width: var(--radix-select-trigger-width);
   max-height: var(--radix-select-content-available-height);
+  border: 1px solid var(--Dark-100);
+  border-radius: 2px;
 
   &[data-state='open'] {
-    border-color: greenyellow;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+}
+
+.picture {
+  width: 24px;
+  height: 24px;
+
+  & img {
+    width: 24px;
+    height: 24px;
   }
 }
