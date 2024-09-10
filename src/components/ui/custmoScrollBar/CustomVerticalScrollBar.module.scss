@@ -1,0 +1,34 @@
+.root {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+}
+
+.viewport {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+}
+
+.scrollbar {
+  /* disable browser handling of all panning and zooming gestures on touch devices */
+  touch-action: none;
+
+  /* ensures no selection */
+  user-select: none;
+
+  display: flex;
+
+  width: 12px;
+  padding: 2px;
+
+  background-color: var(--Light-900);
+}
+
+.thumb {
+  position: relative;
+  flex: 1;
+  background: var(--Primary-500);
+  border-radius: 25px;
+}
