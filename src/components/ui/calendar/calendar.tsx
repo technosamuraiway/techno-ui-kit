@@ -137,7 +137,7 @@ export const MyDatePicker = <T extends ElementType = 'div'>(props: MyDatePickerP
                 <Typography
                   className={s.errorMessage}
                   style={{ color: 'var(--Danger-500)', transition: 'none' }}
-                  variant={'regular-text-16'}
+                  variant={'small-text'}
                 >
                   {customError}
                 </Typography>
@@ -199,7 +199,7 @@ export const MyDatePicker = <T extends ElementType = 'div'>(props: MyDatePickerP
                 <Typography
                   className={s.errorMessage}
                   style={{ color: 'var(--Danger-500)', transition: 'none' }}
-                  variant={'regular-text-16'}
+                  variant={'small-text'}
                 >
                   {customError}
                 </Typography>
