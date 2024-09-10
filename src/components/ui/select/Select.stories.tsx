@@ -8,22 +8,42 @@ import RuFlagPng from '../../../assets/icons/flags/ruFlag.png'
 import RuFlagWebp from '../../../assets/icons/flags/ruFlag.webp'
 import { OptionType, Select } from './Select'
 
-/* options как пример без иконки */
+/* options как пример без иконок */
 const options: OptionType[] = [
   { label: 'English', value: 'en' },
   { label: 'Russian', value: 'ru' },
 ]
 
-/* options как пример + иконки*/
+/* options как пример + иконки */
 const optionsWitIcons: OptionType[] = [
   { icon: { png: EnFlagPng, webp: EnFlagWebp }, label: 'English', value: 'en' },
   { icon: { png: RuFlagPng, webp: RuFlagWebp }, label: 'Russian', value: 'ru' },
 ]
 
-/* options как пример без иконки с одним заблокиравонным вариантом */
+/* options как пример без иконок с одним заблокиравонным вариантом */
 const optionsWithDisabledOption: OptionType[] = [
   { label: 'English', value: 'en' },
   { disabled: true, label: 'Russian', value: 'ru' },
+]
+
+/* options как пример с большим количеством options */
+const optionsWithExtraOptions: OptionType[] = [
+  { label: 'English', value: 'en' },
+  { label: 'English', value: '1' },
+  { label: 'English', value: '2' },
+  { label: 'English', value: '3' },
+  { label: 'English', value: '4' },
+  { label: 'English', value: '5' },
+  { label: 'English', value: '6' },
+  { label: 'English', value: '7' },
+  { label: 'English', value: '8' },
+  { label: 'English', value: '9' },
+  { label: 'English', value: '10' },
+  { label: 'English', value: '11' },
+  { label: 'English', value: '12' },
+  { label: 'English', value: '13' },
+  { label: 'English', value: '14' },
+  { label: 'English', value: '15' },
 ]
 
 const meta: Meta<typeof Select> = {
@@ -77,6 +97,10 @@ export const WithLabel = {
   render: () => <Wrapper label={'It is a label'} options={options} />,
 }
 
-export const WithFixedHeight = {
-  render: () => <Wrapper options={options} selectHeight={'400px'} />,
+export const WithExtraOptions = {
+  render: () => <Wrapper options={optionsWithExtraOptions} />,
+}
+
+export const WithScrollBar = {
+  render: () => <Wrapper options={optionsWithExtraOptions} selectHeight={'300px'} />,
 }

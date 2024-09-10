@@ -54,14 +54,10 @@ button {
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
   }
-
-  &[data-disabled] {
-    color: var(--Dark-100);
-  }
 }
 
 .item {
-  &:hover {
+  &:not([data-disabled]):hover {
     color: var(--Primary-500);
     background-color: var(--Dark-300);
     outline: none;
