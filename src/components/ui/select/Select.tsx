@@ -3,6 +3,7 @@ import { CSSProperties, ComponentPropsWithRef, useMemo, useState } from 'react'
 import { DownIcon } from '@/assets/icons/downIcon'
 import { UpIcon } from '@/assets/icons/upIcon'
 import { Typography } from '@/components'
+import { Scrollbar } from '@/components/ui/scrollBar/Scrollbar'
 import * as S from '@radix-ui/react-select'
 import { clsx } from 'clsx'
 
@@ -152,17 +153,19 @@ const SelectRoot = ({
           side={'bottom'}
           style={{ height: selectHeight }}
         >
-          <S.Viewport>
-            {options.map(item => (
-              <S.Item
-                className={s.item}
-                disabled={item.disabled}
-                key={item.value}
-                value={item.value}
-              >
-                <SelectOption {...item} />
-              </S.Item>
-            ))}
+          <S.Viewport asChild>
+            <Scrollbar>
+              {options.map(item => (
+                <S.Item
+                  className={s.item}
+                  disabled={item.disabled}
+                  key={item.value}
+                  value={item.value}
+                >
+                  <SelectOption {...item} />
+                </S.Item>
+              ))}
+            </Scrollbar>
           </S.Viewport>
         </S.Content>
       </S.Portal>

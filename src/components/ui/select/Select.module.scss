@@ -57,6 +57,9 @@ button {
 }
 
 .item {
+  border: none;
+  outline: none;
+
   &:not([data-disabled]):hover {
     color: var(--Primary-500);
     background-color: var(--Dark-300);
