@@ -65,13 +65,23 @@ export const Select = ({
   triggerStyle,
   ...rest
 }: iSelect) => {
+  const [isOpen, setIsOpen] = useState(false)
   /* 🟢фича => чтобы при клике по label открывался SelectRoot */
+  const handleOpenChange = (open: boolean) => {
+    setIsOpen(open)
+  }
+
+  const handleLabelClick = () => {
+    setIsOpen(prev => !prev)
+  }
 
   const selectRoot = (
     <SelectRoot
       contentStyle={contentStyle}
       currentValue={currentValue}
       disabled={disabled}
+      handleOpenChange={handleOpenChange}
+      isOpen={isOpen}
       onValueChange={onValueChange}
       options={options}
       selectHeight={selectHeight}
@@ -87,7 +97,7 @@ export const Select = ({
         <Typography
           as={'label'}
           className={clsx(s.label, labelStyle)}
-          htmlFor={`${label?.toLowerCase()}`}
+          onClick={handleLabelClick}
           variant={'regular-text-14'}
         >
           {label}
@@ -100,12 +110,17 @@ export const Select = ({
   return selectRoot
 }
 
-interface iSelectRoot extends Omit<iSelect, 'containerStyle' | 'label' | 'labelStyle'> {}
+interface iSelectRoot extends Omit<iSelect, 'containerStyle' | 'label' | 'labelStyle'> {
+  handleOpenChange: (isOpen: boolean) => void
+  isOpen: boolean
+}
 
 const SelectRoot = ({
   contentStyle,
   currentValue,
   disabled,
+  handleOpenChange,
+  isOpen,
   onValueChange,
   options,
   selectHeight,
@@ -113,8 +128,6 @@ const SelectRoot = ({
   triggerStyle,
   ...rest
 }: iSelectRoot) => {
-  const [isOpen, setIsOpen] = useState(false)
-
   /* 🟢 Оптимизация
    * Создадим функцию для преобразования массива options в объект.
    * Используем хук useMemo для мемоизации этого объекта.
@@ -136,8 +149,9 @@ const SelectRoot = ({
   return (
     <S.Root
       disabled={disabled}
-      onOpenChange={setIsOpen}
+      onOpenChange={handleOpenChange}
       onValueChange={onValueChange}
+      open={isOpen}
       value={currentValue}
       {...rest}
     >
