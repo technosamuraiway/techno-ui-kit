@@ -2,6 +2,7 @@ import s from './styles/Home.module.scss'
 
 import { SelectBox, TextField } from './components'
 import { Button } from './components/ui/button'
+import { MyDatePicker } from './components/ui/calendar/calendar'
 import { Header } from './components/ui/header'
 import { TextArea } from './components/ui/textArea'
 export default function App() {
@@ -15,6 +16,7 @@ export default function App() {
         <div className={s.area}>
           <TextArea />
         </div>
+        <MyDatePicker locale={'en'} />
       </div>
     </>
   )
