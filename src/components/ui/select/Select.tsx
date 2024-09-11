@@ -45,6 +45,7 @@ interface iSelect extends ComponentPropsWithRef<typeof S.Root> {
   disabled?: boolean
   label?: string
   labelStyle?: CSSProperties
+  onValueChange: (value: string) => void
   options: OptionType[]
   selectHeight?: string
   selectWidth?: string
