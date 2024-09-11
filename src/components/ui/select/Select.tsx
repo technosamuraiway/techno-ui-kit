@@ -3,7 +3,7 @@ import { CSSProperties, ComponentPropsWithRef, useMemo, useState } from 'react'
 import { DownIcon } from '@/assets/icons/downIcon'
 import { UpIcon } from '@/assets/icons/upIcon'
 import { Typography } from '@/components'
-import { Scrollbar } from '@/components/ui/scrollBar/Scrollbar'
+import { Scrollbar } from '@/components/ui/scrollbar/Scrollbar'
 import * as S from '@radix-ui/react-select'
 import { clsx } from 'clsx'
 
