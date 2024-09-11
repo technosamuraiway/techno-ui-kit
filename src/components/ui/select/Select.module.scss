@@ -61,7 +61,6 @@ button {
   }
 
   &[data-state='open'] {
-    border-bottom: none;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
   }
@@ -95,6 +94,7 @@ button {
   max-height: var(--radix-select-content-available-height);
 
   &[data-state='open'] {
+    border-top: none;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
   }
