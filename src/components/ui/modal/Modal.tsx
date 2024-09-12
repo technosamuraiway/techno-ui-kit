@@ -7,12 +7,14 @@ import clsx from 'clsx'
 
 import s from './Modal.module.scss'
 
-type ModalSize = 'L' | 'M' | 'S' | 'XL' | 'XS'
+// 'L' - 644px; 'M' - 492px(486px); 'S' - 378px; 'XL' - 972px; 'XS' - 330px
+export type ModalSize = 'L' | 'M' | 'S' | 'XL' | 'XS'
 
-export interface IProps extends ComponentPropsWithoutRef<typeof Dialog.Root> {
+interface IProps extends ComponentPropsWithoutRef<typeof Dialog.Root> {
   children: ReactNode
   closeButtonClassName?: string
   contentClassName?: string
+  headerClassName?: string
   headerTitle?: string
   modalSize?: ModalSize
   overlayClassName?: string
@@ -25,6 +27,7 @@ export const Modal = ({
   children,
   closeButtonClassName,
   contentClassName,
+  headerClassName,
   headerTitle,
   modalSize = 'S',
   overlayClassName,
@@ -42,8 +45,8 @@ export const Modal = ({
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className={clsx(s.overlay, overlayClassName)}>
-          <Dialog.Content className={clsx(s.content, contentClassName)}>
-            <div className={s.header}>
+          <Dialog.Content className={clsx(s.content, s[modalSize], contentClassName)}>
+            <div className={clsx(s.header, headerClassName)}>
               <Dialog.Title asChild>
                 <Typography as={'h1'} variant={'h1'}>
                   {headerTitle}
