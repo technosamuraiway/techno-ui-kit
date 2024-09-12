@@ -1,29 +1,55 @@
 import { ComponentPropsWithoutRef, ReactNode } from 'react'
 
+import { CloseIcon } from '@/assets/icons/closeIcon'
+import { Button, ButtonVariant, Typography } from '@/components'
 import * as Dialog from '@radix-ui/react-dialog'
+import clsx from 'clsx'
 
-import s from './modal.module.scss'
+import s from './Modal.module.scss'
 
-import { CloseIcon } from '../../../assets/icons/closeIcon'
-import { Typography } from '../typography'
+type ModalSize = 'L' | 'M' | 'S' | 'XL' | 'XS'
 
-type ModalProps = {
+export interface IProps extends ComponentPropsWithoutRef<typeof Dialog.Root> {
   children: ReactNode
-  title?: string
-} & ComponentPropsWithoutRef<typeof Dialog.Dialog>
-export const Modal = ({ children, title, ...props }: ModalProps) => {
+  closeButtonClassName?: string
+  contentClassName?: string
+  headerTitle?: string
+  modalSize?: ModalSize
+  overlayClassName?: string
+  triggerChildren: ReactNode
+  triggerClassName?: string
+  triggerVariant?: ButtonVariant
+}
+
+export const Modal = ({
+  children,
+  closeButtonClassName,
+  contentClassName,
+  headerTitle,
+  modalSize = 'S',
+  overlayClassName,
+  triggerChildren,
+  triggerClassName,
+  triggerVariant = 'primary',
+  ...rest
+}: IProps) => {
   return (
-    <Dialog.Root {...props}>
+    <Dialog.Root {...rest}>
+      <Dialog.Trigger asChild>
+        <Button className={triggerClassName} variant={triggerVariant}>
+          {triggerChildren}
+        </Button>
+      </Dialog.Trigger>
       <Dialog.Portal>
-        <Dialog.Overlay className={s.overlay}>
-          <Dialog.Content className={s.content}>
+        <Dialog.Overlay className={clsx(s.overlay, overlayClassName)}>
+          <Dialog.Content className={clsx(s.content, contentClassName)}>
             <div className={s.header}>
               <Dialog.Title asChild>
                 <Typography as={'h1'} variant={'h1'}>
-                  {title}
+                  {headerTitle}
                 </Typography>
               </Dialog.Title>
-              <Dialog.Close className={s.closeButton}>
+              <Dialog.Close className={clsx(s.closeButton, closeButtonClassName)}>
                 <CloseIcon />
               </Dialog.Close>
             </div>
