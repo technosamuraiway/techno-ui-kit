@@ -98,7 +98,7 @@ const navSecondItemsArray: NavItem[] = [
 ]
 
 const SideBarItemsWrapper = () => {
-  const [currentPath, setCurrentPath] = useState<string>('')
+  const [currentPath, setCurrentPath] = useState<string>('#Create')
 
   const activeConditionFunction = (itemPath: string) => {
     return itemPath === currentPath
