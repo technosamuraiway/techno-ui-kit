@@ -115,7 +115,7 @@ const NavBarItemWrapper = () => {
         style={{
           display: 'flex',
           flexDirection: 'column',
-          gap: '2rem',
+          gap: '0.75rem',
           padding: '4.5rem',
         }}
       >
@@ -135,7 +135,7 @@ const NavBarItemWrapper = () => {
         style={{
           display: 'flex',
           flexDirection: 'column',
-          gap: '2rem',
+          gap: '0.75rem',
           padding: '4.5rem',
         }}
       >

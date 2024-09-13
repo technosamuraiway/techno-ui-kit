@@ -45,6 +45,7 @@ export const NavBarItem = <T extends ElementType = 'a'>(props: NavBarItemProps<T
       className={clsx(s.link, isActive && s.active, item.isDisabled && s.disabled, className)}
       key={item.id}
       onClick={() => onNavBarItemClick(item.hrefLink)}
+      onKeyDown={() => onNavBarItemClick(item.hrefLink)}
       tabIndex={item.isDisabled ? -1 : 0}
       {...rest}
     >
