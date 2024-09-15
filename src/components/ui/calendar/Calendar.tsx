@@ -19,13 +19,13 @@ import {
 
 import { ChevronLeft } from '@/assets/icons/chevronLeft'
 import { ChevronRight } from '@/assets/icons/chevronRight'
+import { Typography } from '@/components'
 import { CalendarDate, DateValue } from '@internationalized/date'
 import clsx from 'clsx'
 
-import s from './calendar.module.scss'
+import s from './Calendar.module.scss'
 
 import { CalendarIconWhite } from '../../../assets/icons/calendarIconWhite'
-import { Typography } from '../typography'
 
 const locales = {
   en: {
