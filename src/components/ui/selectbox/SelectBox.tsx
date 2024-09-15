@@ -5,7 +5,7 @@ import { UpIcon } from '@/assets/icons/upIcon'
 import * as Select from '@radix-ui/react-select'
 import clsx from 'clsx'
 
-import styles from './selectBox.module.scss'
+import styles from './SelectBox.module.scss'
 
 type SelectOption = {
   IconComponent?: { png: string; webp: string }

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { TextArea, TextAreaProps } from './textArea'
+import { TextArea, TextAreaProps } from './TextArea'
 
 const meta: Meta<TextAreaProps> = {
   argTypes: {

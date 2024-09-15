@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { MyDatePicker } from './calendar'
+import { MyDatePicker } from './Calendar'
 
 const meta: Meta = {
   argTypes: {

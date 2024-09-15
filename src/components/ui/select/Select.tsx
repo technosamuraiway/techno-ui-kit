@@ -38,7 +38,7 @@ export type OptionType = {
   value: string
 }
 
-interface iSelect extends ComponentPropsWithRef<typeof S.Root> {
+interface ISelect extends ComponentPropsWithRef<typeof S.Root> {
   containerStyle?: CSSProperties
   contentStyle?: CSSProperties
   currentValue: string
@@ -65,7 +65,7 @@ export const Select = ({
   selectWidth,
   triggerStyle,
   ...rest
-}: iSelect) => {
+}: ISelect) => {
   const [isOpen, setIsOpen] = useState(false)
   /* 🟢фича => чтобы при клике по label открывался SelectRoot */
   const handleOpenChange = (open: boolean) => {
@@ -111,7 +111,7 @@ export const Select = ({
   return selectRoot
 }
 
-interface iSelectRoot extends Omit<iSelect, 'containerStyle' | 'label' | 'labelStyle'> {
+interface iSelectRoot extends Omit<ISelect, 'containerStyle' | 'label' | 'labelStyle'> {
   handleOpenChange: (isOpen: boolean) => void
   isOpen: boolean
 }
