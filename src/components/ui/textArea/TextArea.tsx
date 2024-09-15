@@ -2,7 +2,7 @@ import { ComponentPropsWithoutRef, ElementRef, ElementType, forwardRef } from 'r
 
 import clsx from 'clsx'
 
-import s from './textArea.module.scss'
+import s from './TextArea.module.scss'
 
 export type TextAreaProps<T extends ElementType = 'textarea'> = {
   as?: T

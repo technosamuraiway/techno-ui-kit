@@ -5,7 +5,7 @@ import { clsx } from 'clsx'
 
 import s from './Scrallbar.module.scss'
 
-interface iProps extends ComponentPropsWithoutRef<'div'> {
+interface IProps extends ComponentPropsWithoutRef<'div'> {
   children: ReactNode
   className?: string
   /** maxHeight viewport in pixels */
@@ -15,7 +15,7 @@ interface iProps extends ComponentPropsWithoutRef<'div'> {
   type?: S.ScrollAreaProps['type']
 }
 
-export const Scrollbar = forwardRef<HTMLDivElement, iProps>(
+export const Scrollbar = forwardRef<HTMLDivElement, IProps>(
   ({ children, className, maxHeight = '100%', maxWidth = '100%', type = 'auto', ...rest }, ref) => {
     const classNames = {
       root: clsx(s.root, className),

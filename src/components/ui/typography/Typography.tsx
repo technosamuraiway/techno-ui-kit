@@ -2,7 +2,7 @@ import { ComponentPropsWithoutRef, ElementType, ReactNode } from 'react'
 
 import clsx from 'clsx'
 
-import s from './typography.module.scss'
+import s from './Typography.module.scss'
 
 export type TypographyVariants =
   | 'bold-text-14'
@@ -29,10 +29,10 @@ export type TextProps<T extends ElementType = 'p'> = {
 export const Typography = <T extends ElementType = 'p'>(
   props: Omit<ComponentPropsWithoutRef<T>, keyof TextProps<T>> & TextProps<T>
 ) => {
-  const { as: Component = 'p', children, className, variant = 'body1', ...restProps } = props
+  const { as: Component = 'p', children, className, variant = 'body1', ...rest } = props
 
   return (
-    <Component {...restProps} className={clsx(s[variant], className ?? '')}>
+    <Component {...rest} className={clsx(s[variant], className)}>
       {children}
     </Component>
   )

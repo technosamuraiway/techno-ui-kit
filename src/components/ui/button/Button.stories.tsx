@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { FlagRussiaIcon } from '../../../assets/icons/flagRussia'
+import FlagRussiaIcon from '../../../assets/icons/flags/ruFlag.png'
 import { LogoutIcon } from '../../../assets/icons/logoutIcon'
-import { Button } from './button'
+import { Button } from './Button'
 
 const meta: Meta = {
   argTypes: {
@@ -43,7 +43,7 @@ export const SecondaryWithIcon: Story = {
 }
 export const LanguageButton: Story = {
   args: {
-    children: [<FlagRussiaIcon key={'flag-russia-icon'} />, 'Russian'],
+    children: [<img alt={'Flag'} key={'Id'} src={FlagRussiaIcon} />, 'Russian'],
     disabled: false,
     variant: 'languageButton',
   },
