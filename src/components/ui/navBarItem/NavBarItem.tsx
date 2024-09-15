@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, ElementType, ReactNode } from 'react'
+import { ComponentPropsWithoutRef, ElementType, KeyboardEvent, ReactNode } from 'react'
 
 import { Typography } from '@/components'
 import clsx from 'clsx'
@@ -39,13 +39,19 @@ export const NavBarItem = <T extends ElementType = 'a'>(props: NavBarItemProps<T
   const isActive = activeCondition(item.hrefLink)
   const IconComponent = isActive ? item.activeIconComponent : item.defaultIconComponent
 
+  const onKeyDownHandler = (e: KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      onNavBarItemClick(item.hrefLink)
+    }
+  }
+
   return (
     <Component
       aria-disabled={item.isDisabled}
       className={clsx(s.link, isActive && s.active, item.isDisabled && s.disabled, className)}
       key={item.id}
       onClick={() => onNavBarItemClick(item.hrefLink)}
-      onKeyDown={() => onNavBarItemClick(item.hrefLink)}
+      onKeyDown={onKeyDownHandler}
       tabIndex={item.isDisabled ? -1 : 0}
       {...rest}
     >

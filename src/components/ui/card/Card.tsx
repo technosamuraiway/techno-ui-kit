@@ -9,7 +9,7 @@ import {
 
 import clsx from 'clsx'
 
-import s from './card.module.scss'
+import s from './Card.module.scss'
 
 export type CardProps<T extends ElementType> = {
   as?: T

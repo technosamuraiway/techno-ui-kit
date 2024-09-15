@@ -1,13 +1,11 @@
 import { ComponentPropsWithoutRef, ElementType } from 'react'
 
 import { Notifications } from '@/assets/icons/notifications'
+import { Button, Typography } from '@/components'
 import { ChangeLanguageSelect } from '@/components/ui/header/ui/changeLanguageSelect/ChangeLanguageSelect'
 import clsx from 'clsx'
 
 import s from './header.module.scss'
-
-import { Button } from '../button'
-import { Typography } from '../typography'
 
 export type HeaderProps<T extends ElementType = 'header'> = {
   as?: T
