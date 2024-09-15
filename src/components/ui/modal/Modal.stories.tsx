@@ -20,7 +20,7 @@ const ModalWrapper = ({
   triggerChildren,
 }: {
   modalSize: ModalSize
-  triggerChildren: ReactNode
+  triggerChildren?: ReactNode
 }) => {
   const [openModal, setOpenModal] = useState(false)
 

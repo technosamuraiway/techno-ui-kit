@@ -18,7 +18,7 @@ interface IProps extends ComponentPropsWithoutRef<typeof Dialog.Root> {
   headerTitle?: string
   modalSize?: ModalSize
   overlayClassName?: string
-  triggerChildren: ReactNode
+  triggerChildren?: ReactNode
   triggerClassName?: string
   triggerVariant?: ButtonVariant
 }
@@ -38,11 +38,14 @@ export const Modal = ({
 }: IProps) => {
   return (
     <Dialog.Root {...rest}>
-      <Dialog.Trigger asChild>
-        <Button className={triggerClassName} variant={triggerVariant}>
-          {triggerChildren}
-        </Button>
-      </Dialog.Trigger>
+      {triggerChildren && (
+        <Dialog.Trigger asChild>
+          <Button className={triggerClassName} variant={triggerVariant}>
+            {triggerChildren}
+          </Button>
+        </Dialog.Trigger>
+      )}
+
       <Dialog.Portal>
         <Dialog.Overlay className={clsx(s.overlay, overlayClassName)}>
           <Dialog.Content className={clsx(s.content, s[modalSize], contentClassName)}>
