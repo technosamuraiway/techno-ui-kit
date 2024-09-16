@@ -1,6 +1,6 @@
 import { ChangeEvent, ComponentPropsWithoutRef, ElementRef, forwardRef, useState } from 'react'
 
-import { CloseIcon } from '@/assets/icons/closeIcon'
+import { CloseIcon } from '@/assets/icons/CloseIcon'
 import { EyeClosedIcon } from '@/assets/icons/eyeClosedIcon'
 import { EyeIcon } from '@/assets/icons/eyeIcon'
 import { SearchIcon } from '@/assets/icons/searchIcon'
