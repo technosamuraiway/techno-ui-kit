@@ -58,6 +58,10 @@ export const DefaultModal: Story = {
   render: () => <ModalWrapper modalSize={'S'} triggerChildren={'Open S Modal'} />,
 }
 
+export const XXSModal: Story = {
+  render: () => <ModalWrapper modalSize={'XXS'} triggerChildren={'Open XXS Modal'} />,
+}
+
 export const XSModal: Story = {
   render: () => <ModalWrapper modalSize={'XS'} triggerChildren={'Open XS Modal'} />,
 }
