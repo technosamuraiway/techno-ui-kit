@@ -8,6 +8,7 @@ button {
 }
 
 .container {
+  z-index: 102;
   display: flex;
   flex-flow: column nowrap;
 }

@@ -20,7 +20,7 @@ type NavBarItemProps<T extends ElementType = 'a'> = {
   as?: T
   iconClassName?: string
   item: NavItem
-  onNavBarItemClick: (path: string) => void
+  onNavBarItemClick?: (hrefLink: string) => void
   textClassName?: string
 } & ComponentPropsWithoutRef<T>
 
@@ -40,7 +40,7 @@ export const NavBarItem = <T extends ElementType = 'a'>(props: NavBarItemProps<T
   const IconComponent = isActive ? item.activeIconComponent : item.defaultIconComponent
 
   const onKeyDownHandler = (e: KeyboardEvent) => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && onNavBarItemClick) {
       onNavBarItemClick(item.hrefLink)
     }
   }
@@ -50,7 +50,7 @@ export const NavBarItem = <T extends ElementType = 'a'>(props: NavBarItemProps<T
       aria-disabled={item.isDisabled}
       className={clsx(s.link, isActive && s.active, item.isDisabled && s.disabled, className)}
       key={item.id}
-      onClick={() => onNavBarItemClick(item.hrefLink)}
+      onClick={onNavBarItemClick && (() => onNavBarItemClick(item.hrefLink))}
       onKeyDown={onKeyDownHandler}
       tabIndex={item.isDisabled ? -1 : 0}
       {...rest}
