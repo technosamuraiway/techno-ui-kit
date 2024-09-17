@@ -4,7 +4,7 @@ import { Typography } from '@/components'
 import * as T from '@radix-ui/react-tabs'
 import clsx from 'clsx'
 
-import s from './Tabs.module.scss'
+import s from './TabsComponents.module.scss'
 
 export type TabType = {
   disabled?: boolean
@@ -13,7 +13,10 @@ export type TabType = {
   value: string
 }
 
+type TabsColorType = 'blue' | 'dark'
+
 export type TabsProps = {
+  color: TabsColorType
   defaultValue?: string
   listClassName?: string
   notFullWidth?: boolean
@@ -28,6 +31,7 @@ export type TabsProps = {
 const Root = ({
   children,
   className,
+  color = 'dark',
   defaultValue,
   listClassName,
   notFullWidth,
@@ -50,7 +54,12 @@ const Root = ({
       <T.List aria-label={'brief description'} className={clsx(s.list, listClassName)}>
         {tabs.map(tab => (
           <T.Trigger
-            className={clsx(s.trigger, notFullWidth && s.triggerNotFullWidth, triggerClassName)}
+            className={clsx(
+              s.trigger,
+              notFullWidth && s.triggerNotFullWidth,
+              s[color],
+              triggerClassName
+            )}
             disabled={tab.disabled}
             key={`Tab ${tab.value} id`}
             onClick={onClick}
@@ -82,7 +91,7 @@ const Content = ({ children, className, value, ...rest }: ContentProps) => {
 
 //========================================================================================
 
-export const Tabs = {
+export const TabsComponents = {
   Content,
   Root,
 }
