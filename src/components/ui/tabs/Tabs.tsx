@@ -6,7 +6,7 @@ import clsx from 'clsx'
 
 import s from './Tabs.module.scss'
 
-type TabType = {
+export type TabType = {
   disabled?: boolean
   title: string
   /* A unique value that associates the trigger with a content. */

@@ -1,12 +1,12 @@
 import { Meta, StoryFn } from '@storybook/react'
 import { fn } from '@storybook/test'
 
-import { Tabs, TabsProps } from './Tabs'
+import { TabType, Tabs, TabsProps } from './Tabs'
 
 //========================================================================================
 
 // Define tabs data
-const tabsData = [
+const tabsData: TabType[] = [
   { title: 'Tab 1', value: 'tab1' },
   { title: 'Tab 2', value: 'tab2' },
   { disabled: true, title: 'Tab 3', value: 'tab3' },
@@ -27,17 +27,7 @@ const Template: StoryFn<{ isWithContent: boolean } & TabsProps> = args => (
           necessitatibus, obcaecati officia quam quis sapiente sint?
         </Tabs.Content>
         <Tabs.Content value={'tab2'}>Content 2</Tabs.Content>
-        <Tabs.Content value={'tab3'}>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad alias aliquam amet aperiam
-          architecto asperiores commodi consectetur cupiditate distinctio dolores eaque earum
-          excepturi facere hic id ipsa laborum magni, nisi nobis porro quasi qui quisquam quod quos
-          reiciendis saepe sequi similique sint vel. A ab aliquam architecto beatae blanditiis
-          consequatur consequuntur debitis dicta distinctio dolor dolore dolorem doloribus ea error
-          hic illum impedit inventore iste itaque laboriosam, minima minus nisi nulla numquam
-          obcaecati praesentium quis recusandae repellendus repudiandae, saepe sint, soluta sunt
-          totam ullam vero voluptatem voluptatum. Ad assumenda blanditiis distinctio doloremque in
-          officiis quas rerum sapiente sint unde.
-        </Tabs.Content>
+        <Tabs.Content value={'tab3'}>Disabled</Tabs.Content>
       </>
     )}
   </Tabs.Root>
@@ -56,8 +46,9 @@ export default {
 } as Meta
 
 // Default Tabs story
-export const DefaultDark = Template.bind({})
-DefaultDark.args = {
+export const DarkTabs = Template.bind({})
+DarkTabs.args = {
+  color: 'dark',
   defaultValue: tabsData[0].value,
   onValueChange: fn(),
   tabs: tabsData,
@@ -71,8 +62,18 @@ BlueTabs.args = {
   tabs: tabsData,
 }
 
-export const NotFullWidth = Template.bind({})
-NotFullWidth.args = {
+export const NotFullWidthDark = Template.bind({})
+NotFullWidthDark.args = {
+  color: 'dark',
+  defaultValue: tabsData[0].value,
+  notFullWidth: true,
+  onValueChange: fn(),
+  tabs: tabsData,
+}
+
+export const NotFullWidthBlue = Template.bind({})
+NotFullWidthBlue.args = {
+  color: 'blue',
   defaultValue: tabsData[0].value,
   notFullWidth: true,
   onValueChange: fn(),
@@ -80,8 +81,18 @@ NotFullWidth.args = {
 }
 
 // Controlled Tabs story
-export const WithContent = Template.bind({})
-WithContent.args = {
+export const DarkWithContent = Template.bind({})
+DarkWithContent.args = {
+  color: 'dark',
+  defaultValue: tabsData[0].value,
+  isWithContent: true,
+  onValueChange: fn(),
+  tabs: tabsData,
+}
+
+export const BlueWithContent = Template.bind({})
+BlueWithContent.args = {
+  color: 'blue',
   defaultValue: tabsData[0].value,
   isWithContent: true,
   onValueChange: fn(),
