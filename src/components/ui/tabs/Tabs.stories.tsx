@@ -19,9 +19,25 @@ const Template: StoryFn<{ isWithContent: boolean } & TabsProps> = args => (
   <Tabs.Root {...args}>
     {args.isWithContent && (
       <>
-        <Tabs.Content value={'tab1'}>Tab 1</Tabs.Content>
-        <Tabs.Content value={'tab2'}>Tab 2</Tabs.Content>
-        <Tabs.Content value={'tab3'}>Tab 2</Tabs.Content>
+        <Tabs.Content value={'tab1'}>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam assumenda deserunt
+          dolore, doloribus, eius est hic iusto laboriosam molestiae optio similique vel voluptatum.
+          Ab beatae deserunt distinctio doloremque ipsam molestias perferendis vero voluptates
+          voluptatibus. Aut debitis dolore dolorum, eos error incidunt laboriosam nam
+          necessitatibus, obcaecati officia quam quis sapiente sint?
+        </Tabs.Content>
+        <Tabs.Content value={'tab2'}>Content 2</Tabs.Content>
+        <Tabs.Content value={'tab3'}>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad alias aliquam amet aperiam
+          architecto asperiores commodi consectetur cupiditate distinctio dolores eaque earum
+          excepturi facere hic id ipsa laborum magni, nisi nobis porro quasi qui quisquam quod quos
+          reiciendis saepe sequi similique sint vel. A ab aliquam architecto beatae blanditiis
+          consequatur consequuntur debitis dicta distinctio dolor dolore dolorem doloribus ea error
+          hic illum impedit inventore iste itaque laboriosam, minima minus nisi nulla numquam
+          obcaecati praesentium quis recusandae repellendus repudiandae, saepe sint, soluta sunt
+          totam ullam vero voluptatem voluptatum. Ad assumenda blanditiis distinctio doloremque in
+          officiis quas rerum sapiente sint unde.
+        </Tabs.Content>
       </>
     )}
   </Tabs.Root>
@@ -36,12 +52,20 @@ export default {
   },
   component: Template,
   tags: ['autodocs'],
-  title: '🟢UI/Tabs',
+  title: 'Components/Tabs',
 } as Meta
 
 // Default Tabs story
-export const Default = Template.bind({})
-Default.args = {
+export const DefaultDark = Template.bind({})
+DefaultDark.args = {
+  defaultValue: tabsData[0].value,
+  onValueChange: fn(),
+  tabs: tabsData,
+}
+
+export const BlueTabs = Template.bind({})
+BlueTabs.args = {
+  color: 'blue',
   defaultValue: tabsData[0].value,
   onValueChange: fn(),
   tabs: tabsData,

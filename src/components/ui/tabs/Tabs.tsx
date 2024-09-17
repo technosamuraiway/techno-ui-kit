@@ -13,7 +13,10 @@ type TabType = {
   value: string
 }
 
+type TabsColorType = 'blue' | 'dark'
+
 export type TabsProps = {
+  color: TabsColorType
   defaultValue?: string
   listClassName?: string
   notFullWidth?: boolean
@@ -28,6 +31,7 @@ export type TabsProps = {
 const Root = ({
   children,
   className,
+  color = 'dark',
   defaultValue,
   listClassName,
   notFullWidth,
@@ -48,13 +52,12 @@ const Root = ({
       {...rest}
     >
       <T.List aria-label={'brief description'} className={clsx(s.list, listClassName)}>
-        {tabs.map((tab, i) => (
+        {tabs.map(tab => (
           <T.Trigger
             className={clsx(
               s.trigger,
               notFullWidth && s.triggerNotFullWidth,
-              i === 0 && s.triggerBorderFirst,
-              i === tabs.length - 1 && s.triggerBorderLast,
+              s[color],
               triggerClassName
             )}
             disabled={tab.disabled}
