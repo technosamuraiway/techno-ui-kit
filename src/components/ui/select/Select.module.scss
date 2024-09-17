@@ -8,7 +8,6 @@ button {
 }
 
 .container {
-  z-index: 102;
   display: flex;
   flex-flow: column nowrap;
 }
@@ -32,6 +31,7 @@ button {
 
 .trigger,
 .content {
+  z-index: 102;
   border: 1px solid var(--Dark-100);
   border-radius: 4px;
 
