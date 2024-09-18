@@ -117,17 +117,19 @@ export const MyDatePicker = <T extends ElementType = 'div'>(props: MyDatePickerP
         {mode === 'range' ? (
           <DateRangePicker className={s.datePicker} onChange={handleRangeChange}>
             <Group className={clsx(s.group, s[variant], isDateSelected ? s.active : s.default)}>
-              <DateInput className={clsx(s.dateInput, s[variant])} slot={'start'}>
-                {segment => (
-                  <DateSegment className={clsx(s.dateSegment, s[variant])} segment={segment} />
-                )}
-              </DateInput>
-              <span className={clsx(s.separator, s[variant])}>-</span>
-              <DateInput className={clsx(s.dateInput, s[variant])} slot={'end'}>
-                {segment => (
-                  <DateSegment className={clsx(s.dateSegment, s[variant])} segment={segment} />
-                )}
-              </DateInput>
+              <div className={s.dates}>
+                <DateInput className={clsx(s.dateInput, s[variant])} slot={'start'}>
+                  {segment => (
+                    <DateSegment className={clsx(s.dateSegment, s[variant])} segment={segment} />
+                  )}
+                </DateInput>
+                <span className={clsx(s.separator, s[variant])}>-</span>
+                <DateInput className={clsx(s.dateInput, s[variant])} slot={'end'}>
+                  {segment => (
+                    <DateSegment className={clsx(s.dateSegment, s[variant])} segment={segment} />
+                  )}
+                </DateInput>
+              </div>
               <Button className={clsx(s.calendarIconButton)}>
                 <CalendarIconWhite className={clsx(s.calendarIcon, s[variant])} />
               </Button>
@@ -183,7 +185,16 @@ export const MyDatePicker = <T extends ElementType = 'div'>(props: MyDatePickerP
             </Popover>
           </DateRangePicker>
         ) : (
-          <DatePicker className={s.datePicker} onChange={() => setIsDateSelected(true)}>
+          <DatePicker
+            className={s.datePicker}
+            onChange={date => {
+              const selectedDate = new Date(date.year, date.month - 1, date.day)
+
+              if (onDateChange) {
+                onDateChange({ start: selectedDate })
+              }
+            }}
+          >
             <Group className={clsx(s.group, s[variant], isDateSelected ? s.active : s.default)}>
               <DateInput className={clsx(s.dateInput, s[variant])}>
                 {segment => (
