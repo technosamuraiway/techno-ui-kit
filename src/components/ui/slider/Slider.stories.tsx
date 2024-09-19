@@ -25,8 +25,10 @@ const WrapperTwoThumb = () => {
 
   return (
     <Slider
+      isSingle={false}
       minStepsBetweenThumbs={2}
       onValueChange={valueChangeHandler}
+      step={2}
       value={[valueLeft, valueRight]}
     />
   )
@@ -43,7 +45,7 @@ const WrapperOneThumb = () => {
     setValue(value)
   }
 
-  return <Slider minStepsBetweenThumbs={1} onValueChange={valueChangeHandler} value={value} />
+  return <Slider onValueChange={valueChangeHandler} step={1} value={value} />
 }
 
 export const DefaultOneThumbSlider: Story = {
