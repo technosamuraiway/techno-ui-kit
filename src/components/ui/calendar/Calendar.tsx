@@ -17,6 +17,7 @@ import {
   RangeCalendar,
 } from 'react-aria-components'
 
+import { CalendarIconWhite } from '@/assets/icons/calendarIconWhite'
 import { ChevronLeft } from '@/assets/icons/chevronLeft'
 import { ChevronRight } from '@/assets/icons/chevronRight'
 import { Typography } from '@/components'
@@ -24,8 +25,6 @@ import { CalendarDate, DateValue } from '@internationalized/date'
 import clsx from 'clsx'
 
 import s from './Calendar.module.scss'
-
-import { CalendarIconWhite } from '../../../assets/icons/calendarIconWhite'
 
 const locales = {
   en: {
@@ -115,7 +114,11 @@ export const MyDatePicker = <T extends ElementType = 'div'>(props: MyDatePickerP
         {...rest}
       >
         {mode === 'range' ? (
-          <DateRangePicker className={s.datePicker} onChange={handleRangeChange}>
+          <DateRangePicker
+            aria-label={'Date picker range'}
+            className={s.datePicker}
+            onChange={handleRangeChange}
+          >
             <Group className={clsx(s.group, s[variant], isDateSelected ? s.active : s.default)}>
               <div className={s.dates}>
                 <DateInput className={clsx(s.dateInput, s[variant])} slot={'start'}>
@@ -186,6 +189,7 @@ export const MyDatePicker = <T extends ElementType = 'div'>(props: MyDatePickerP
           </DateRangePicker>
         ) : (
           <DatePicker
+            aria-label={'Date picker'}
             className={s.datePicker}
             onChange={date => {
               const selectedDate = new Date(date.year, date.month - 1, date.day)
