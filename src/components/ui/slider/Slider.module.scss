@@ -25,14 +25,14 @@
 
   height: 5px;
 
-  background-color: var(--Primary-300);
+  background-color: var(--Light-100);
   border-radius: 5px;
 }
 
 .sliderRange {
   position: absolute;
   height: 100%;
-  background-color: var(--Primary-700);
+  background-color: var(--Primary-500);
   border-radius: 5px;
 }
 
@@ -60,27 +60,17 @@
     width: 8px;
     height: 8px;
 
-    background-color: var(--color-light-100);
+    background-color: var(--Primary-100);
     border-radius: 50%;
   }
 
   &:hover {
     cursor: pointer;
-    background-color: var(--color-accent-300);
-    box-shadow: 0 0 10px var(--color-light-100);
+    background-color: var(--Primary-900);
+    box-shadow: 0 0 5px var(--Light-700);
   }
 
   &:focus {
     outline: none;
   }
-}
-
-.sliderText {
-  width: 40px;
-  padding: 5px;
-
-  text-align: center;
-
-  border: 1px solid var(--color-dark-300);
-  border-radius: 2px;
 }

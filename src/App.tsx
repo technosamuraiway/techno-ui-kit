@@ -18,6 +18,7 @@ export default function App() {
     label: city.name,
     value: city.name.toLowerCase().replace(/\s+/g, '-'), // Преобразуем в формат, подходящий для value
   }))
+
   const [currentValue, setCurrentValue] = useState(formattedCityOptions[0].value)
   const checkAge = (birthDate: Date) => {
     const today = new Date()

@@ -8,7 +8,7 @@ const meta = {
   argTypes: {},
   component: Slider,
   tags: ['autodocs'],
-  title: '🟢UI/Slider',
+  title: 'Components/Slider',
 } satisfies Meta<typeof Slider>
 
 export default meta
@@ -41,11 +41,11 @@ export const DefaultTwoThumbSlider: Story = {
 const WrapperOneThumb = () => {
   const [value, setValue] = useState(2)
 
-  const valueChangeHandler = (value: number) => {
-    setValue(value)
+  const valueChangeHandler = (value: number[]) => {
+    setValue(value[0])
   }
 
-  return <Slider onValueChange={valueChangeHandler} step={1} value={value} />
+  return <Slider onValueChange={valueChangeHandler} step={1} value={[value]} />
 }
 
 export const DefaultOneThumbSlider: Story = {
