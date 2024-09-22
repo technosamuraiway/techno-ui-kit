@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef, ElementType } from 'react'
 
-import { Notifications } from '@/assets/icons/notifications'
+import { Notifications } from '@/assets/icons/Notifications'
 import { Button, Typography } from '@/components'
 import { ChangeLanguageSelect } from '@/components/ui/header/ui/changeLanguageSelect/ChangeLanguageSelect'
 import clsx from 'clsx'
