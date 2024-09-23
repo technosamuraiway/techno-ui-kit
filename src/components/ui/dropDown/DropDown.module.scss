@@ -1,5 +1,5 @@
 .trigger {
-  cursor: pointer;
+  position: relative;
 
   display: inline-flex;
   align-items: center;
@@ -7,6 +7,20 @@
 
   width: 1.5rem;
   height: 1.5rem;
+
+  color: var(--Light-100);
+
+  &:focus {
+    outline: 0.125rem solid var(--Primary-500);
+  }
+
+  &[data-state='open'] {
+    color: var(--Primary-500);
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
 
   & * {
     width: 100%;
@@ -21,8 +35,8 @@
 
   padding: 12px;
 
-  background-color: var(--Dark-100);
-  border: 0.0625rem solid var(--Dark-100);
+  background-color: var(--Dark-500);
+  border: 0.0625rem solid var(--Dark-500);
   border-radius: 0.25rem;
 
   animation-duration: 0.6s;
@@ -39,14 +53,16 @@
 
 .arrow {
   position: absolute;
-  transform-origin: 30% 10%;
-  transform: rotate(45deg) translate(-10%, -35%);
+  top: 0;
+  right: -0.4375rem;
+  transform-origin: 10% 10%;
+  transform: rotate(45deg) translate(-35%, -35%);
 
   width: 0.5rem;
   height: 0.5rem;
 
-  background-color: var(--Dark-100);
-  border: 0.0625rem solid var(--Dark-100);
+  background-color: var(--Dark-500);
+  border: 0.0625rem solid var(--Dark-500);
   border-top: none;
   border-left: none;
 }
@@ -61,6 +77,15 @@
   align-items: center;
 
   outline: none;
+
+  &:hover {
+    cursor: pointer;
+    color: var(--Primary-500);
+  }
+
+  &:focus:not(:hover) {
+    outline: 0.125rem solid var(--Primary-500);
+  }
 }
 
 .separator {

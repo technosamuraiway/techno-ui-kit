@@ -7,21 +7,27 @@ import s from './DropDown.module.scss'
 
 export type DropdownProps = {
   arrowCN?: string
+  avoidCollisions?: boolean
   contentAlign?: 'center' | 'end' | 'start'
   contentCN?: string
+  contentSide?: 'bottom' | 'left' | 'right' | 'top'
   style?: CSSProperties
   trigger: ReactNode
   triggerCN?: string
+  withArrow?: boolean
 } & ComponentPropsWithRef<typeof D.Root>
 
 const Root = ({
   arrowCN,
+  avoidCollisions = true,
   children,
   contentAlign = 'end',
   contentCN,
+  contentSide = 'bottom',
   style,
   trigger,
   triggerCN,
+  withArrow = true,
   ...rest
 }: DropdownProps) => {
   return (
@@ -33,11 +39,19 @@ const Root = ({
       </D.Trigger>
 
       <D.Portal>
-        <D.Content align={contentAlign} className={clsx(s.content, contentCN)} sideOffset={5}>
+        <D.Content
+          align={contentAlign}
+          avoidCollisions={avoidCollisions}
+          className={clsx(s.content, contentCN)}
+          side={contentSide}
+          sideOffset={5}
+        >
           {children}
-          <D.Arrow asChild>
-            <div className={clsx(s.arrow, arrowCN)} />
-          </D.Arrow>
+          {withArrow && (
+            <D.Arrow asChild>
+              <div className={clsx(s.arrow, arrowCN)} />
+            </D.Arrow>
+          )}
         </D.Content>
       </D.Portal>
     </D.Root>
