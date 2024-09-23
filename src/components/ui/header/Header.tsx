@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef, ElementType } from 'react'
 
-import { Notifications } from '@/assets/icons/Notifications'
+import { DefaultNotifications } from '@/assets/icons/DefaultNotifications'
 import { Button, Typography } from '@/components'
 import { ChangeLanguageSelect } from '@/components/ui/header/ui/changeLanguageSelect/ChangeLanguageSelect'
 import clsx from 'clsx'
@@ -37,7 +37,7 @@ export const Header = <T extends ElementType = 'header'>(props: HeaderProps<T>) 
       <div className={s.rightSection}>
         {withNotifications && (
           <div className={s.notification}>
-            <Notifications />
+            <DefaultNotifications />
             <span className={s.badge}>3</span>
           </div>
         )}

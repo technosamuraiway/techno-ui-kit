@@ -1,4 +1,4 @@
-import { Notifications } from '@/assets/icons/Notifications'
+import { DefaultNotifications } from '@/assets/icons/DefaultNotifications'
 import { Meta, StoryObj } from '@storybook/react'
 
 import { Dropdown } from './DropDown'
@@ -15,7 +15,7 @@ type Story = StoryObj<typeof Dropdown.Root>
 
 const Wrapper = () => {
   return (
-    <Dropdown.Root trigger={<Notifications />}>
+    <Dropdown.Root trigger={<DefaultNotifications />}>
       <Dropdown.Item>Lorem ipsum</Dropdown.Item>
       <Dropdown.Separator />
       <Dropdown.Item>Lorem ipsum d</Dropdown.Item>

@@ -1,6 +1,6 @@
 import { SVGProps, memo } from 'react'
 
-export const Notifications = memo((props: SVGProps<SVGSVGElement>) => (
+export const DefaultNotifications = memo((props: SVGProps<SVGSVGElement>) => (
   <svg fill={'currentColor'} xmlns={'http://www.w3.org/2000/svg'} {...props}>
     <path
       d={
