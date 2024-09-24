@@ -1,7 +1,7 @@
 import { ComponentPropsWithoutRef, ElementType, useState } from 'react'
 
-import { DownIcon } from '@/assets/icons/downIcon'
-import { UpIcon } from '@/assets/icons/upIcon'
+import { DownIcon } from '@/assets/icons/DownIcon'
+import { UpIcon } from '@/assets/icons/UpIcon'
 import * as Select from '@radix-ui/react-select'
 import clsx from 'clsx'
 

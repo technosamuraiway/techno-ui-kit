@@ -1,7 +1,6 @@
 import { CSSProperties, ComponentPropsWithRef, useMemo, useState } from 'react'
 
-import { DownIcon } from '@/assets/icons/downIcon'
-import { UpIcon } from '@/assets/icons/upIcon'
+import { DownIcon, UpIcon } from '@/assets/icons'
 import { Typography } from '@/components'
 import { Scrollbar } from '@/components/ui/scrollbar/Scrollbar'
 import * as S from '@radix-ui/react-select'
@@ -144,7 +143,7 @@ const SelectRoot = ({
       {} as Record<string, OptionType>
     )
   }, [options])
-  /* Достаем значение напрямую для отобажения в trigger */
+  /* Достаем значение напрямую для отображения в trigger */
   const option = optionsMemo[currentValue]
 
   return (
@@ -158,7 +157,7 @@ const SelectRoot = ({
     >
       <S.Trigger className={clsx(s.trigger, triggerStyle)} style={{ width: selectWidth }}>
         <SelectOption {...option} />
-        {isOpen ? <UpIcon /> : <DownIcon />}
+        {isOpen ? <UpIcon height={24} width={24} /> : <DownIcon height={24} width={24} />}
       </S.Trigger>
 
       <S.Portal>
