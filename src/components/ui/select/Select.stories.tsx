@@ -54,7 +54,7 @@ const meta: Meta<typeof Select> = {
 
 export default meta
 
-/* компонент-обертка, имитирует комопнент, в котором будет применятся Select */
+/* компонент-обертка, имитирует компонент, в котором будет применяться Select */
 const Wrapper: FC<{
   isDisabled?: boolean
   label?: string

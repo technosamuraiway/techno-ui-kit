@@ -1,5 +1,11 @@
 export { ActiveNotifications } from './ActiveNotifications'
+export { CheckboxIcon } from './CheckboxIcon'
 export { CloseIcon } from './CloseIcon'
 export { DefaultNotifications } from './DefaultNotifications'
+export { DownIcon } from './DownIcon'
+export { EyeClosedIcon } from './EyeClosedIcon'
+export { EyeIcon } from './EyeIcon'
+export { LogOutIcon } from './LogOutIcon'
+export { UpIcon } from './UpIcon'
 
 export * from './sideBar'
