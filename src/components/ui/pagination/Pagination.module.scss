@@ -21,7 +21,7 @@
   width: 24px;
   height: 24px;
 
-  color: var(--color-light-100);
+  color: var(--Light-100);
 
   border-radius: 2px;
 }
@@ -33,24 +33,25 @@
 
   &:focus-visible {
     border-radius: 2px;
-    outline: 2px solid var(--color-info-900);
+    outline: 2px solid var(--Primary-700);
   }
 
   &:disabled {
     cursor: initial;
+    color: var(--Dark-100);
     opacity: 1;
   }
 
   &:hover:not(&:disabled) {
-    background-color: var(--color-dark-500);
+    background-color: var(--Dark-100);
   }
 
   &.selected {
-    color: var(--color-dark-900) !important;
-    background-color: var(--color-light-100);
+    color: var(--Dark-900) !important;
+    background-color: var(--Light-100);
 
     & * {
-      color: var(--color-dark-900);
+      color: var(--Dark-900);
     }
   }
 }
@@ -64,11 +65,23 @@
   gap: 12px;
   align-items: center;
 
-  color: var(--color-text-primary);
+  color: var(--Light-100);
   white-space: nowrap;
 }
 
-.select {
+.selectTrigger {
+  display: flex;
   flex-shrink: 0;
-  width: 65px;
+  column-gap: 4px;
+  padding: 2px;
+
+  span {
+    display: block;
+    text-align: right;
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
 }

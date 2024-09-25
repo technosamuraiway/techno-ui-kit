@@ -124,7 +124,7 @@ const PageButton: FC<PageButtonProps> = ({ disabled, onClick, page, selected }) 
 const PrevButton: FC<NavigationButtonProps> = ({ disabled, onClick }) => {
   return (
     <button className={classNames.item} disabled={disabled} onClick={onClick} type={'button'}>
-      <ArrowLeftIcon />
+      <ArrowLeftIcon height={'16px'} width={'16px'} />
     </button>
   )
 }
@@ -132,7 +132,7 @@ const PrevButton: FC<NavigationButtonProps> = ({ disabled, onClick }) => {
 const NextButton: FC<NavigationButtonProps> = ({ disabled, onClick }) => {
   return (
     <button className={classNames.item} disabled={disabled} onClick={onClick} type={'button'}>
-      <ArrowRightIcon />
+      <ArrowRightIcon height={'16px'} width={'16px'} />
     </button>
   )
 }
@@ -179,17 +179,15 @@ const PerPageSelect: FC<PerPageSelectProps> = ({ onPerPageChange, perPage, perPa
     onPerPageChange(value as number)
   }
 
-  // const selectOpen = perPage > 5
-
   return (
     <div className={classNames.selectBox}>
       <Typography variant={'medium-text-14'}>Показать</Typography>
       <Select
-        // contentStyle={s.select}
         currentValue={perPage.toString()}
         onValueChange={onPerPageChangeForType}
         options={selectOptions}
-        selectWidth={'60px'}
+        selectWidth={'52px'}
+        triggerStyle={s.selectTrigger}
       />
       <Typography variant={'medium-text-14'}>на странице</Typography>
     </div>

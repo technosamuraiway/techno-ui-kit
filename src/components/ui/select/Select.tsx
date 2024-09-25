@@ -38,17 +38,17 @@ export type OptionType = {
 }
 
 interface ISelect extends ComponentPropsWithRef<typeof S.Root> {
-  containerStyle?: CSSProperties
-  contentStyle?: CSSProperties
+  containerStyle?: CSSProperties | string
+  contentStyle?: CSSProperties | string
   currentValue: string
   disabled?: boolean
   label?: string
-  labelStyle?: CSSProperties
+  labelStyle?: CSSProperties | string
   onValueChange: (value: string) => void
   options: OptionType[]
   selectHeight?: string
   selectWidth?: string
-  triggerStyle?: CSSProperties
+  triggerStyle?: CSSProperties | string
 }
 
 export const Select = ({
