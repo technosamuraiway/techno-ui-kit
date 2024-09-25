@@ -1,7 +1,7 @@
 import { FC } from 'react'
 
+import { ArrowRightIcon } from '@/assets/ArrowRightIcon'
 import { ArrowLeftIcon } from '@/assets/icons/ArrowLeftIcon'
-import { ArrowRightIcon } from '@/assets/icons/ArrowRightIcon'
 import { Select, Typography } from '@/components'
 import { usePagination } from '@/components/ui/pagination/usePagination'
 import { clsx } from 'clsx'
@@ -189,7 +189,7 @@ const PerPageSelect: FC<PerPageSelectProps> = ({ onPerPageChange, perPage, perPa
         currentValue={perPage.toString()}
         onValueChange={onPerPageChangeForType}
         options={selectOptions}
-        selectWidth={'56px'}
+        selectWidth={'60px'}
       />
       <Typography variant={'medium-text-14'}>на странице</Typography>
     </div>
