@@ -1,0 +1,87 @@
+.root {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  gap: 12px;
+  list-style-type: none;
+}
+
+@mixin item {
+  all: unset;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 24px;
+  height: 24px;
+
+  color: var(--Light-100);
+
+  border-radius: 2px;
+}
+
+.item {
+  @include item;
+
+  cursor: pointer;
+
+  &:focus-visible {
+    border-radius: 2px;
+    outline: 2px solid var(--Primary-700);
+  }
+
+  &:disabled {
+    cursor: initial;
+    color: var(--Dark-100);
+    opacity: 1;
+  }
+
+  &:hover:not(&:disabled) {
+    background-color: var(--Dark-100);
+  }
+
+  &.selected {
+    color: var(--Dark-900) !important;
+    background-color: var(--Light-100);
+
+    & * {
+      color: var(--Dark-900);
+    }
+  }
+}
+
+.dots {
+  @include item;
+}
+
+.selectBox {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+
+  color: var(--Light-100);
+  white-space: nowrap;
+}
+
+.selectTrigger {
+  display: flex;
+  flex-shrink: 0;
+  column-gap: 4px;
+  padding: 2px;
+
+  span {
+    display: block;
+    text-align: right;
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
