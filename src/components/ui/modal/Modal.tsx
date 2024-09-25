@@ -18,6 +18,7 @@ interface IProps extends ComponentPropsWithoutRef<typeof Dialog.Root> {
   headerTitle?: string
   modalSize?: ModalSize
   overlayClassName?: string
+  showHeader?: boolean
   triggerChildren?: ReactNode
   triggerClassName?: string
   triggerVariant?: ButtonVariant
@@ -31,6 +32,7 @@ export const Modal = ({
   headerTitle,
   modalSize = 'S',
   overlayClassName,
+  showHeader = true,
   triggerChildren,
   triggerClassName,
   triggerVariant = 'primary',
@@ -52,16 +54,18 @@ export const Modal = ({
           aria-describedby={undefined}
           className={clsx(s.content, s[modalSize], contentClassName)}
         >
-          <div className={clsx(s.header, headerClassName)}>
-            <Dialog.Title asChild>
-              <Typography as={'h1'} variant={'h1'}>
-                {headerTitle}
-              </Typography>
-            </Dialog.Title>
-            <Dialog.Close className={clsx(s.closeButton, closeButtonClassName)}>
-              <CloseIcon />
-            </Dialog.Close>
-          </div>
+          {showHeader && (
+            <div className={clsx(s.header, headerClassName)}>
+              <Dialog.Title asChild>
+                <Typography as={'h1'} variant={'h1'}>
+                  {headerTitle}
+                </Typography>
+              </Dialog.Title>
+              <Dialog.Close className={clsx(s.closeButton, closeButtonClassName)}>
+                <CloseIcon />
+              </Dialog.Close>
+            </div>
+          )}
           {children}
         </Dialog.Content>
       </Dialog.Portal>

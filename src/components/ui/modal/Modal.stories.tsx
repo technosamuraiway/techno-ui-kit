@@ -15,13 +15,13 @@ const meta: Meta<typeof Modal> = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-const ModalWrapper = ({
-  modalSize,
-  triggerChildren,
-}: {
+interface IProps {
   modalSize: ModalSize
+  showHeader?: boolean
   triggerChildren?: ReactNode
-}) => {
+}
+
+const ModalWrapper = ({ modalSize, showHeader, triggerChildren }: IProps) => {
   const [openModal, setOpenModal] = useState(false)
 
   return (
@@ -30,6 +30,7 @@ const ModalWrapper = ({
       modalSize={modalSize}
       onOpenChange={setOpenModal}
       open={openModal}
+      showHeader={showHeader}
       triggerChildren={triggerChildren}
     >
       <div style={{ padding: '30px 24px' }}>
@@ -76,4 +77,10 @@ export const MModal: Story = {
 
 export const XLModal: Story = {
   render: () => <ModalWrapper modalSize={'XL'} triggerChildren={'Open XL Modal'} />,
+}
+
+export const XLModalWithoutHeader: Story = {
+  render: () => (
+    <ModalWrapper modalSize={'XL'} showHeader={false} triggerChildren={'Open XL Modal'} />
+  ),
 }
