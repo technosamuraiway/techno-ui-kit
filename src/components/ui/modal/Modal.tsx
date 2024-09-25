@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef, ReactNode } from 'react'
 
-import { CloseIcon } from '@/assets/icons/CloseIcon'
+import { CloseIcon } from '@/assets/icons'
 import { Button, ButtonVariant, Typography } from '@/components'
 import * as Dialog from '@radix-ui/react-dialog'
 import clsx from 'clsx'

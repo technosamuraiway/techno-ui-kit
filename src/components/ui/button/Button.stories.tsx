@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
+import { LogOutIcon } from '@/assets/icons'
+
 import FlagRussiaIcon from '../../../assets/icons/flags/ruFlag.png'
-import { LogoutIcon } from '../../../assets/icons/logoutIcon'
 import { Button } from './Button'
 
 const meta: Meta = {
@@ -36,7 +37,7 @@ export const Secondary: Story = {
 }
 export const SecondaryWithIcon: Story = {
   args: {
-    children: [<LogoutIcon key={'secondary-logout-icon'} />, 'Log Out'],
+    children: [<LogOutIcon height={24} key={'secondary-logout-icon'} width={24} />, 'Log Out'],
     disabled: false,
     variant: 'iconButton',
   },

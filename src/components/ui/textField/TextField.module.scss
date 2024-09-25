@@ -53,6 +53,7 @@
 }
 
 .label {
+  cursor: pointer;
   color: var(--Light-900);
 }
 
@@ -66,15 +67,15 @@
 
 .searchIcon {
   position: absolute;
-  top: 55%;
+  top: 50%;
   left: 12px;
   transform: translateY(-50%);
 
   display: grid;
   place-items: center;
 
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
 }
 
 .buttonIcon {

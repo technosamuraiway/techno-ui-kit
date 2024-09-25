@@ -1,9 +1,9 @@
 import { ChangeEvent, ComponentPropsWithoutRef, ElementRef, forwardRef, useState } from 'react'
 
 import { CloseIcon } from '@/assets/icons/CloseIcon'
-import { EyeClosedIcon } from '@/assets/icons/eyeClosedIcon'
-import { EyeIcon } from '@/assets/icons/eyeIcon'
-import { SearchIcon } from '@/assets/icons/searchIcon'
+import { EyeClosedIcon } from '@/assets/icons/EyeClosedIcon'
+import { EyeIcon } from '@/assets/icons/EyeIcon'
+import { DefaultSearchIcon } from '@/assets/icons/sideBar/DefaultSearchIcon'
 import { Typography } from '@/components'
 import clsx from 'clsx'
 
@@ -51,7 +51,7 @@ export const TextField = forwardRef<ElementRef<'input'>, TextFieldProps>(
 
     const eyeButton = type === 'password' && (
       <button className={s.buttonIcon} onMouseDown={showPass} onMouseUp={showPass} type={'button'}>
-        {show ? <EyeIcon /> : <EyeClosedIcon />}
+        {show ? <EyeIcon height={24} width={24} /> : <EyeClosedIcon height={24} width={24} />}
       </button>
     )
 
@@ -62,14 +62,20 @@ export const TextField = forwardRef<ElementRef<'input'>, TextFieldProps>(
 
     return (
       <div className={clsx(s.box, rest.className)}>
-        <Typography as={'label'} className={s.label} variant={'regular-text-14'}>
+        <Typography
+          as={'label'}
+          className={s.label}
+          htmlFor={`${label}-id`}
+          variant={'regular-text-14'}
+        >
           {type === 'search' ? '' : label}
         </Typography>
         <div className={s.inputBox}>
-          {type === 'search' && <SearchIcon className={s.searchIcon} />}
+          {type === 'search' && <DefaultSearchIcon className={s.searchIcon} />}
           <input
             {...rest}
             className={classInput}
+            id={`${label}-id`}
             onChange={onChangeValueHandler}
             ref={ref}
             type={(show && 'text') || type}
@@ -79,7 +85,7 @@ export const TextField = forwardRef<ElementRef<'input'>, TextFieldProps>(
           {eyeButton}
         </div>
         {showError && (
-          <Typography as={'label'} className={s.error} variant={'regular-text-14'}>
+          <Typography as={'span'} className={s.error} variant={'regular-text-14'}>
             {error}
           </Typography>
         )}
