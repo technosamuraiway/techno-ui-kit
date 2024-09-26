@@ -30,14 +30,18 @@ const locales = {
   en: {
     dayNames: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
     errorMessages: {
+      dateInputEmpty: 'Date input is empty.',
       generalError: 'Error!',
+      invalidDateSelected: 'Invalid date selected. Please try again.',
       selectMonthError: 'Error, select current month or last month',
     },
   },
   ru: {
     dayNames: ['П', 'В', 'С', 'Ч', 'П', 'С', 'В'],
     errorMessages: {
+      dateInputEmpty: 'Поле даты пусто.',
       generalError: 'Ошибка!',
+      invalidDateSelected: 'Неверная дата выбрана. Пожалуйста, попробуйте снова.',
       selectMonthError: 'Ошибка, выберите текущий или прошлый месяц',
     },
   },
@@ -102,6 +106,23 @@ export const MyDatePicker = <T extends ElementType = 'div'>(props: MyDatePickerP
       if (onDateChange) {
         onDateChange({ end, start })
       }
+    }
+  }
+  const handleDateChange = (dateValue: DateValue) => {
+    if (dateValue) {
+      const selectedDate = new Date(dateValue.year, dateValue.month - 1, dateValue.day)
+
+      if (!isNaN(selectedDate.getTime())) {
+        setCustomError('')
+        setIsDateSelected(true)
+        if (onDateChange) {
+          onDateChange({ start: selectedDate })
+        }
+      } else {
+        setCustomError(currentLocale.errorMessages.invalidDateSelected)
+      }
+    } else {
+      setCustomError(currentLocale.errorMessages.dateInputEmpty)
     }
   }
 
@@ -191,13 +212,7 @@ export const MyDatePicker = <T extends ElementType = 'div'>(props: MyDatePickerP
           <DatePicker
             aria-label={'Date picker'}
             className={s.datePicker}
-            onChange={date => {
-              const selectedDate = new Date(date.year, date.month - 1, date.day)
-
-              if (onDateChange) {
-                onDateChange({ start: selectedDate })
-              }
-            }}
+            onChange={handleDateChange}
           >
             <Group className={clsx(s.group, s[variant], isDateSelected ? s.active : s.default)}>
               <DateInput className={clsx(s.dateInput, s[variant])}>
