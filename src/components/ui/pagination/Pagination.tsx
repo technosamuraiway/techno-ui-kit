@@ -1,12 +1,12 @@
 import { FC } from 'react'
 
-import { ArrowRightIcon } from '@/assets/ArrowRightIcon'
-import { ArrowLeftIcon } from '@/assets/icons/ArrowLeftIcon'
+import { ArrowLeftIcon, ArrowRightIcon } from '@/assets/icons'
 import { Select, Typography } from '@/components'
-import { usePagination } from '@/components/ui/pagination/usePagination'
 import { clsx } from 'clsx'
 
 import s from './Pagination.module.scss'
+
+import { usePagination } from './usePagination'
 
 type PaginationConditionals =
   | {
