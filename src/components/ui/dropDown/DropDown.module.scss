@@ -10,16 +10,16 @@
 
   color: var(--Light-100);
 
-  &:focus {
-    outline: 0.125rem solid var(--Primary-500);
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:focus-visible:not(:hover) {
+    color: var(--Primary-500);
   }
 
   &[data-state='open'] {
     color: var(--Primary-500);
-  }
-
-  &:hover {
-    cursor: pointer;
   }
 
   & * {
