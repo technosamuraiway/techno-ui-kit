@@ -17,9 +17,7 @@ import {
   RangeCalendar,
 } from 'react-aria-components'
 
-import { CalendarIconWhite } from '@/assets/icons/calendarIconWhite'
-import { ChevronLeft } from '@/assets/icons/chevronLeft'
-import { ChevronRight } from '@/assets/icons/chevronRight'
+import { CalendarIconWhite, ChevronLeft, ChevronRight } from '@/assets/icons'
 import { Typography } from '@/components'
 import { CalendarDate, DateValue } from '@internationalized/date'
 import clsx from 'clsx'
