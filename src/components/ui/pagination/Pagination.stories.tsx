@@ -16,7 +16,12 @@ export default meta
 
 type Story = StoryObj<typeof Pagination>
 
-const Wrapper = () => {
+type WrapperType = {
+  onPageTitle: string
+  showTitle: string
+}
+
+const Wrapper = ({ onPageTitle, showTitle }: WrapperType) => {
   const [page, setPage] = useState(1)
   const [perPage, setPerPage] = useState(perPageOptions[0])
   const TOTAL_PAGES_COUNT = 10
@@ -25,14 +30,20 @@ const Wrapper = () => {
     <Pagination
       count={TOTAL_PAGES_COUNT}
       onChange={setPage}
+      onPageTitle={onPageTitle}
       onPerPageChange={setPerPage}
       page={page}
       perPage={perPage}
       perPageOptions={perPageOptions}
+      showTitle={showTitle}
     />
   )
 }
 
 export const Default: Story = {
-  render: () => <Wrapper />,
+  render: () => <Wrapper onPageTitle={'на странице'} showTitle={'Показать'} />,
+}
+
+export const WithEnglish: Story = {
+  render: () => <Wrapper onPageTitle={'on page'} showTitle={'Show'} />,
 }
