@@ -61,3 +61,10 @@ export const Error: Story = {
     value: 'Error',
   },
 }
+
+export const WithStar: Story = {
+  args: {
+    label: 'Input',
+    withStar: true,
+  },
+}
