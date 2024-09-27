@@ -40,6 +40,7 @@
 
 .dateInput {
   display: flex;
+  text-align: end;
 
   &:disabled {
     cursor: not-allowed;
@@ -59,8 +60,11 @@
   color: var(--Light-100);
   border-radius: 0.125rem;
 
-  &[data-focused] {
+  &:focus {  
+    background: var(--Primary-300);
+    border-radius: 4px;
     outline: none;
+    caret-color: transparent;
   }
 
   &.disabled {
@@ -218,9 +222,6 @@
     color: var(--Danger-500);
   }
 
-  .calendarIcon {
-    fill: var(--Danger-500);
-  }
 }
 
 .disabled {

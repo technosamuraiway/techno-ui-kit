@@ -30,18 +30,16 @@ const locales = {
   en: {
     dayNames: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
     errorMessages: {
-      dateInputEmpty: 'Date input is empty.',
       generalError: 'Error!',
-      invalidDateSelected: 'Invalid date selected. Please try again.',
+
       selectMonthError: 'Error, select current month or last month',
     },
   },
   ru: {
     dayNames: ['П', 'В', 'С', 'Ч', 'П', 'С', 'В'],
     errorMessages: {
-      dateInputEmpty: 'Поле даты пусто.',
       generalError: 'Ошибка!',
-      invalidDateSelected: 'Неверная дата выбрана. Пожалуйста, попробуйте снова.',
+
       selectMonthError: 'Ошибка, выберите текущий или прошлый месяц',
     },
   },
@@ -119,10 +117,10 @@ export const MyDatePicker = <T extends ElementType = 'div'>(props: MyDatePickerP
           onDateChange({ start: selectedDate })
         }
       } else {
-        setCustomError(currentLocale.errorMessages.invalidDateSelected)
+        setCustomError('')
       }
     } else {
-      setCustomError(currentLocale.errorMessages.dateInputEmpty)
+      setCustomError('')
     }
   }
 
