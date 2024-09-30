@@ -1,8 +1,7 @@
 import { ComponentPropsWithoutRef, ElementType } from 'react'
 
 import { DefaultNotifications } from '@/assets/icons/DefaultNotifications'
-import { Button, Typography } from '@/components'
-import { ChangeLanguageSelect } from '@/components/ui/header/ui/changeLanguageSelect/ChangeLanguageSelect'
+import { Button, Select, SelectOptionType, Typography } from '@/components'
 import clsx from 'clsx'
 
 import s from './header.module.scss'
@@ -10,6 +9,9 @@ import s from './header.module.scss'
 export type HeaderProps<T extends ElementType = 'header'> = {
   as?: T
   changeLangHandler?: (langValue: string) => void
+  changeLanguageBtnCurrentValue: string
+  changeLanguageBtnHandler: (value: string) => void
+  changeLanguageBtnOptions: SelectOptionType[]
   className?: string
   onLogoClick?: () => void
   withAuthButtons?: boolean
@@ -20,6 +22,9 @@ export const Header = <T extends ElementType = 'header'>(props: HeaderProps<T>) 
   const {
     as: Component = 'header',
     changeLangHandler = () => {},
+    changeLanguageBtnCurrentValue,
+    changeLanguageBtnHandler,
+    changeLanguageBtnOptions,
     className,
     onLogoClick = () => {},
     withAuthButtons = false,
@@ -42,7 +47,12 @@ export const Header = <T extends ElementType = 'header'>(props: HeaderProps<T>) 
           </div>
         )}
         <div className={s.languageSwitcher}>
-          <ChangeLanguageSelect changeLangHandler={changeLangHandler} />
+          <Select
+            currentValue={changeLanguageBtnCurrentValue}
+            onValueChange={changeLanguageBtnHandler}
+            options={changeLanguageBtnOptions}
+            selectWidth={'160px'}
+          />
         </div>
         {withAuthButtons && (
           <div className={s.authButtons}>

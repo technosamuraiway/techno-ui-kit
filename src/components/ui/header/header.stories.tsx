@@ -1,16 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
+import { useState } from 'react'
+
+import EnFlagPng from '@/assets/icons/flags/enFlag.png'
+import EnFlagWebp from '@/assets/icons/flags/enFlag.webp'
+import RuFlagPng from '@/assets/icons/flags/ruFlag.png'
+import RuFlagWebp from '@/assets/icons/flags/ruFlag.webp'
+
 import { Header, HeaderProps } from './Header'
 
 const meta: Meta<HeaderProps> = {
-  argTypes: {
-    withAuthButtons: {
-      control: 'boolean',
-    },
-    withNotifications: {
-      control: 'boolean',
-    },
-  },
   component: Header,
   tags: ['autodocs'],
   title: 'Components/Header',
@@ -19,14 +18,37 @@ const meta: Meta<HeaderProps> = {
 export default meta
 type Story = StoryObj<HeaderProps>
 
+/* Чтобы управлять состоянием кнопки для истории => создана компонента-обертка */
+
+const HeaderWrapper = (
+  args: Omit<
+    HeaderProps,
+    'changeLanguageBtnCurrentValue' | 'changeLanguageBtnHandler' | 'changeLanguageBtnOptions'
+  >
+) => {
+  const languageSelectOptions = [
+    { icon: { png: EnFlagPng, webp: EnFlagWebp }, label: 'English', value: 'en' },
+    { icon: { png: RuFlagPng, webp: RuFlagWebp }, label: 'Русский', value: 'ru' },
+  ]
+
+  const [changeLanguageCurrentValue, setChangeLanguageCurrentValue] = useState(
+    languageSelectOptions[0].value
+  )
+
+  return (
+    <Header
+      {...args}
+      changeLanguageBtnCurrentValue={changeLanguageCurrentValue}
+      changeLanguageBtnHandler={setChangeLanguageCurrentValue}
+      changeLanguageBtnOptions={languageSelectOptions}
+    />
+  )
+}
+
 export const HeaderWithNotifications: Story = {
-  args: {
-    withNotifications: true,
-  },
+  render: () => <HeaderWrapper withNotifications />,
 }
 
 export const HeaderWithAuthButtons: Story = {
-  args: {
-    withAuthButtons: true,
-  },
+  render: () => <HeaderWrapper withAuthButtons />,
 }
