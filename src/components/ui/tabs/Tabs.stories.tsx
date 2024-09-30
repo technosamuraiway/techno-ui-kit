@@ -13,23 +13,17 @@ const tabsData: TabType[] = [
 ]
 
 // Template for stories
-/** isWithContent пропс только для истории, чтобы отключить контент, при использовании компоненты, просто
- * не нужно добавлять children */
-const Template: StoryFn<{ isWithContent: boolean } & TabsProps> = args => (
+const Template: StoryFn<TabsProps> = args => (
   <Tabs.Root {...args}>
-    {args.isWithContent && (
-      <>
-        <Tabs.Content value={'tab1'}>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam assumenda deserunt
-          dolore, doloribus, eius est hic iusto laboriosam molestiae optio similique vel voluptatum.
-          Ab beatae deserunt distinctio doloremque ipsam molestias perferendis vero voluptates
-          voluptatibus. Aut debitis dolore dolorum, eos error incidunt laboriosam nam
-          necessitatibus, obcaecati officia quam quis sapiente sint?
-        </Tabs.Content>
-        <Tabs.Content value={'tab2'}>Content 2</Tabs.Content>
-        <Tabs.Content value={'tab3'}>Disabled</Tabs.Content>
-      </>
-    )}
+    <Tabs.Content value={'tab1'}>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam assumenda deserunt dolore,
+      doloribus, eius est hic iusto laboriosam molestiae optio similique vel voluptatum. Ab beatae
+      deserunt distinctio doloremque ipsam molestias perferendis vero voluptates voluptatibus. Aut
+      debitis dolore dolorum, eos error incidunt laboriosam nam necessitatibus, obcaecati officia
+      quam quis sapiente sint?
+    </Tabs.Content>
+    <Tabs.Content value={'tab2'}>Content 2</Tabs.Content>
+    <Tabs.Content value={'tab3'}>Disabled</Tabs.Content>
   </Tabs.Root>
 )
 
@@ -65,7 +59,6 @@ NotFullWidth.args = {
 export const WithContent = Template.bind({})
 WithContent.args = {
   defaultValue: tabsData[0].value,
-  isWithContent: true,
   onValueChange: fn(),
   tabs: tabsData,
 }

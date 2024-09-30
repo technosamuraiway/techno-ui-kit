@@ -24,13 +24,13 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
   args: {
     label: 'Input',
-    placeholder: 'Input',
+    placeholder: 'Default',
   },
 }
 export const Password: Story = {
   args: {
     label: 'Password',
-    placeholder: 'Input',
+    placeholder: 'Your Password',
     type: 'password',
     value: 'password',
   },
@@ -47,7 +47,7 @@ export const Search: Story = {
       <TextField
         label={'Search'}
         onChange={handleChange}
-        placeholder={'Input'}
+        placeholder={'Search'}
         type={'search'}
         value={value}
       />
@@ -57,14 +57,14 @@ export const Search: Story = {
 export const Error: Story = {
   args: {
     error: 'Error!',
-    label: 'Input',
+    label: 'Error',
     value: 'Error',
   },
 }
 
 export const WithStar: Story = {
   args: {
-    label: 'Input',
+    label: 'With Star',
     withStar: true,
   },
 }
