@@ -15,9 +15,9 @@ const tabsData: TabType[] = [
 // Template for stories
 /** isWithContent пропс только для истории, чтобы отключить контент, при использовании компоненты, просто
  * не нужно добавлять children */
-const Template: StoryFn<{ isWithContent: boolean } & TabsProps> = args => (
+const Template: StoryFn<{ isWithContent: boolean } & TabsProps> = ({ isWithContent, ...args }) => (
   <Tabs.Root {...args}>
-    {args.isWithContent && (
+    {isWithContent && (
       <>
         <Tabs.Content value={'tab1'}>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam assumenda deserunt
@@ -49,6 +49,7 @@ export default {
 export const DefaultTabs = Template.bind({})
 DefaultTabs.args = {
   defaultValue: tabsData[0].value,
+  isWithContent: false,
   onValueChange: fn(),
   tabs: tabsData,
 }
@@ -56,6 +57,7 @@ DefaultTabs.args = {
 export const NotFullWidth = Template.bind({})
 NotFullWidth.args = {
   defaultValue: tabsData[0].value,
+  isWithContent: false,
   notFullWidth: true,
   onValueChange: fn(),
   tabs: tabsData,
