@@ -23,10 +23,12 @@ type PaginationConditionals =
 export type PaginationProps = {
   count: number
   onChange: (page: number) => void
+  onPageTitle: string
   onPerPageChange?: (itemPerPage: number) => void
   page: number
   perPage?: number
   perPageOptions?: number[]
+  showTitle: string
   siblings?: number
 } & PaginationConditionals
 
@@ -46,10 +48,12 @@ const classNames = {
 export const Pagination: FC<PaginationProps> = ({
   count,
   onChange,
+  onPageTitle,
   onPerPageChange,
   page,
   perPage = null,
   perPageOptions,
+  showTitle,
   siblings,
 }) => {
   const {
@@ -85,9 +89,11 @@ export const Pagination: FC<PaginationProps> = ({
       {showPerPageSelect && (
         <PerPageSelect
           {...{
+            onPageTitle,
             onPerPageChange,
             perPage,
             perPageOptions,
+            showTitle,
           }}
         />
       )}
@@ -164,12 +170,20 @@ const MainPaginationButtons: FC<MainPaginationButtonsProps> = ({
 }
 
 type PerPageSelectProps = {
+  onPageTitle: string
   onPerPageChange: (itemPerPage: number) => void
   perPage: number
   perPageOptions: number[]
+  showTitle: string
 }
 
-const PerPageSelect: FC<PerPageSelectProps> = ({ onPerPageChange, perPage, perPageOptions }) => {
+const PerPageSelect: FC<PerPageSelectProps> = ({
+  onPageTitle,
+  onPerPageChange,
+  perPage,
+  perPageOptions,
+  showTitle,
+}) => {
   const selectOptions = perPageOptions.map(value => ({
     label: value,
     value: value.toString(),
@@ -181,7 +195,7 @@ const PerPageSelect: FC<PerPageSelectProps> = ({ onPerPageChange, perPage, perPa
 
   return (
     <div className={classNames.selectBox}>
-      <Typography variant={'medium-text-14'}>Показать</Typography>
+      <Typography variant={'medium-text-14'}>{showTitle}</Typography>
       <Select
         currentValue={perPage.toString()}
         onValueChange={onPerPageChangeForType}
@@ -189,7 +203,7 @@ const PerPageSelect: FC<PerPageSelectProps> = ({ onPerPageChange, perPage, perPa
         selectWidth={'52px'}
         triggerStyle={s.selectTrigger}
       />
-      <Typography variant={'medium-text-14'}>на странице</Typography>
+      <Typography variant={'medium-text-14'}>{onPageTitle}</Typography>
     </div>
   )
 }
