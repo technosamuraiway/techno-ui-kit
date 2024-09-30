@@ -6,28 +6,28 @@ import EnFlagPng from '../../../assets/icons/flags/enFlag.png'
 import EnFlagWebp from '../../../assets/icons/flags/enFlag.webp'
 import RuFlagPng from '../../../assets/icons/flags/ruFlag.png'
 import RuFlagWebp from '../../../assets/icons/flags/ruFlag.webp'
-import { OptionType, Select } from './Select'
+import { Select, SelectOptionType } from './Select'
 
 /* options как пример без иконок */
-const options: OptionType[] = [
+const options: SelectOptionType[] = [
   { label: 'English', value: 'en' },
   { label: 'Russian', value: 'ru' },
 ]
 
 /* options как пример + иконки */
-const optionsWitIcons: OptionType[] = [
+const optionsWitIcons: SelectOptionType[] = [
   { icon: { png: EnFlagPng, webp: EnFlagWebp }, label: 'English', value: 'en' },
   { icon: { png: RuFlagPng, webp: RuFlagWebp }, label: 'Russian', value: 'ru' },
 ]
 
 /* options как пример без иконок с одним заблокиравонным вариантом */
-const optionsWithDisabledOption: OptionType[] = [
+const optionsWithDisabledOption: SelectOptionType[] = [
   { label: 'English', value: 'en' },
   { disabled: true, label: 'Russian', value: 'ru' },
 ]
 
 /* options как пример с большим количеством options */
-const optionsWithExtraOptions: OptionType[] = [
+const optionsWithExtraOptions: SelectOptionType[] = [
   { label: 'English', value: 'en' },
   { label: 'English', value: '1' },
   { label: 'English', value: '2' },
@@ -58,7 +58,7 @@ export default meta
 const Wrapper: FC<{
   isDisabled?: boolean
   label?: string
-  options: OptionType[]
+  options: SelectOptionType[]
   selectHeight?: string
 }> = ({ isDisabled, label, options, selectHeight }) => {
   const [currentValue, setCurrentValue] = useState('en')
