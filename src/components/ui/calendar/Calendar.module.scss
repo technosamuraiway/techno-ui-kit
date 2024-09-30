@@ -117,15 +117,12 @@
 }
 
 .customHeader {
-  display: flex;
   justify-content: space-between;
   padding: 1rem 0;
   background: var(--Dark-500);
 }
 
 .headerCell {
-  flex: 1;
-
   font-size: 1rem;
   font-weight: bold;
   color: var(--Light-900);
@@ -145,7 +142,6 @@
 }
 
 .calendarGrid {
-  display: flex;
   border-spacing: 0 !important;
   flex-direction: column;
   width: fit-content;
