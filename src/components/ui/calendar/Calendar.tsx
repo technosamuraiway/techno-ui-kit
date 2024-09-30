@@ -17,8 +17,8 @@ import {
   RangeCalendar,
 } from 'react-aria-components'
 
-import { CalendarIconWhite, ChevronLeft, ChevronRight } from '@/assets/icons'
 import { Typography } from '@/components'
+import { CalendarIconWhite, ChevronLeft, ChevronRight } from '@/index'
 import { CalendarDate, DateValue } from '@internationalized/date'
 import clsx from 'clsx'
 
@@ -180,13 +180,16 @@ export const MyDatePicker = <T extends ElementType = 'div'>(props: MyDatePickerP
                     </div>
                   </div>
                   <CalendarGrid className={s.calendarGrid}>
-                    <div className={s.customHeader}>
-                      {dayNames.map((dayName, index) => (
-                        <div className={s.headerCell} key={index}>
-                          {dayName}
-                        </div>
-                      ))}
-                    </div>
+                    <thead className={s.customHeader}>
+                      <tr>
+                        {dayNames.map((dayName, index) => (
+                          <th className={s.headerCell} key={index}>
+                            {dayName}
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+
                     <CalendarGridBody className={s.calendarGridBody}>
                       {date => (
                         <CalendarCell
@@ -246,13 +249,13 @@ export const MyDatePicker = <T extends ElementType = 'div'>(props: MyDatePickerP
                     </div>
                   </div>
                   <CalendarGrid className={s.calendarGrid}>
-                    <div className={s.customHeader}>
-                      {dayNames.map((dayName, index) => (
-                        <div className={s.headerCell} key={index}>
-                          {dayName}
-                        </div>
-                      ))}
-                    </div>
+                    <thead className={s.customHeader}>
+                      <tr className={s.headerCell}>
+                        {dayNames.map((dayName, index) => (
+                          <th key={index}>{dayName}</th>
+                        ))}
+                      </tr>
+                    </thead>
                     <CalendarGridBody className={clsx(s.calendarGridBody)}>
                       {date => (
                         <CalendarCell
