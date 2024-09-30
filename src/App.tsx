@@ -62,8 +62,8 @@ export default function App() {
   return (
     <>
       <Header
+        changeLanguageBtn={setChangeLanguageCurrentValue}
         changeLanguageBtnCurrentValue={changeLanguageCurrentValue}
-        changeLanguageBtnHandler={setChangeLanguageCurrentValue}
         changeLanguageBtnOptions={languageSelectOptions}
         withAuthButtons
         withNotifications
