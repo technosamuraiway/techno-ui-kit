@@ -30,7 +30,7 @@ import s from './Select.module.scss'
  *
  * */
 
-export type OptionType = {
+export type SelectOptionType = {
   disabled?: boolean
   icon?: { png: string; webp: string }
   label: number | string
@@ -45,7 +45,7 @@ interface ISelect extends ComponentPropsWithRef<typeof S.Root> {
   label?: string
   labelStyle?: CSSProperties | string
   onValueChange: (value: string) => void
-  options: OptionType[]
+  options: SelectOptionType[]
   selectHeight?: string
   selectWidth?: string
   triggerStyle?: CSSProperties | string
@@ -140,7 +140,7 @@ const SelectRoot = ({
 
         return acc
       },
-      {} as Record<string, OptionType>
+      {} as Record<string, SelectOptionType>
     )
   }, [options])
   /* Достаем значение напрямую для отображения в trigger */
@@ -188,7 +188,7 @@ const SelectRoot = ({
 }
 
 /* SelectOption для отображение контента в Trigger и Item */
-const SelectOption = ({ icon, label, value }: OptionType) => {
+const SelectOption = ({ icon, label, value }: SelectOptionType) => {
   return (
     <>
       {icon && (
