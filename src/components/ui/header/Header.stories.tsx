@@ -23,7 +23,7 @@ type Story = StoryObj<HeaderProps>
 const HeaderWrapper = (
   args: Omit<
     HeaderProps,
-    'changeLanguageBtnCurrentValue' | 'changeLanguageBtnHandler' | 'changeLanguageBtnOptions'
+    'changeLanguageBtn' | 'changeLanguageBtnCurrentValue' | 'changeLanguageBtnOptions'
   >
 ) => {
   const languageSelectOptions = [
@@ -38,8 +38,8 @@ const HeaderWrapper = (
   return (
     <Header
       {...args}
+      changeLanguageBtn={setChangeLanguageCurrentValue}
       changeLanguageBtnCurrentValue={changeLanguageCurrentValue}
-      changeLanguageBtnHandler={setChangeLanguageCurrentValue}
       changeLanguageBtnOptions={languageSelectOptions}
     />
   )

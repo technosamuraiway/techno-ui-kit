@@ -1,19 +1,23 @@
-import { ComponentPropsWithoutRef, ElementType } from 'react'
+import { ComponentPropsWithoutRef, ElementType, ReactNode } from 'react'
 
 import { DefaultNotifications } from '@/assets/icons/DefaultNotifications'
 import { Button, Select, SelectOptionType, Typography } from '@/components'
 import clsx from 'clsx'
 
-import s from './header.module.scss'
+import s from './Header.module.scss'
 
 export type HeaderProps<T extends ElementType = 'header'> = {
   as?: T
-  changeLangHandler?: (langValue: string) => void
+  changeLanguageBtn: (value: string) => void
   changeLanguageBtnCurrentValue: string
-  changeLanguageBtnHandler: (value: string) => void
   changeLanguageBtnOptions: SelectOptionType[]
   className?: string
+  logInBtnChildren?: ReactNode
+  notificationNumber?: number
+  onLogInClick?: () => void
   onLogoClick?: () => void
+  onSignUpClick?: () => void
+  signUpBtnChildren?: ReactNode
   withAuthButtons?: boolean
   withNotifications?: boolean
 } & ComponentPropsWithoutRef<T>
@@ -21,12 +25,16 @@ export type HeaderProps<T extends ElementType = 'header'> = {
 export const Header = <T extends ElementType = 'header'>(props: HeaderProps<T>) => {
   const {
     as: Component = 'header',
-    changeLangHandler = () => {},
+    changeLanguageBtn,
     changeLanguageBtnCurrentValue,
-    changeLanguageBtnHandler,
     changeLanguageBtnOptions,
     className,
+    logInBtnChildren = 'Log In',
+    notificationNumber = 3,
+    onLogInClick,
     onLogoClick = () => {},
+    onSignUpClick,
+    signUpBtnChildren = 'Sign Up',
     withAuthButtons = false,
     withNotifications = false,
     ...rest
@@ -42,25 +50,36 @@ export const Header = <T extends ElementType = 'header'>(props: HeaderProps<T>) 
       <div className={s.rightSection}>
         {withNotifications && (
           <div className={s.notification}>
-            <DefaultNotifications />
-            <span className={s.badge}>3</span>
+            <DefaultNotifications className={s.notificationIcon} />
+            <span className={s.badge}>{notificationNumber}</span>
           </div>
         )}
         <div className={s.languageSwitcher}>
           <Select
             currentValue={changeLanguageBtnCurrentValue}
-            onValueChange={changeLanguageBtnHandler}
+            onValueChange={changeLanguageBtn}
             options={changeLanguageBtnOptions}
             selectWidth={'160px'}
           />
         </div>
         {withAuthButtons && (
           <div className={s.authButtons}>
-            <Button className={s.loginButton} variant={'textButton'}>
-              Log in
+            <Button
+              className={s.loginButton}
+              onClick={onLogInClick}
+              type={'button'}
+              variant={'textButton'}
+            >
+              {logInBtnChildren}
             </Button>
-            <Button className={s.signUpButton} fullWidth variant={'primary'}>
-              Sign up
+            <Button
+              className={s.signUpButton}
+              fullWidth
+              onClick={onSignUpClick}
+              type={'button'}
+              variant={'primary'}
+            >
+              {signUpBtnChildren}
             </Button>
           </div>
         )}

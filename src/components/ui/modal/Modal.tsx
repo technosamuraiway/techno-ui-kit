@@ -42,7 +42,7 @@ export const Modal = ({
     <Dialog.Root {...rest}>
       {triggerChildren && (
         <Dialog.Trigger asChild>
-          <Button className={triggerClassName} variant={triggerVariant}>
+          <Button className={triggerClassName} type={'button'} variant={triggerVariant}>
             {triggerChildren}
           </Button>
         </Dialog.Trigger>
