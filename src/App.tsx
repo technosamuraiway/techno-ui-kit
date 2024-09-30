@@ -1,5 +1,9 @@
 import { useState } from 'react'
 
+import EnFlagPng from '@/assets/icons/flags/enFlag.png'
+import EnFlagWebp from '@/assets/icons/flags/enFlag.webp'
+import RuFlagPng from '@/assets/icons/flags/ruFlag.png'
+import RuFlagWebp from '@/assets/icons/flags/ruFlag.webp'
 import { Button, Header, MyDatePicker, TextArea } from '@/components'
 
 import s from './styles/Home.module.scss'
@@ -46,9 +50,24 @@ export default function App() {
     setErrorMessage('') // Сбрасываем сообщение об ошибке
   }
 
+  const languageSelectOptions = [
+    { icon: { png: EnFlagPng, webp: EnFlagWebp }, label: 'English', value: 'en' },
+    { icon: { png: RuFlagPng, webp: RuFlagWebp }, label: 'Русский', value: 'ru' },
+  ]
+
+  const [changeLanguageCurrentValue, setChangeLanguageCurrentValue] = useState(
+    languageSelectOptions[0].value
+  )
+
   return (
     <>
-      <Header withAuthButtons withNotifications />
+      <Header
+        changeLanguageBtnCurrentValue={changeLanguageCurrentValue}
+        changeLanguageBtnHandler={setChangeLanguageCurrentValue}
+        changeLanguageBtnOptions={languageSelectOptions}
+        withAuthButtons
+        withNotifications
+      />
       <div className={s.body}>
         <div className={s.container}>
           <TextField className={s.input} />
