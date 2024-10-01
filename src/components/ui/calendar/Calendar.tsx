@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, ElementType, useState } from 'react'
+import { ComponentPropsWithoutRef, useState } from 'react'
 import { I18nProvider } from 'react-aria'
 import {
   Button,
@@ -43,17 +43,15 @@ const locales = {
   },
 }
 
-export type MyDatePickerProps<T extends ElementType = 'div'> = {
-  as?: T
-  className?: string
+export type MyDatePickerProps = {
   errorMessage?: string
   locale: 'en' | 'ru'
   mode?: 'range' | 'single'
   onDateChange?: (date: { end?: Date; start?: Date }) => void
   variant?: 'default' | 'disabled'
-} & ComponentPropsWithoutRef<T>
+} & ComponentPropsWithoutRef<'div'>
 
-export const MyDatePicker = <T extends ElementType = 'div'>(props: MyDatePickerProps<T>) => {
+export const MyDatePicker = (props: MyDatePickerProps) => {
   const {
     className,
     errorMessage,
@@ -126,7 +124,7 @@ export const MyDatePicker = <T extends ElementType = 'div'>(props: MyDatePickerP
     <I18nProvider locale={locale === 'en' ? 'en-US' : 'ru-RU'}>
       <div
         className={clsx(s.datePickerWrapper, s[variant], className, {
-          [s['data-invalid']]: customError,
+          [s['data-invalid']]: errorMessage || customError,
         })}
         {...rest}
       >
@@ -161,7 +159,7 @@ export const MyDatePicker = <T extends ElementType = 'div'>(props: MyDatePickerP
                   style={{ color: 'var(--Danger-500)', transition: 'none' }}
                   variant={'small-text'}
                 >
-                  {customError}
+                  {customError || errorMessage}
                 </Typography>
               </div>
             )}
@@ -230,7 +228,7 @@ export const MyDatePicker = <T extends ElementType = 'div'>(props: MyDatePickerP
                   style={{ color: 'var(--Danger-500)', transition: 'none' }}
                   variant={'small-text'}
                 >
-                  {customError}
+                  {customError || errorMessage}
                 </Typography>
               </div>
             )}
