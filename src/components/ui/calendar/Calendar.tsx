@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, useEffect, useState } from 'react'
+import { ComponentPropsWithoutRef, useState } from 'react'
 import { I18nProvider } from 'react-aria'
 import {
   Button,
@@ -119,10 +119,6 @@ export const MyDatePicker = (props: MyDatePickerProps) => {
       setCustomError('')
     }
   }
-
-  useEffect(() => {
-    setCustomError(errorMessage || '')
-  }, [errorMessage])
 
   return (
     <I18nProvider locale={locale === 'en' ? 'en-US' : 'ru-RU'}>

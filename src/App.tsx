@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { Button, MyDatePicker, TextArea } from '@/components'
+import { Button, MyDatePicker, TextArea, Typography } from '@/components'
 
 import s from './styles/Home.module.scss'
 
@@ -80,6 +80,15 @@ export default function App() {
             mode={'single'}
             onDateChange={handleDateChange}
           />
+          {errorMessage && (
+            <Typography
+              className={s.errorMessage}
+              style={{ color: 'var(--Danger-500)', transition: 'none' }}
+              variant={'small-text'}
+            >
+              {errorMessage}
+            </Typography>
+          )}
 
           <div className={s.select}>
             <Select
