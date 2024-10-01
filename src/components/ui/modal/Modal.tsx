@@ -3,6 +3,7 @@ import { ComponentPropsWithoutRef, ReactNode } from 'react'
 import { CloseIcon } from '@/assets/icons'
 import { Button, ButtonVariant, Typography } from '@/components'
 import * as Dialog from '@radix-ui/react-dialog'
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 import clsx from 'clsx'
 
 import s from './Modal.module.scss'
@@ -54,7 +55,7 @@ export const Modal = ({
           aria-describedby={undefined}
           className={clsx(s.content, s[modalSize], contentClassName)}
         >
-          {showHeader && (
+          {showHeader ? (
             <div className={clsx(s.header, headerClassName)}>
               <Dialog.Title asChild>
                 <Typography as={'h1'} variant={'h1'}>
@@ -65,6 +66,10 @@ export const Modal = ({
                 <CloseIcon />
               </Dialog.Close>
             </div>
+          ) : (
+            <VisuallyHidden asChild>
+              <Dialog.Title>{headerTitle || 'Modal'}</Dialog.Title>
+            </VisuallyHidden>
           )}
           {children}
         </Dialog.Content>
