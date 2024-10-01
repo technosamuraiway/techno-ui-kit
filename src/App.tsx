@@ -1,10 +1,6 @@
 import { useState } from 'react'
 
-import EnFlagPng from '@/assets/icons/flags/enFlag.png'
-import EnFlagWebp from '@/assets/icons/flags/enFlag.webp'
-import RuFlagPng from '@/assets/icons/flags/ruFlag.png'
-import RuFlagWebp from '@/assets/icons/flags/ruFlag.webp'
-import { Button, Header, MyDatePicker, TextArea } from '@/components'
+import { Button, MyDatePicker, TextArea } from '@/components'
 
 import s from './styles/Home.module.scss'
 
@@ -24,6 +20,7 @@ export default function App() {
   }))
 
   const [currentValue, setCurrentValue] = useState(formattedCityOptions[0].value)
+
   const checkAge = (birthDate: Date) => {
     const today = new Date()
     const age = today.getFullYear() - birthDate.getFullYear()
@@ -36,38 +33,38 @@ export default function App() {
     return age
   }
   const [errorMessage, setErrorMessage] = useState('')
-  const handleDateChange = ({ start }: { start?: Date }) => {
+  const handleDateChange = ({ start }: { start?: Date | null }) => {
     if (!start) {
-      return
-    } // Если start не указан, выходим из функции
+      return // Если start не указан, выходим из функции
+    }
 
     // Проверка возраста
     if (checkAge(start) < 13) {
       setErrorMessage('A user under 13 cannot create a profile. Privacy Policy')
-
-      return
+    } else {
+      setErrorMessage('') // Сбрасываем сообщение об ошибке
+      // Установка значения даты в форму
     }
-    setErrorMessage('') // Сбрасываем сообщение об ошибке
   }
 
-  const languageSelectOptions = [
-    { icon: { png: EnFlagPng, webp: EnFlagWebp }, label: 'English', value: 'en' },
-    { icon: { png: RuFlagPng, webp: RuFlagWebp }, label: 'Русский', value: 'ru' },
-  ]
+  // const languageSelectOptions = [
+  //   { icon: { png: EnFlagPng, webp: EnFlagWebp }, label: 'English', value: 'en' },
+  //   { icon: { png: RuFlagPng, webp: RuFlagWebp }, label: 'Русский', value: 'ru' },
+  // ]
 
-  const [changeLanguageCurrentValue, setChangeLanguageCurrentValue] = useState(
-    languageSelectOptions[0].value
-  )
+  // const [changeLanguageCurrentValue, setChangeLanguageCurrentValue] = useState(
+  //   languageSelectOptions[0].value
+  // )
 
   return (
     <>
-      <Header
-        changeLanguageBtn={setChangeLanguageCurrentValue}
-        changeLanguageBtnCurrentValue={changeLanguageCurrentValue}
-        changeLanguageBtnOptions={languageSelectOptions}
+      {/* <Header
+        // changeLanguageBtn={setChangeLanguageCurrentValue}
+        // changeLanguageBtnCurrentValue={changeLanguageCurrentValue}
+        // changeLanguageBtnOptions={languageSelectOptions}
         withAuthButtons
         withNotifications
-      />
+      /> */}
       <div className={s.body}>
         <div className={s.container}>
           <TextField className={s.input} />
@@ -77,8 +74,13 @@ export default function App() {
             <TextArea />
           </div>
           <MyDatePicker locale={'en'} />
-          <MyDatePicker locale={'en'} mode={'single'} onDateChange={handleDateChange} />
-          {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
+          <MyDatePicker
+            errorMessage={errorMessage}
+            locale={'en'}
+            mode={'single'}
+            onDateChange={handleDateChange}
+          />
+
           <div className={s.select}>
             <Select
               currentValue={currentValue}
