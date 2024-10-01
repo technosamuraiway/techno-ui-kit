@@ -36,6 +36,7 @@
     "@radix-ui/react-select": "^2.1.1",
     "@radix-ui/react-slider": "^1.2.0",
     "@radix-ui/react-tabs": "^1.1.0",
+    "@radix-ui/react-visually-hidden": "^1.1.0",
     "@react-aria/calendar": "^3.5.11",
     "@react-aria/i18n": "^3.12.2",
     "@react-stately/calendar": "^3.5.4",
