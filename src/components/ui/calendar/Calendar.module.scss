@@ -1,3 +1,218 @@
+.datePicker {
+  position: relative;
+  width: 100%;
+}
+
+.dates {
+  display: flex;
+  gap: 3px;
+}
+
+.group {
+  position: relative !important;
+
+  overflow: hidden;
+  display: flex;
+  gap: 0.125rem;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+
+  text-align: center;
+  white-space: nowrap;
+
+  background: var(--Dark-700);
+  border: 0.0625rem solid var(--Dark-100);
+  border-radius: 0.125rem;
+
+  &.active,
+  &:hover {
+    background: var(--Dark-500);
+  }
+
+  &[data-focus-within] {
+    background: var(--Dark-500);
+    border: 0.0625rem solid var(--Primary-700);
+    outline: none;
+  }
+}
+
+.dateInput {
+  display: flex;
+  text-align: end;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.separator {
+  color: var(--Light-100);
+
+  &.disabled {
+    color: var(--Light-900);
+  }
+}
+
+.dateSegment {
+  font-size: var(--font-size-m);
+  color: var(--Light-100);
+  border-radius: 0.125rem;
+
+  &:focus {
+    background: var(--Primary-300);
+    border-radius: 4px;
+    outline: none;
+    caret-color: transparent;
+  }
+
+  &.disabled {
+    color: var(--Light-900);
+  }
+}
+
+.calendarIconButton {
+  cursor: pointer;
+
+  margin-left: 1.5rem;
+
+  color: var(--Light-100);
+
+  background: none;
+  border: none;
+
+  &.disabled {
+    cursor: not-allowed;
+  }
+}
+
+.chevronButton {
+  cursor: pointer;
+}
+
+.popover {
+  position: absolute;
+  z-index: 1000;
+  left: 0;
+
+  padding: 1rem 1.5rem;
+
+  background: var(--Dark-500);
+  border: 0.0625rem solid var(--Dark-100);
+
+  &.disabled {
+    display: none;
+  }
+}
+
+.calendarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--Dark-500);
+}
+
+.heading {
+  width: 9.75rem;
+  font-size: var(--font-size-m);
+  font-weight: var(--font-weight-bold);
+  color: var(--Light-100);
+}
+
+.customHeader {
+  justify-content: space-between;
+  padding: 1rem 0;
+  background: var(--Dark-500);
+}
+
+.headerCell {
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--Light-900);
+  text-align: center;
+}
+
+.rangeCalendar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.calendarGridBody {
+  border-spacing: 0 !important;
+  border-collapse: collapse !important;
+}
+
+.calendarGrid {
+  border-spacing: 0 !important;
+  flex-direction: column;
+  width: fit-content;
+}
+
+.calendarCell {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 1.75rem;
+  height: 1.75rem;
+  padding: 0.25rem;
+
+  font-size: var(--font-size-m);
+  color: var(--Light-100);
+
+  outline: none;
+
+  &[data-outside-month] {
+    cursor: default;
+    color: var(--Light-900);
+  }
+
+  &[data-selected] {
+    background: var(--Primary-900);
+  }
+
+  &[data-selection-start] {
+    background: var(--Primary-900);
+    border-radius: 1.125rem 0 0 1.125rem;
+  }
+
+  &[data-selection-end] {
+    background: var(--Primary-900);
+    border-radius: 0 1.125rem 1.125rem 0;
+  }
+
+  &:hover {
+    background: var(--Primary-700);
+    border-radius: 1.125rem;
+  }
+}
+
+.weekend {
+  font-size: var(--font-size-m);
+  color: var(--Danger-300);
+  text-align: center;
+}
+
+.today {
+  color: var(--Primary-700);
+}
+
+.errorMessage {
+  position: absolute;
+
+  max-width: 100%;
+
+  word-break: break-word;
+  word-wrap: break-word;
+  white-space: normal;
+}
+
 .datePickerWrapper.data-invalid {
   .group {
     border-color: var(--Danger-500);
@@ -12,9 +227,13 @@
   }
 }
 
-.datePicker {
-  position: relative;
-  width: 100%;
+.disabled {
+  cursor: not-allowed;
+}
+
+.group.disabled {
+  background: var(--Dark-500);
+  border: 0.0625rem solid var(--Dark-100);
 }
 
 .calendarCellFocus {

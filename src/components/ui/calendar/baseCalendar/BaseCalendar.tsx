@@ -17,7 +17,7 @@ import { Typography } from '@/components'
 import { CalendarDate } from '@internationalized/date'
 import clsx from 'clsx'
 
-import s from './BaseCalendar.module.scss'
+import s from '../Calendar.module.scss'
 
 export type VariantType = 'default' | 'disabled'
 
