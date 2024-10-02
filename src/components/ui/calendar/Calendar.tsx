@@ -61,6 +61,7 @@ export const MyDatePicker = (props: MyDatePickerProps) => {
     variant = 'default',
     ...rest
   } = props
+
   const [isDateSelected, setIsDateSelected] = useState(false)
   const [customError, setCustomError] = useState('')
 
@@ -71,22 +72,22 @@ export const MyDatePicker = (props: MyDatePickerProps) => {
       ? currentLocale.errorMessages.generalError
       : currentLocale.errorMessages.selectMonthError
 
-  const isToday = (date: CalendarDate) => {
-    const today = new Date()
-
-    return (
-      date.day === today.getDate() &&
-      date.month === today.getMonth() + 1 &&
-      date.year === today.getFullYear()
-    )
-  }
-
-  const isWeekend = (date: CalendarDate) => {
-    const jsDate = new Date(date.year, date.month - 1, date.day)
-    const dayOfWeek = jsDate.getDay()
-
-    return dayOfWeek === 0 || dayOfWeek === 6
-  }
+  // const isToday = (date: CalendarDate) => {
+  //   const today = new Date()
+  //
+  //   return (
+  //     date.day === today.getDate() &&
+  //     date.month === today.getMonth() + 1 &&
+  //     date.year === today.getFullYear()
+  //   )
+  // }
+  //
+  // const isWeekend = (date: CalendarDate) => {
+  //   const jsDate = new Date(date.year, date.month - 1, date.day)
+  //   const dayOfWeek = jsDate.getDay()
+  //
+  //   return dayOfWeek === 0 || dayOfWeek === 6
+  // }
 
   const handleRangeChange = (range: { end: DateValue; start: DateValue }) => {
     const start = new Date(range.start.year, range.start.month - 1, range.start.day)
