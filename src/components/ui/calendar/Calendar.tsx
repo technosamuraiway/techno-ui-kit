@@ -48,7 +48,7 @@ export const MyDatePicker = (props: MyDatePickerProps) => {
   } = props
 
   const [isDateSelected, setIsDateSelected] = useState(false)
-  const [customError, setCustomError] = useState(errorMessage || '')
+  const [customError, setCustomError] = useState('')
 
   const currentLocale = locales[locale]
   const dayNames = currentLocale.dayNames
@@ -108,7 +108,12 @@ export const MyDatePicker = (props: MyDatePickerProps) => {
 
   return (
     <I18nProvider locale={locale === 'en' ? 'en-US' : 'ru-RU'}>
-      <div className={clsx(s[variant], errorMessage && s.errorWrapper, className)} {...rest}>
+      <div
+        className={clsx(s.datePickerWrapper, s[variant], className, {
+          [s['data-invalid']]: errorMessage || customError,
+        })}
+        {...rest}
+      >
         {mode === 'range' ? (
           <DateRangePicker
             aria-label={'Date picker range'}
