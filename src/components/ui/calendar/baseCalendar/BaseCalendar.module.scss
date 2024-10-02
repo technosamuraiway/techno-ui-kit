@@ -75,17 +75,21 @@
 
 .calendarIconButton {
   cursor: pointer;
+
   margin-left: 1.5rem;
+
+  color: var(--Light-100);
+
   background: none;
   border: none;
-
-  .calendarIcon {
-    fill: var(--Light-100);
-  }
 
   &.disabled {
     cursor: not-allowed;
   }
+}
+
+.chevronButton {
+  cursor: pointer;
 }
 
 .popover {
