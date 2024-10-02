@@ -1,10 +1,18 @@
-.datePicker {
-  position: relative;
-  width: 100%;
+.dates {
+  display: flex;
+  gap: 3px;
+}
+
+.errorWrapper {
+  border: 0.125rem solid var(--Danger-500);
+}
+
+.errorDate {
+  color: var(--Danger-500);
 }
 
 .group {
-  position: relative;
+  position: relative !important;
 
   overflow: hidden;
   display: flex;
@@ -18,29 +26,50 @@
   text-align: center;
   white-space: nowrap;
 
-  background-color: var(--Dark-700);
+  background: var(--Dark-700);
   border: 0.0625rem solid var(--Dark-100);
   border-radius: 0.125rem;
 
   &.active,
   &:hover {
-    background-color: var(--Dark-500);
+    background: var(--Dark-500);
   }
 
   &[data-focus-within] {
-    background-color: var(--Dark-500);
+    background: var(--Dark-500);
     border: 0.0625rem solid var(--Primary-700);
     outline: none;
   }
 }
 
-.dates {
+.dateInput {
   display: flex;
-  gap: 3px;
+  text-align: end;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
 }
 
 .separator {
   color: var(--Light-100);
+
+  &.disabled {
+    color: var(--Light-900);
+  }
+}
+
+.dateSegment {
+  font-size: var(--font-size-m);
+  color: var(--Light-100);
+  border-radius: 0.125rem;
+
+  &:focus {
+    background: var(--Primary-300);
+    border-radius: 4px;
+    outline: none;
+    caret-color: transparent;
+  }
 
   &.disabled {
     color: var(--Light-900);
@@ -62,9 +91,9 @@
   }
 }
 
-.errorMessage {
+.errorWrapper {
   color: var(--Danger-500);
-  transition: none;
+  border: 2px solid var(--Danger-500);
 }
 
 .popover {
@@ -74,7 +103,7 @@
 
   padding: 1rem 1.5rem;
 
-  background-color: var(--Dark-500);
+  background: var(--Dark-500);
   border: 0.0625rem solid var(--Dark-100);
 
   &.disabled {
@@ -82,18 +111,11 @@
   }
 }
 
-.rangeCalendar {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
 .calendarHeader {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: var(--Dark-500);
+  background: var(--Dark-500);
 }
 
 .heading {
@@ -103,30 +125,35 @@
   color: var(--Light-100);
 }
 
-.calendarGrid {
-  display: flex;
-  border-spacing: 0;
-  flex-direction: column;
-  width: fit-content;
-}
-
 .customHeader {
-  display: flex;
   justify-content: space-between;
   padding: 1rem 0;
-  background-color: var(--Dark-500);
+  background: var(--Dark-500);
 }
 
 .headerCell {
   font-size: 1rem;
-  font-weight: var(--font-weight-bold);
+  font-weight: bold;
   color: var(--Light-900);
   text-align: center;
 }
 
+.rangeCalendar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .calendarGridBody {
-  border-spacing: 0;
-  border-collapse: collapse;
+  border-spacing: 0 !important;
+  border-collapse: collapse !important;
+}
+
+.calendarGrid {
+  border-spacing: 0 !important;
+  flex-direction: column;
+  width: fit-content;
 }
 
 .calendarCell {
@@ -168,4 +195,28 @@
     background: var(--Primary-700);
     border-radius: 1.125rem;
   }
+}
+
+.weekend {
+  font-size: var(--font-size-m);
+  color: var(--Danger-300);
+  text-align: center;
+}
+
+.today {
+  color: var(--Primary-700);
+}
+
+.errorMessage {
+  position: absolute;
+
+  max-width: 100%;
+
+  word-break: break-word;
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+.chevronButton {
+  cursor: pointer;
 }

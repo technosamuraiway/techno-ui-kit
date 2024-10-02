@@ -1,28 +1,13 @@
 import { ComponentPropsWithoutRef, useState } from 'react'
 import { I18nProvider } from 'react-aria'
-import {
-  Button,
-  Calendar,
-  CalendarCell,
-  CalendarGrid,
-  CalendarGridBody,
-  DateInput,
-  DatePicker,
-  DateRangePicker,
-  DateSegment,
-  Dialog,
-  Group,
-  Heading,
-  Popover,
-  RangeCalendar,
-} from 'react-aria-components'
+import { Calendar, DatePicker, DateRangePicker, RangeCalendar } from 'react-aria-components'
 
-import { Typography } from '@/components'
-import { CalendarIconWhite, ChevronLeft, ChevronRight } from '@/index'
-import { CalendarDate, DateValue } from '@internationalized/date'
+import { DateValue } from '@internationalized/date'
 import clsx from 'clsx'
 
 import s from './Calendar.module.scss'
+
+import { BaseCalendar } from './baseCalendar/BaseCalendar'
 
 const locales = {
   en: {
@@ -63,7 +48,7 @@ export const MyDatePicker = (props: MyDatePickerProps) => {
   } = props
 
   const [isDateSelected, setIsDateSelected] = useState(false)
-  const [customError, setCustomError] = useState('')
+  const [customError, setCustomError] = useState(errorMessage || '')
 
   const currentLocale = locales[locale]
   const dayNames = currentLocale.dayNames
@@ -89,7 +74,7 @@ export const MyDatePicker = (props: MyDatePickerProps) => {
   //   return dayOfWeek === 0 || dayOfWeek === 6
   // }
 
-  const handleRangeChange = (range: { end: DateValue; start: DateValue }) => {
+  const onRangeDateChangeHandler = (range: { end: DateValue; start: DateValue }) => {
     const start = new Date(range.start.year, range.start.month - 1, range.start.day)
     const end = new Date(range.end.year, range.end.month - 1, range.end.day)
 
@@ -103,7 +88,7 @@ export const MyDatePicker = (props: MyDatePickerProps) => {
       }
     }
   }
-  const handleDateChange = (dateValue: DateValue) => {
+  const onSingleDateChangeHandler = (dateValue: DateValue) => {
     if (dateValue) {
       const selectedDate = new Date(dateValue.year, dateValue.month - 1, dateValue.day)
 
@@ -123,156 +108,180 @@ export const MyDatePicker = (props: MyDatePickerProps) => {
 
   return (
     <I18nProvider locale={locale === 'en' ? 'en-US' : 'ru-RU'}>
-      <div
-        className={clsx(s.datePickerWrapper, s[variant], className, {
-          [s['data-invalid']]: errorMessage || customError,
-        })}
-        {...rest}
-      >
+      <div className={clsx(s[variant], errorMessage && s.errorWrapper, className)} {...rest}>
         {mode === 'range' ? (
           <DateRangePicker
             aria-label={'Date picker range'}
             className={s.datePicker}
-            onChange={handleRangeChange}
+            onChange={onRangeDateChangeHandler}
           >
-            <Group className={clsx(s.group, s[variant], isDateSelected ? s.active : s.default)}>
-              <div className={s.dates}>
-                <DateInput className={clsx(s.dateInput, s[variant])} slot={'start'}>
-                  {segment => (
-                    <DateSegment className={clsx(s.dateSegment, s[variant])} segment={segment} />
-                  )}
-                </DateInput>
-                <span className={clsx(s.separator, s[variant])}>-</span>
-                <DateInput className={clsx(s.dateInput, s[variant])} slot={'end'}>
-                  {segment => (
-                    <DateSegment className={clsx(s.dateSegment, s[variant])} segment={segment} />
-                  )}
-                </DateInput>
-              </div>
-              <Button className={clsx(s.calendarIconButton)}>
-                <CalendarIconWhite className={clsx(s.calendarIcon, s[variant])} />
-              </Button>
-            </Group>
-            {customError && (
-              <div className={clsx(s.customError)}>
-                <Typography
-                  className={s.errorMessage}
-                  style={{ color: 'var(--Danger-500)', transition: 'none' }}
-                  variant={'small-text'}
-                >
-                  {customError || errorMessage}
-                </Typography>
-              </div>
-            )}
-            <Popover className={clsx(s.popover, s[variant])}>
-              <Dialog>
-                <RangeCalendar className={clsx(s.rangeCalendar, s[variant])}>
-                  <div className={s.calendarHeader}>
-                    <Heading className={s.heading} />
-                    <div>
-                      <Button className={s.navigationButton} slot={'previous'}>
-                        <ChevronLeft />
-                      </Button>
-                      <Button className={s.navigationButton} slot={'next'}>
-                        <ChevronRight />
-                      </Button>
-                    </div>
-                  </div>
-                  <CalendarGrid className={s.calendarGrid}>
-                    <thead className={s.customHeader}>
-                      <tr>
-                        {dayNames.map((dayName, index) => (
-                          <th className={s.headerCell} key={index}>
-                            {dayName}
-                          </th>
-                        ))}
-                      </tr>
-                    </thead>
-
-                    <CalendarGridBody className={s.calendarGridBody}>
-                      {date => (
-                        <CalendarCell
-                          className={clsx(
-                            s.calendarCell,
-                            isToday(date) && s.today,
-                            isWeekend(date) && s.weekend
-                          )}
-                          date={date}
-                        />
-                      )}
-                    </CalendarGridBody>
-                  </CalendarGrid>
-                </RangeCalendar>
-              </Dialog>
-            </Popover>
+            <BaseCalendar
+              CalendarComponent={RangeCalendar}
+              customError={customError}
+              dayNames={dayNames}
+              isDateSelected={isDateSelected}
+              isSingle={false}
+              variant={variant}
+            />
           </DateRangePicker>
         ) : (
           <DatePicker
-            aria-label={'Date picker'}
+            aria-label={'Date picker single'}
             className={s.datePicker}
-            onChange={handleDateChange}
+            onChange={onSingleDateChangeHandler}
           >
-            <Group className={clsx(s.group, s[variant], isDateSelected ? s.active : s.default)}>
-              <DateInput className={clsx(s.dateInput, s[variant])}>
-                {segment => (
-                  <DateSegment className={clsx(s.dateSegment, s[variant])} segment={segment} />
-                )}
-              </DateInput>
-              <Button className={clsx(s.calendarIconButton)}>
-                <CalendarIconWhite className={clsx(s.calendarIcon, s[variant])} />
-              </Button>
-            </Group>
-            {customError && (
-              <div className={clsx(s.customError)}>
-                <Typography
-                  className={s.errorMessage}
-                  style={{ color: 'var(--Danger-500)', transition: 'none' }}
-                  variant={'small-text'}
-                >
-                  {customError || errorMessage}
-                </Typography>
-              </div>
-            )}
-            <Popover className={clsx(s.popover, s[variant])}>
-              <Dialog>
-                <Calendar className={clsx(s.rangeCalendar, s[variant])}>
-                  <div className={s.calendarHeader}>
-                    <Heading className={s.heading} />
-                    <div>
-                      <Button className={s.navigationButton} slot={'previous'}>
-                        <ChevronLeft />
-                      </Button>
-                      <Button className={s.navigationButton} slot={'next'}>
-                        <ChevronRight />
-                      </Button>
-                    </div>
-                  </div>
-                  <CalendarGrid className={s.calendarGrid}>
-                    <thead className={s.customHeader}>
-                      <tr className={s.headerCell}>
-                        {dayNames.map((dayName, index) => (
-                          <th key={index}>{dayName}</th>
-                        ))}
-                      </tr>
-                    </thead>
-                    <CalendarGridBody className={clsx(s.calendarGridBody)}>
-                      {date => (
-                        <CalendarCell
-                          className={clsx(
-                            s.calendarCell,
-                            s.calendarCellFocus,
-                            isToday(date) && s.today,
-                            isWeekend(date) && s.weekend
-                          )}
-                          date={date}
-                        />
-                      )}
-                    </CalendarGridBody>
-                  </CalendarGrid>
-                </Calendar>
-              </Dialog>
-            </Popover>
+            <BaseCalendar
+              CalendarComponent={Calendar}
+              calendarCellCN={s.calendarCellFocus}
+              customError={customError}
+              dayNames={dayNames}
+              isDateSelected={isDateSelected}
+              isSingle
+              variant={variant}
+            />
           </DatePicker>
+          // <DateRangePicker
+          //   aria-label={'Date picker range'}
+          //   className={s.datePicker}
+          //   onChange={handleRangeChange}
+          // >
+          //   <Group className={clsx(s.group, s[variant], isDateSelected ? s.active : s.default)}>
+          //     <div className={s.dates}>
+          //       <DateInput className={clsx(s.dateInput, s[variant])} slot={'start'}>
+          //         {segment => (
+          //           <DateSegment className={clsx(s.dateSegment, s[variant])} segment={segment} />
+          //         )}
+          //       </DateInput>
+          //       <span className={clsx(s.separator, s[variant])}>-</span>
+          //       <DateInput className={clsx(s.dateInput, s[variant])} slot={'end'}>
+          //         {segment => (
+          //           <DateSegment className={clsx(s.dateSegment, s[variant])} segment={segment} />
+          //         )}
+          //       </DateInput>
+          //     </div>
+          //     <Button className={clsx(s.calendarIconButton)}>
+          //       <CalendarIconWhite className={clsx(s.calendarIcon, s[variant])} />
+          //     </Button>
+          //   </Group>
+          //   {customError && (
+          //     <div className={clsx(s.customError)}>
+          //       <Typography
+          //         className={s.errorMessage}
+          //         style={{ color: 'var(--Danger-500)', transition: 'none' }}
+          //         variant={'small-text'}
+          //       >
+          //         {customError || errorMessage}
+          //       </Typography>
+          //     </div>
+          //   )}
+          //   <Popover className={clsx(s.popover, s[variant])}>
+          //     <Dialog>
+          //       <RangeCalendar className={clsx(s.rangeCalendar, s[variant])}>
+          //         <div className={s.calendarHeader}>
+          //           <Heading className={s.heading} />
+          //           <div>
+          //             <Button className={s.navigationButton} slot={'previous'}>
+          //               <ChevronLeft />
+          //             </Button>
+          //             <Button className={s.navigationButton} slot={'next'}>
+          //               <ChevronRight />
+          //             </Button>
+          //           </div>
+          //         </div>
+          //         <CalendarGrid className={s.calendarGrid}>
+          //           <thead className={s.customHeader}>
+          //             <tr>
+          //               {dayNames.map((dayName, index) => (
+          //                 <th className={s.headerCell} key={index}>
+          //                   {dayName}
+          //                 </th>
+          //               ))}
+          //             </tr>
+          //           </thead>
+          //
+          //           <CalendarGridBody className={s.calendarGridBody}>
+          //             {date => (
+          //               <CalendarCell
+          //                 className={clsx(
+          //                   s.calendarCell,
+          //                   isToday(date) && s.today,
+          //                   isWeekend(date) && s.weekend
+          //                 )}
+          //                 date={date}
+          //               />
+          //             )}
+          //           </CalendarGridBody>
+          //         </CalendarGrid>
+          //       </RangeCalendar>
+          //     </Dialog>
+          //   </Popover>
+          // </DateRangePicker>
+          // <DatePicker
+          //   aria-label={'Date picker'}
+          //   className={s.datePicker}
+          //   onChange={handleDateChange}
+          // >
+          //   <Group className={clsx(s.group, s[variant], isDateSelected ? s.active : s.default)}>
+          //     <DateInput className={clsx(s.dateInput, s[variant])}>
+          //       {segment => (
+          //         <DateSegment className={clsx(s.dateSegment, s[variant])} segment={segment} />
+          //       )}
+          //     </DateInput>
+          //     <Button className={clsx(s.calendarIconButton)}>
+          //       <CalendarIconWhite className={clsx(s.calendarIcon, s[variant])} />
+          //     </Button>
+          //   </Group>
+          //   {customError && (
+          //     <div className={clsx(s.customError)}>
+          //       <Typography
+          //         className={s.errorMessage}
+          //         style={{ color: 'var(--Danger-500)', transition: 'none' }}
+          //         variant={'small-text'}
+          //       >
+          //         {customError || errorMessage}
+          //       </Typography>
+          //     </div>
+          //   )}
+          //   <Popover className={clsx(s.popover, s[variant])}>
+          //     <Dialog>
+          //       <Calendar className={clsx(s.rangeCalendar, s[variant])}>
+          //         <div className={s.calendarHeader}>
+          //           <Heading className={s.heading} />
+          //           <div>
+          //             <Button className={s.navigationButton} slot={'previous'}>
+          //               <ChevronLeft />
+          //             </Button>
+          //             <Button className={s.navigationButton} slot={'next'}>
+          //               <ChevronRight />
+          //             </Button>
+          //           </div>
+          //         </div>
+          //         <CalendarGrid className={s.calendarGrid}>
+          //           <thead className={s.customHeader}>
+          //             <tr className={s.headerCell}>
+          //               {dayNames.map((dayName, index) => (
+          //                 <th key={index}>{dayName}</th>
+          //               ))}
+          //             </tr>
+          //           </thead>
+          //           <CalendarGridBody className={clsx(s.calendarGridBody)}>
+          //             {date => (
+          //               <CalendarCell
+          //                 className={clsx(
+          //                   s.calendarCell,
+          //                   s.calendarCellFocus,
+          //                   isToday(date) && s.today,
+          //                   isWeekend(date) && s.weekend
+          //                 )}
+          //                 date={date}
+          //               />
+          //             )}
+          //           </CalendarGridBody>
+          //         </CalendarGrid>
+          //       </Calendar>
+          //     </Dialog>
+          //   </Popover>
+          // </DatePicker>
         )}
       </div>
     </I18nProvider>

@@ -10,42 +10,34 @@ import {
   Group,
   Heading,
   Popover,
-  RangeCalendar,
 } from 'react-aria-components'
 
 import { CalendarIconWhite, ChevronLeft, ChevronRight } from '@/assets/icons'
 import { Typography } from '@/components'
-import { CalendarDate, DateValue } from '@internationalized/date'
+import { CalendarDate } from '@internationalized/date'
 import clsx from 'clsx'
 
 import s from './BaseCalendar.module.scss'
 
 export type VariantType = 'default' | 'disabled'
 
-type DateChangeType = (date: { end: DateValue; start: DateValue } | DateValue) => void
-
 interface IProps {
-  DatePickerComponent: ComponentType<{
-    'aria-label': string
-    children: ReactNode
-    className: string
-    onChange: DateChangeType
-  }>
-  ariaLabelText?: string
+  CalendarComponent: ComponentType<{ children: ReactNode; className: string }>
+  calendarCellCN?: string
   customError?: string
   dayNames: string[]
   isDateSelected: boolean
-  onDateChange: DateChangeType
+  isSingle: boolean
   variant?: VariantType
 }
 
 export const BaseCalendar = ({
-  DatePickerComponent,
-  ariaLabelText = 'Date picker range',
+  CalendarComponent,
+  calendarCellCN,
   customError,
   dayNames,
   isDateSelected,
-  onDateChange,
+  isSingle,
   variant = 'default',
 }: IProps) => {
   const isToday = (date: CalendarDate) => {
@@ -66,17 +58,17 @@ export const BaseCalendar = ({
   }
 
   return (
-    <DatePickerComponent
-      aria-label={ariaLabelText}
-      className={s.datePicker}
-      onChange={onDateChange}
-    >
+    <>
       <Group className={clsx(s.group, s[variant], isDateSelected && s.active)}>
-        <div className={s.dates}>
-          <DateInputComponent slot={'start'} variant={variant} />
-          <span className={clsx(s.separator, s[variant])}>-</span>
-          <DateInputComponent slot={'end'} variant={variant} />
-        </div>
+        {isSingle ? (
+          <DateInputComponent variant={variant} />
+        ) : (
+          <div className={clsx(s.dates)}>
+            <DateInputComponent slot={'start'} variant={variant} />
+            <span className={clsx(s.separator, s[variant])}>-</span>
+            <DateInputComponent slot={'end'} variant={variant} />
+          </div>
+        )}
 
         <Button className={clsx(s.calendarIconButton, s[variant])} type={'button'}>
           <CalendarIconWhite />
@@ -89,14 +81,14 @@ export const BaseCalendar = ({
       )}
       <Popover className={clsx(s.popover, s[variant])}>
         <Dialog>
-          <RangeCalendar className={clsx(s.rangeCalendar, s[variant])}>
+          <CalendarComponent className={clsx(s.rangeCalendar, s[variant])}>
             <div className={s.calendarHeader}>
               <Heading className={s.heading} />
               <div>
-                <Button slot={'previous'} type={'button'}>
+                <Button className={s.chevronButton} slot={'previous'} type={'button'}>
                   <ChevronLeft />
                 </Button>
-                <Button slot={'next'} type={'button'}>
+                <Button className={s.chevronButton} slot={'next'} type={'button'}>
                   <ChevronRight />
                 </Button>
               </div>
@@ -118,22 +110,23 @@ export const BaseCalendar = ({
                     className={clsx(
                       s.calendarCell,
                       isToday(date) && s.today,
-                      isWeekend(date) && s.weekend
+                      isWeekend(date) && s.weekend,
+                      calendarCellCN
                     )}
                     date={date}
                   />
                 )}
               </CalendarGridBody>
             </CalendarGrid>
-          </RangeCalendar>
+          </CalendarComponent>
         </Dialog>
       </Popover>
-    </DatePickerComponent>
+    </>
   )
 }
 
 type DateInputComponentProps = {
-  slot: string
+  slot?: string
   variant: VariantType
 }
 
