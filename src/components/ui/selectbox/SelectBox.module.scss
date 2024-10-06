@@ -13,11 +13,11 @@
   width: 100%;
   padding: 0.5rem 1rem;
 
-  font-size: 16px;
+  font-size: 1rem;
   color: var(--Light-100);
 
   background-color: var(--Dark-500);
-  border: 1px solid var(--Light-100);
+  border: 0.0625rem solid var(--Light-100);
 
   transition:
     border-color 0.3s,
@@ -31,14 +31,14 @@
     background-color: var(--Dark-700);
     border-color: var(--Primary-500);
     outline: none;
-    box-shadow: 0 0 0 2px var(--Primary-500);
+    box-shadow: 0 0 0 0.125rem var(--Primary-500);
   }
 
   &:disabled {
     cursor: not-allowed;
     color: var(--Dark-100);
     background-color: var(--Dark-700);
-    border: 1px solid var(--Dark-100);
+    border: 0.0625rem solid var(--Dark-100);
   }
 }
 
@@ -54,16 +54,16 @@
 
 .withFlagsTrigger {
   background-color: var(--Dark-500);
-  border: 1px solid var(--Dark-100);
+  border: 0.0625rem solid var(--Dark-100);
 
   &:hover {
     background-color: var(--Dark-500);
-    border: 1px solid var(--Dark-100);
+    border: 0.0625rem solid var(--Dark-100);
   }
 
   &:focus-visible {
-    border: 1px solid var(--Dark-100);
-    border-color: none;
+    border: 0.0625rem solid var(--Dark-100);
+    border-color: transparent;
     box-shadow: none !important;
   }
 }
@@ -101,20 +101,20 @@
 
 .content {
   background-color: var(--Dark-500);
-  border: 1px solid var(--Dark-300);
-  border-radius: 4px;
+  border: 0.0625rem solid var(--Dark-300);
+  border-radius: 0.25rem;
 }
 
 .viewport {
-  border-right: 1px solid var(--Light-100);
-  border-bottom: 1px solid var(--Light-100);
-  border-left: 1px solid var(--Light-100);
+  border-right: 0.0625rem solid var(--Light-100);
+  border-bottom: 0.0625rem solid var(--Light-100);
+  border-left: 0.0625rem solid var(--Light-100);
 }
 
 .withFlagsViewport {
-  border-right: 1px solid var(--Dark-100);
-  border-bottom: 1px solid var(--Dark-100);
-  border-left: 1px solid var(--Dark-100);
+  border-right: 0.0625rem solid var(--Dark-100);
+  border-bottom: 0.0625rem solid var(--Dark-100);
+  border-left: 0.0625rem solid var(--Dark-100);
 }
 
 .item {
@@ -126,11 +126,11 @@
   width: 12.8rem;
   padding: 0.5rem 1rem;
 
-  font-size: 14px;
+  font-size: 0.875rem;
   color: var(--Light-100);
 
-  border: 1px solid transparent;
-  border-radius: 4px;
+  border: 0.0625rem solid transparent;
+  border-radius: 0.25rem;
 
   transition:
     color 0.3s,
@@ -148,7 +148,7 @@
   }
 
   &:not(:last-child) {
-    margin-bottom: 4px;
+    margin-bottom: 0.25rem;
   }
 
   &[aria-selected='true'] {

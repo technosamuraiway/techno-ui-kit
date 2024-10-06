@@ -3,7 +3,7 @@ import { ComponentPropsWithoutRef, ReactNode, forwardRef } from 'react'
 import * as S from '@radix-ui/react-scroll-area'
 import { clsx } from 'clsx'
 
-import s from './Scrallbar.module.scss'
+import s from './Scrollbar.module.scss'
 
 interface IProps extends ComponentPropsWithoutRef<'div'> {
   children: ReactNode

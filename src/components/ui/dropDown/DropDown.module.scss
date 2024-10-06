@@ -33,7 +33,7 @@
 
   z-index: 150;
 
-  padding: 12px;
+  padding: 0.75rem;
 
   background-color: var(--Dark-500);
   border: 0.0625rem solid var(--Dark-500);
@@ -96,7 +96,7 @@
 
 @keyframes slide-up {
   from {
-    transform: translateY(10px);
+    transform: translateY(0.625rem);
     opacity: 0;
   }
 
@@ -108,7 +108,7 @@
 
 @keyframes slide-down {
   from {
-    transform: translateY(-10px);
+    transform: translateY(-0.625rem);
     opacity: 0;
   }
 
