@@ -32,7 +32,7 @@
   }
 
   &:focus-visible {
-    border-radius: 2px;
+    border-radius: 0.125rem;
     outline: none;
     box-shadow: 0 0 0 0.125rem var(--Primary-700);
   }

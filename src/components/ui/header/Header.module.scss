@@ -6,10 +6,10 @@
   justify-content: space-between;
 
   width: 100%;
-  padding: 12px 60px;
+  padding: 0.75rem 3.75rem;
 
   background-color: var(--Dark-700);
-  border-bottom: 1px solid var(--Dark-300);
+  border-bottom: 0.0625rem solid var(--Dark-300);
 
   .leftSection {
     display: flex;
@@ -22,25 +22,25 @@
 
   .rightSection {
     display: flex;
-    gap: 48px;
+    gap: 3rem;
     align-items: center;
 
     .notification {
       cursor: pointer;
       position: relative;
-      margin-right: 20px;
+      margin-right: 1.25rem;
 
       .badge {
         position: absolute;
-        top: -5px;
-        right: -2px;
+        top: -0.3125rem;
+        right: -0.125rem;
 
         display: flex;
         align-items: center;
         justify-content: center;
 
-        width: 15px;
-        height: 15px;
+        width: 0.9375rem;
+        height: 0.9375rem;
 
         font-size: 0.7rem;
         color: var(--Light-100);
@@ -54,7 +54,7 @@
 
   .authButtons {
     display: flex;
-    gap: 10px;
+    gap: 0.625rem;
   }
 }
 

@@ -4,7 +4,7 @@
   align-items: center;
 
   &.left {
-    margin-left: -9px;
+    margin-left: -0.5625rem;
   }
 }
 
@@ -15,8 +15,8 @@
   align-items: center;
   justify-content: center;
 
-  width: 36px;
-  height: 36px;
+  width: 2.25rem;
+  height: 2.25rem;
 
   border-radius: 50%;
 
@@ -34,7 +34,7 @@
   }
 
   &.left {
-    margin-left: -9px;
+    margin-left: -0.5625rem;
   }
 }
 
@@ -70,12 +70,12 @@
   align-items: center;
   justify-content: center;
 
-  width: 18px;
-  height: 18px;
+  width: 1.125rem;
+  height: 1.125rem;
 
   background-color: transparent;
-  border: 2px solid var(--Light-500);
-  border-radius: 2px;
+  border: 0.125rem solid var(--Light-500);
+  border-radius: 0.125rem;
 
   &:disabled {
     cursor: initial;
@@ -90,6 +90,6 @@
 }
 
 .indicator {
-  width: 18px;
-  height: 18px;
+  width: 1.125rem;
+  height: 1.125rem;
 }

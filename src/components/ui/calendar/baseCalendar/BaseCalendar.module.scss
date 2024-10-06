@@ -5,7 +5,7 @@
 
 .dates {
   display: flex;
-  gap: 3px;
+  gap: 0.1875rem;
 }
 
 .group {
@@ -63,7 +63,7 @@
 
   &:focus {
     background: var(--Primary-300);
-    border-radius: 4px;
+    border-radius: 0.25rem;
     outline: none;
     caret-color: transparent;
   }
