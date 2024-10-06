@@ -1,23 +1,23 @@
 .body {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 0.625rem;
   align-items: center;
 
   height: 100vh;
-  padding-top: 20px;
+  padding-top: 1.25rem;
 
   background-color: black;
 }
 
 .area {
-  margin-top: 10px;
+  margin-top: 0.625rem;
 }
 
 .select {
-  margin-top: 30px;
+  margin-top: 1.875rem;
 }
 
 .container {
-  width: 740px;
+  width: 46.25rem;
 }

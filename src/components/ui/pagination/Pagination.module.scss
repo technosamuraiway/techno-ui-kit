@@ -1,13 +1,13 @@
 .root {
   display: flex;
-  gap: 25px;
+  gap: 1.5625rem;
   align-items: center;
   justify-content: center;
 }
 
 .container {
   display: flex;
-  gap: 12px;
+  gap: 0.75rem;
   list-style-type: none;
 }
 
@@ -18,12 +18,12 @@
   align-items: center;
   justify-content: center;
 
-  width: 24px;
-  height: 24px;
+  width: 1.5rem;
+  height: 1.5rem;
 
   color: var(--Light-100);
 
-  border-radius: 2px;
+  border-radius: 0.125rem;
 }
 
 .item {
@@ -32,8 +32,8 @@
   cursor: pointer;
 
   &:focus-visible {
-    border-radius: 2px;
-    outline: 2px solid var(--Primary-700);
+    border-radius: 0.125rem;
+    outline: 0.125rem solid var(--Primary-700);
   }
 
   &:disabled {
@@ -62,7 +62,7 @@
 
 .selectBox {
   display: flex;
-  gap: 12px;
+  gap: 0.75rem;
   align-items: center;
 
   color: var(--Light-100);
@@ -72,8 +72,8 @@
 .selectTrigger {
   display: flex;
   flex-shrink: 0;
-  column-gap: 4px;
-  padding: 2px;
+  column-gap: 0.25rem;
+  padding: 0.125rem;
 
   span {
     display: block;
@@ -81,7 +81,7 @@
   }
 
   svg {
-    width: 16px;
-    height: 16px;
+    width: 1rem;
+    height: 1rem;
   }
 }
