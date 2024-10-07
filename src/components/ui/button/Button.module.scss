@@ -57,7 +57,7 @@
 
   &:focus-visible:enabled {
     background-color: var(--Primary-500);
-    outline: 2px solid var(--Primary-700);
+    outline: 0.125rem solid var(--Primary-700);
   }
 
   &.fullWidth {
@@ -87,7 +87,7 @@
 
   &:focus-visible:enabled {
     background-color: var(--Dark-300);
-    outline: 1px solid var(--Primary-300);
+    outline: 0.0625rem solid var(--Primary-300);
   }
 
   &.fullWidth {
@@ -114,7 +114,7 @@
 
   &:focus-visible:enabled {
     background-color: var(--Dark-300);
-    outline: 1px solid var(--Primary-300);
+    outline: 0.0625rem solid var(--Primary-300);
   }
 
   &.fullWidth {
@@ -133,27 +133,27 @@
   @extend.button;
 
   color: var(--Primary-500);
-  border: 1px solid var(--Primary-500);
+  border: 0.0625rem solid var(--Primary-500);
 
   &:disabled {
     cursor: not-allowed;
     color: var(--Primary-900);
-    border: 1px solid var(--Primary-900);
+    border: 0.0625rem solid var(--Primary-900);
   }
 
   &:hover:enabled {
     color: var(--Primary-100);
-    border: 1px solid var(--Primary-100);
+    border: 0.0625rem solid var(--Primary-100);
   }
 
   &:active:enabled {
     color: var(--Primary-700);
-    border: 1px solid var(--Primary-700);
+    border: 0.0625rem solid var(--Primary-700);
   }
 
   &:focus-visible:enabled {
     color: var(--Primary-700);
-    border: 2px solid var(--Primary-700);
+    border: 0.125rem solid var(--Primary-700);
   }
 
   &.fullWidth {
@@ -182,7 +182,7 @@
 
   &:focus-visible:enabled {
     color: var(--Primary-500);
-    border: 2px solid var(--Primary-700);
+    border: 0.125rem solid var(--Primary-700);
   }
 
   &.fullWidth {

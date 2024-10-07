@@ -14,14 +14,14 @@
 }
 
 .scrollbar[data-orientation='vertical'] {
-  width: 14px;
-  padding: 3px 0;
+  width: 0.875rem;
+  padding: 0.1875rem 0;
 }
 
 .scrollbar[data-orientation='horizontal'] {
   flex-direction: column;
-  height: 14px;
-  padding: 0 3px;
+  height: 0.875rem;
+  padding: 0 0.1875rem;
 }
 
 .thumb {
@@ -31,31 +31,31 @@
 
   flex-grow: 1;
 
-  padding: 0 5px;
+  padding: 0 0.3125rem;
 
-  border-radius: 5px;
+  border-radius: 0.3125rem;
 
   &::before {
     content: '';
 
     position: absolute;
 
-    width: 4px;
+    width: 0.25rem;
     height: 100%;
 
     background-color: var(--Light-900);
-    border-radius: 5px;
+    border-radius: 0.3125rem;
 
     transition: 0.6ms background-color;
 
     [data-orientation='horizontal'] & {
       width: 100%;
-      height: 4px;
+      height: 0.25rem;
     }
   }
 
   [data-orientation='horizontal'] & {
-    padding: 5px 0;
+    padding: 0.3125rem 0;
   }
 
   &:hover::before {

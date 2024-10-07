@@ -1,18 +1,22 @@
-.container {
+.wrapper {
   display: flex;
   flex-direction: column;
+}
+
+.textAreaLabel {
+  color: var(--Light-900);
 }
 
 .textArea {
   resize: none;
 
-  padding: 8px;
+  padding: 0.5rem;
 
-  font-size: 14px;
+  font-size: 0.875rem;
   color: var(--Light-100);
 
   background-color: var(--Dark-700);
-  border: 1px solid var(--Dark-300);
+  border: 0.0625rem solid var(--Dark-300);
   outline: none;
 
   &:hover {
@@ -29,22 +33,18 @@
 }
 
 .errorText {
-  margin-top: 4px;
-  font-size: 12px;
+  margin-top: 0.25rem;
+  font-size: 0.75rem;
   color: var(--Danger-500);
 }
 
 .disabled {
-  .textArea {
-    cursor: not-allowed;
-    color: var(--Dark-300);
-    background-color: var(--Dark-500);
-    border-color: var(--Dark-500);
-  }
+  cursor: not-allowed;
+  color: var(--Dark-300);
+  background-color: var(--Dark-500);
+  border-color: var(--Dark-500);
 }
 
 .error {
-  .textArea {
-    border-color: var(--Danger-500);
-  }
+  border-color: var(--Danger-500);
 }
