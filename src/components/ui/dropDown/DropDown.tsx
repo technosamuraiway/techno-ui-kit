@@ -14,6 +14,7 @@ export type DropdownProps = {
   style?: CSSProperties
   trigger: ReactNode
   triggerCN?: string
+  triggerTitle?: string
   withArrow?: boolean
 } & ComponentPropsWithRef<typeof D.Root>
 
@@ -27,13 +28,19 @@ const Root = ({
   style,
   trigger,
   triggerCN,
+  triggerTitle,
   withArrow = true,
   ...rest
 }: DropdownProps) => {
   return (
     <D.Root {...rest}>
       <D.Trigger asChild>
-        <button className={clsx(s.trigger, triggerCN)} style={style} type={'button'}>
+        <button
+          className={clsx(s.trigger, triggerCN)}
+          style={style}
+          title={triggerTitle}
+          type={'button'}
+        >
           {trigger}
         </button>
       </D.Trigger>
