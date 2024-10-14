@@ -42,47 +42,49 @@ export const Header = <T extends ElementType = 'header'>(props: HeaderProps<T>) 
 
   return (
     <Component className={clsx(s.header, className)} {...rest}>
-      <div className={s.leftSection} onClick={onLogoClick}>
-        <Typography className={s.logo} variant={'large'}>
-          Inctagram
-        </Typography>
-      </div>
-      <div className={s.rightSection}>
-        {withNotifications && (
-          <div className={s.notification}>
-            <DefaultNotifications className={s.notificationIcon} />
-            <span className={s.badge}>{notificationNumber}</span>
-          </div>
-        )}
-        <div className={s.languageSwitcher}>
-          <Select
-            currentValue={changeLanguageBtnCurrentValue}
-            onValueChange={changeLanguageBtn}
-            options={changeLanguageBtnOptions}
-            selectWidth={'160px'}
-          />
+      <div className={s.container}>
+        <div className={s.leftSection} onClick={onLogoClick}>
+          <Typography className={s.logo} variant={'large'}>
+            Inctagram
+          </Typography>
         </div>
-        {withAuthButtons && (
-          <div className={s.authButtons}>
-            <Button
-              className={s.loginButton}
-              onClick={onLogInClick}
-              type={'button'}
-              variant={'textButton'}
-            >
-              {logInBtnChildren}
-            </Button>
-            <Button
-              className={s.signUpButton}
-              fullWidth
-              onClick={onSignUpClick}
-              type={'button'}
-              variant={'primary'}
-            >
-              {signUpBtnChildren}
-            </Button>
+        <div className={s.rightSection}>
+          {withNotifications && (
+            <div className={s.notification}>
+              <DefaultNotifications className={s.notificationIcon} />
+              <span className={s.badge}>{notificationNumber}</span>
+            </div>
+          )}
+          <div className={s.languageSwitcher}>
+            <Select
+              currentValue={changeLanguageBtnCurrentValue}
+              onValueChange={changeLanguageBtn}
+              options={changeLanguageBtnOptions}
+              selectWidth={'160px'}
+            />
           </div>
-        )}
+          {withAuthButtons && (
+            <div className={s.authButtons}>
+              <Button
+                className={s.loginButton}
+                onClick={onLogInClick}
+                type={'button'}
+                variant={'textButton'}
+              >
+                {logInBtnChildren}
+              </Button>
+              <Button
+                className={s.signUpButton}
+                fullWidth
+                onClick={onSignUpClick}
+                type={'button'}
+                variant={'primary'}
+              >
+                {signUpBtnChildren}
+              </Button>
+            </div>
+          )}
+        </div>
       </div>
     </Component>
   )
