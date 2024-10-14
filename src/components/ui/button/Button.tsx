@@ -32,7 +32,7 @@ export const Button = forwardRef((props: Omit<ButtonProps<ElementType>, 'ref'>, 
 
   return (
     <Component
-      className={clsx(s.button, s[variant], fullWidth && s.fullWidth, className)}
+      className={clsx(className, s.button, s[variant], fullWidth && s.fullWidth)}
       ref={ref}
       {...rest}
     >
