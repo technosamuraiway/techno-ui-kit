@@ -1,6 +1,7 @@
+import { useEffect, useState } from 'react'
 import { Calendar, DatePicker } from 'react-aria-components'
 
-import { DateValue, parseDate } from '@internationalized/date'
+import { CalendarDate, DateValue, parseDate } from '@internationalized/date'
 
 import s from '../baseCalendar/BaseCalendar.module.scss'
 
@@ -26,6 +27,16 @@ export const CalendarSingleDate = ({
   setIsDateSelected,
   variant,
 }: IProps) => {
+  const [currentDate, setCurrentDate] = useState<CalendarDate | undefined>(
+    defaultSingleValue ? parseDate(defaultSingleValue) : undefined
+  )
+
+  useEffect(() => {
+    if (defaultSingleValue) {
+      setCurrentDate(parseDate(defaultSingleValue))
+    }
+  }, [defaultSingleValue])
+
   const onSingleDateChangeHandler = (dateValue: DateValue) => {
     if (dateValue) {
       const selectedDate = new Date(dateValue.year, dateValue.month - 1, dateValue.day)
@@ -44,13 +55,11 @@ export const CalendarSingleDate = ({
     }
   }
 
-  const defaultDate = defaultSingleValue ? parseDate(defaultSingleValue) : undefined
-
   return (
     <DatePicker
       aria-label={'Date picker single'}
       className={s.datePicker}
-      defaultValue={defaultDate}
+      defaultValue={currentDate}
       onChange={onSingleDateChangeHandler}
     >
       <BaseCalendar
