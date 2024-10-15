@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { DateRangePicker, RangeCalendar } from 'react-aria-components'
 
 import { CalendarDate, parseDate } from '@internationalized/date'
@@ -42,6 +42,16 @@ export const CalendarRange = ({
 
     return undefined
   })
+
+  useEffect(() => {
+    if (defaultRangeValue && defaultRangeValue.start && defaultRangeValue.end) {
+      setValue({
+        end: parseDate(defaultRangeValue.end),
+        start: parseDate(defaultRangeValue.start),
+      })
+    }
+  }, [defaultRangeValue])
+
   const onRangeDateChangeHandler = (range: { end: CalendarDate; start: CalendarDate }) => {
     const start = new Date(range.start.year, range.start.month - 1, range.start.day)
     const end = new Date(range.end.year, range.end.month - 1, range.end.day)
