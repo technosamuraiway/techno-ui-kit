@@ -28,6 +28,8 @@ const locales = {
 }
 
 export type MyDatePickerProps = {
+  defaultRangeValue?: { end: string; start: string }
+  defaultSingleValue?: string
   errorMessage?: string
   locale: 'en' | 'ru'
   mode?: 'range' | 'single'
@@ -39,6 +41,8 @@ export const MyDatePicker = forwardRef<ElementRef<'div'>, MyDatePickerProps>(
   (
     {
       className,
+      defaultRangeValue,
+      defaultSingleValue,
       errorMessage,
       locale = 'ru',
       mode = 'range',
@@ -72,6 +76,7 @@ export const MyDatePicker = forwardRef<ElementRef<'div'>, MyDatePickerProps>(
               customError={customError}
               dayNames={dayNames}
               defaultErrorMessage={defaultErrorMessage}
+              defaultRangeValue={defaultRangeValue}
               errorMessage={errorMessage}
               isDateSelected={isDateSelected}
               onDateChange={onDateChange}
@@ -83,6 +88,7 @@ export const MyDatePicker = forwardRef<ElementRef<'div'>, MyDatePickerProps>(
             <CalendarSingleDate
               customError={customError}
               dayNames={dayNames}
+              defaultSingleValue={defaultSingleValue}
               isDateSelected={isDateSelected}
               onDateChange={onDateChange}
               setCustomError={setCustomError}
