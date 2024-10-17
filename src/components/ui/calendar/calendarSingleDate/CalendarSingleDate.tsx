@@ -33,7 +33,11 @@ export const CalendarSingleDate = ({
 
   useEffect(() => {
     if (defaultSingleValue) {
-      setCurrentDate(parseDate(defaultSingleValue))
+      const newDate = parseDate(defaultSingleValue)
+
+      setCurrentDate(newDate)
+    } else {
+      setCurrentDate(undefined)
     }
   }, [defaultSingleValue])
 
@@ -59,8 +63,9 @@ export const CalendarSingleDate = ({
     <DatePicker
       aria-label={'Date picker single'}
       className={s.datePicker}
-      defaultValue={currentDate}
+      key={defaultSingleValue}
       onChange={onSingleDateChangeHandler}
+      value={currentDate}
     >
       <BaseCalendar
         CalendarComponent={Calendar}
