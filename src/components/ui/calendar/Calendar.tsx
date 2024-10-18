@@ -1,6 +1,7 @@
 import { ComponentPropsWithoutRef, ElementRef, forwardRef, useState } from 'react'
 import { I18nProvider } from 'react-aria'
 
+import { Typography } from '@/components'
 import { DateValue } from '@internationalized/date'
 import clsx from 'clsx'
 
@@ -8,29 +9,11 @@ import s from './baseCalendar/BaseCalendar.module.scss'
 
 import { CalendarRange } from './calendarRange/CalendarRange'
 import { CalendarSingleDate } from './calendarSingleDate/CalendarSingleDate'
-import { CalendarVariant, RangeValue } from './utils'
-
-const locales = {
-  en: {
-    dayNames: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
-    errorMessages: {
-      generalError: 'Error!',
-
-      selectMonthError: 'Error, select current month or last month',
-    },
-  },
-  ru: {
-    dayNames: ['П', 'В', 'С', 'Ч', 'П', 'С', 'В'],
-    errorMessages: {
-      generalError: 'Ошибка!',
-
-      selectMonthError: 'Ошибка, выберите текущий или прошлый месяц',
-    },
-  },
-}
+import { CalendarVariant, RangeValue, locales } from './utils'
 
 export type CalendarProps = {
   errorMessage?: string
+  labelText?: string
   locale?: 'en' | 'ru'
   mode?: 'range' | 'single'
   onRangeChange?: (date: { end: DateValue; start: DateValue }) => void
@@ -45,6 +28,7 @@ export const Calendar = forwardRef<ElementRef<'div'>, CalendarProps>(
     {
       className,
       errorMessage,
+      labelText,
       locale = 'ru',
       mode = 'range',
       onRangeChange,
@@ -85,6 +69,9 @@ export const Calendar = forwardRef<ElementRef<'div'>, CalendarProps>(
           ref={ref}
           {...rest}
         >
+          <Typography className={s.labelColor} variant={'regular-text-14'}>
+            {labelText}
+          </Typography>
           {mode === 'range' ? (
             <CalendarRange
               customError={customError}

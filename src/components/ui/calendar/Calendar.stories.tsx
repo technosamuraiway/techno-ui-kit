@@ -30,6 +30,7 @@ const DefaultRange = ({ variant }: { variant: CalendarVariant }) => {
 
   return (
     <Calendar
+      labelText={'Range Calendar'}
       mode={'range'}
       onRangeChange={setRangeValue}
       valueRange={rangeValue}
@@ -43,6 +44,7 @@ const DefaultSingle = ({ variant }: { variant: CalendarVariant }) => {
 
   return (
     <Calendar
+      labelText={'Single Calendar'}
       mode={'single'}
       onSingleChange={setSingleValue}
       valueSingle={singleValue}
