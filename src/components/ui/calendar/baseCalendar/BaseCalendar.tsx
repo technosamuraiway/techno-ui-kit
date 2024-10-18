@@ -19,7 +19,7 @@ import clsx from 'clsx'
 
 import s from './BaseCalendar.module.scss'
 
-export type VariantType = 'default' | 'disabled'
+import { CalendarVariant } from '../utils'
 
 interface IProps {
   CalendarComponent: ComponentType<{ children: ReactNode; className: string }>
@@ -28,7 +28,7 @@ interface IProps {
   dayNames: string[]
   isDateSelected: boolean
   isSingle: boolean
-  variant?: VariantType
+  variant?: CalendarVariant
 }
 
 export const BaseCalendar = ({
@@ -127,7 +127,7 @@ export const BaseCalendar = ({
 
 type DateInputComponentProps = {
   slot?: string
-  variant: VariantType
+  variant: CalendarVariant
 }
 
 function DateInputComponent({ slot, variant }: DateInputComponentProps) {

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { Button, MyDatePicker, TextArea, Typography } from '@/components'
+import { Button, TextArea } from '@/components'
 
 import s from './styles/Home.module.scss'
 
@@ -21,31 +21,31 @@ export default function App() {
 
   const [currentValue, setCurrentValue] = useState(formattedCityOptions[0].value)
 
-  const checkAge = (birthDate: Date) => {
-    const today = new Date()
-    const age = today.getFullYear() - birthDate.getFullYear()
-    const monthDiff = today.getMonth() - birthDate.getMonth()
-
-    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
-      return age - 1
-    }
-
-    return age
-  }
-  const [errorMessage, setErrorMessage] = useState('')
-  const handleDateChange = ({ start }: { start?: Date | null }) => {
-    if (!start) {
-      return // Если start не указан, выходим из функции
-    }
-
-    // Проверка возраста
-    if (checkAge(start) < 13) {
-      setErrorMessage('A user under 13 cannot create a profile. Privacy Policy')
-    } else {
-      setErrorMessage('') // Сбрасываем сообщение об ошибке
-      // Установка значения даты в форму
-    }
-  }
+  // const checkAge = (birthDate: Date) => {
+  //   const today = new Date()
+  //   const age = today.getFullYear() - birthDate.getFullYear()
+  //   const monthDiff = today.getMonth() - birthDate.getMonth()
+  //
+  //   if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+  //     return age - 1
+  //   }
+  //
+  //   return age
+  // }
+  // const [errorMessage, setErrorMessage] = useState('')
+  // const handleDateChange = ({ start }: { start?: Date | null }) => {
+  //   if (!start) {
+  //     return // Если start не указан, выходим из функции
+  //   }
+  //
+  //   // Проверка возраста
+  //   if (checkAge(start) < 13) {
+  //     setErrorMessage('A user under 13 cannot create a profile. Privacy Policy')
+  //   } else {
+  //     setErrorMessage('') // Сбрасываем сообщение об ошибке
+  //     // Установка значения даты в форму
+  //   }
+  // }
 
   // const languageSelectOptions = [
   //   { icon: { png: EnFlagPng, webp: EnFlagWebp }, label: 'English', value: 'en' },
@@ -73,22 +73,22 @@ export default function App() {
           <div className={s.area}>
             <TextArea />
           </div>
-          <MyDatePicker locale={'en'} />
-          <MyDatePicker
-            errorMessage={errorMessage}
-            locale={'en'}
-            mode={'single'}
-            onDateChange={handleDateChange}
-          />
-          {errorMessage && (
-            <Typography
-              className={s.errorMessage}
-              style={{ color: 'var(--Danger-500)', transition: 'none' }}
-              variant={'small-text'}
-            >
-              {errorMessage}
-            </Typography>
-          )}
+          {/*<Calendar locale={'en'} />*/}
+          {/*<Calendar*/}
+          {/*  errorMessage={errorMessage}*/}
+          {/*  locale={'en'}*/}
+          {/*  mode={'single'}*/}
+          {/*  onDateChange={handleDateChange}*/}
+          {/*/>*/}
+          {/*{errorMessage && (*/}
+          {/*  <Typography*/}
+          {/*    className={s.errorMessage}*/}
+          {/*    style={{ color: 'var(--Danger-500)', transition: 'none' }}*/}
+          {/*    variant={'small-text'}*/}
+          {/*  >*/}
+          {/*    {errorMessage}*/}
+          {/*  </Typography>*/}
+          {/*)}*/}
 
           <div className={s.select}>
             <Select

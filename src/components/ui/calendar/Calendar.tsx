@@ -1,52 +1,40 @@
 import { ComponentPropsWithoutRef, ElementRef, forwardRef, useState } from 'react'
 import { I18nProvider } from 'react-aria'
 
+import { Typography } from '@/components'
+import { DateValue } from '@internationalized/date'
 import clsx from 'clsx'
 
 import s from './baseCalendar/BaseCalendar.module.scss'
 
 import { CalendarRange } from './calendarRange/CalendarRange'
 import { CalendarSingleDate } from './calendarSingleDate/CalendarSingleDate'
+import { CalendarVariant, RangeValue, locales } from './utils'
 
-const locales = {
-  en: {
-    dayNames: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
-    errorMessages: {
-      generalError: 'Error!',
-
-      selectMonthError: 'Error, select current month or last month',
-    },
-  },
-  ru: {
-    dayNames: ['П', 'В', 'С', 'Ч', 'П', 'С', 'В'],
-    errorMessages: {
-      generalError: 'Ошибка!',
-
-      selectMonthError: 'Ошибка, выберите текущий или прошлый месяц',
-    },
-  },
-}
-
-export type MyDatePickerProps = {
-  defaultRangeValue?: { end: string; start: string }
-  defaultSingleValue?: string
+export type CalendarProps = {
   errorMessage?: string
-  locale: 'en' | 'ru'
+  labelText?: string
+  locale?: 'en' | 'ru'
   mode?: 'range' | 'single'
-  onDateChange?: (date: { end?: Date; start?: Date }) => void
-  variant?: 'default' | 'disabled'
+  onRangeChange?: (date: { end: DateValue; start: DateValue }) => void
+  onSingleChange?: (date: DateValue) => void
+  valueRange?: RangeValue<DateValue>
+  valueSingle?: DateValue
+  variant?: CalendarVariant
 } & ComponentPropsWithoutRef<'div'>
 
-export const MyDatePicker = forwardRef<ElementRef<'div'>, MyDatePickerProps>(
+export const Calendar = forwardRef<ElementRef<'div'>, CalendarProps>(
   (
     {
       className,
-      defaultRangeValue,
-      defaultSingleValue,
       errorMessage,
+      labelText,
       locale = 'ru',
       mode = 'range',
-      onDateChange,
+      onRangeChange,
+      onSingleChange,
+      valueRange,
+      valueSingle,
       variant = 'default',
       ...rest
     },
@@ -62,6 +50,16 @@ export const MyDatePicker = forwardRef<ElementRef<'div'>, MyDatePickerProps>(
         ? currentLocale.errorMessages.generalError
         : currentLocale.errorMessages.selectMonthError
 
+    const onRangeChangeHandler = (date: { end: DateValue; start: DateValue }) => {
+      setIsDateSelected(true)
+      onRangeChange?.(date)
+    }
+
+    const onSingleChangeHandler = (date: DateValue) => {
+      setIsDateSelected(true)
+      onSingleChange?.(date)
+    }
+
     return (
       <I18nProvider locale={locale === 'en' ? 'en-US' : 'ru-RU'}>
         <div
@@ -71,28 +69,31 @@ export const MyDatePicker = forwardRef<ElementRef<'div'>, MyDatePickerProps>(
           ref={ref}
           {...rest}
         >
+          <Typography className={s.labelColor} variant={'regular-text-14'}>
+            {labelText}
+          </Typography>
           {mode === 'range' ? (
             <CalendarRange
               customError={customError}
               dayNames={dayNames}
               defaultErrorMessage={defaultErrorMessage}
-              defaultRangeValue={defaultRangeValue}
               errorMessage={errorMessage}
               isDateSelected={isDateSelected}
-              onDateChange={onDateChange}
+              onRangeChange={onRangeChangeHandler}
               setCustomError={setCustomError}
               setIsDateSelected={setIsDateSelected}
+              valueRange={valueRange}
               variant={variant}
             />
           ) : (
             <CalendarSingleDate
               customError={customError}
               dayNames={dayNames}
-              defaultSingleValue={defaultSingleValue}
               isDateSelected={isDateSelected}
-              onDateChange={onDateChange}
+              onSingleChange={onSingleChangeHandler}
               setCustomError={setCustomError}
               setIsDateSelected={setIsDateSelected}
+              valueSingle={valueSingle}
               variant={variant}
             />
           )}

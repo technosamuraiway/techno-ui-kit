@@ -1,61 +1,42 @@
-import { useEffect, useState } from 'react'
 import { Calendar, DatePicker } from 'react-aria-components'
 
-import { DateValue, parseDate } from '@internationalized/date'
+import { DateValue } from '@internationalized/date'
 
 import s from '../baseCalendar/BaseCalendar.module.scss'
 
-import { BaseCalendar, VariantType } from '../baseCalendar/BaseCalendar'
+import { BaseCalendar } from '../baseCalendar/BaseCalendar'
+import { CalendarVariant } from '../utils'
 
 interface IProps {
   customError?: string
   dayNames: string[]
   defaultSingleValue?: string
   isDateSelected: boolean
-  onDateChange?: (date: { end?: Date; start?: Date }) => void
+  onSingleChange?: (date: DateValue) => void
   setCustomError: (customError: string) => void
   setIsDateSelected: (isDateSelected: boolean) => void
-  variant?: VariantType
+  valueSingle?: DateValue
+  variant?: CalendarVariant
 }
 export const CalendarSingleDate = ({
   customError,
   dayNames,
-  defaultSingleValue,
   isDateSelected,
-  onDateChange,
+  onSingleChange,
   setCustomError,
   setIsDateSelected,
+  valueSingle,
   variant,
 }: IProps) => {
-  const [currentDate, setCurrentDate] = useState<DateValue | undefined>(
-    defaultSingleValue ? parseDate(defaultSingleValue) : undefined
-  )
-
-  useEffect(() => {
-    if (defaultSingleValue) {
-      const newDate = parseDate(defaultSingleValue)
-
-      setCurrentDate(newDate)
-    } else {
-      setCurrentDate(undefined)
-    }
-  }, [defaultSingleValue])
-
-  const onSingleDateChangeHandler = (dateValue: DateValue) => {
+  const onSingleDateChangeHandler = (dateValue: DateValue | null) => {
     if (dateValue) {
-      const selectedDate = new Date(dateValue.year, dateValue.month - 1, dateValue.day)
+      setCustomError('')
+      setIsDateSelected(true)
 
-      if (!isNaN(selectedDate.getTime())) {
-        setCustomError('')
-        setIsDateSelected(true)
-        if (onDateChange) {
-          onDateChange({ start: selectedDate })
-        }
-      } else {
-        setCustomError('')
-      }
+      onSingleChange && onSingleChange(dateValue)
     } else {
       setCustomError('')
+      setIsDateSelected(false)
     }
   }
 
@@ -63,9 +44,8 @@ export const CalendarSingleDate = ({
     <DatePicker
       aria-label={'Date picker single'}
       className={s.datePicker}
-      defaultValue={currentDate}
-      key={defaultSingleValue}
       onChange={onSingleDateChangeHandler}
+      value={valueSingle}
     >
       <BaseCalendar
         CalendarComponent={Calendar}
