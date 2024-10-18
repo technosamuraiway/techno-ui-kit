@@ -29,7 +29,7 @@ const locales = {
   },
 }
 
-export type MyDatePickerProps = {
+export type CalendarProps = {
   errorMessage?: string
   locale?: 'en' | 'ru'
   mode?: 'range' | 'single'
@@ -40,7 +40,7 @@ export type MyDatePickerProps = {
   variant?: CalendarVariant
 } & ComponentPropsWithoutRef<'div'>
 
-export const MyDatePicker = forwardRef<ElementRef<'div'>, MyDatePickerProps>(
+export const Calendar = forwardRef<ElementRef<'div'>, CalendarProps>(
   (
     {
       className,

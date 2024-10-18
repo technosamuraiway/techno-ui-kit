@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 import { DateValue } from '@internationalized/date'
 
-import { MyDatePicker } from './Calendar'
+import { Calendar } from './Calendar'
 import { CalendarVariant, RangeValue } from './utils'
 
 const meta: Meta = {
@@ -18,7 +18,7 @@ const meta: Meta = {
       options: ['default', 'disabled'],
     },
   },
-  component: MyDatePicker,
+  component: Calendar,
   title: 'Components/Calendar',
 }
 
@@ -29,7 +29,7 @@ const DefaultRange = ({ variant }: { variant: CalendarVariant }) => {
   const [rangeValue, setRangeValue] = useState<RangeValue<DateValue> | undefined>(undefined)
 
   return (
-    <MyDatePicker
+    <Calendar
       mode={'range'}
       onRangeChange={setRangeValue}
       valueRange={rangeValue}
@@ -42,7 +42,7 @@ const DefaultSingle = ({ variant }: { variant: CalendarVariant }) => {
   const [singleValue, setSingleValue] = useState<DateValue | undefined>()
 
   return (
-    <MyDatePicker
+    <Calendar
       mode={'single'}
       onSingleChange={setSingleValue}
       valueSingle={singleValue}
