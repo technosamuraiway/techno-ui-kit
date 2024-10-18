@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { DateValue } from '@internationalized/date'
 
 import { MyDatePicker } from './Calendar'
-import { RangeValue } from './baseCalendar/BaseCalendar'
+import { CalendarVariant, RangeValue } from './utils'
 
 const meta: Meta = {
   argTypes: {
@@ -25,96 +25,44 @@ const meta: Meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-const DefaultRange = () => {
+const DefaultRange = ({ variant }: { variant: CalendarVariant }) => {
   const [rangeValue, setRangeValue] = useState<RangeValue<DateValue> | undefined>(undefined)
-
-  const handleRangeChange = (date: { end?: Date; start?: Date }) => {
-    if (date) {
-      setRangeValue({ end: date.end, start: date.start })
-    }
-  }
 
   return (
     <MyDatePicker
       mode={'range'}
-      onRangeChange={handleRangeChange}
+      onRangeChange={setRangeValue}
       valueRange={rangeValue}
-      variant={'default'}
+      variant={variant}
     />
   )
 }
 
-// -0----------------
-// const [currentDate, setCurrentDate] = useState<DateValue | undefined>(
-//     defaultSingleValue ? parseDate(defaultSingleValue) : undefined
-// )
-//
-// useEffect(() => {
-//   if (defaultSingleValue) {
-//     const newDate = parseDate(defaultSingleValue)
-//
-//     setCurrentDate(newDate)
-//   } else {
-//     setCurrentDate(undefined)
-//   }
-// }, [defaultSingleValue])
-//
-// // ----------------------
-//
-// const [value, setValue] = useState(() => {
-//   if (defaultRangeValue) {
-//     return {
-//       end: parseDate(defaultRangeValue.end),
-//       start: parseDate(defaultRangeValue.start),
-//     }
-//   }
-//
-//   return undefined
-// })
-//
-// useEffect(() => {
-//   if (defaultRangeValue && defaultRangeValue.start && defaultRangeValue.end) {
-//     setValue({
-//       end: parseDate(defaultRangeValue.end),
-//       start: parseDate(defaultRangeValue.start),
-//     })
-//   }
-// }, [defaultRangeValue])
+const DefaultSingle = ({ variant }: { variant: CalendarVariant }) => {
+  const [singleValue, setSingleValue] = useState<DateValue | undefined>()
 
-// ======================
+  return (
+    <MyDatePicker
+      mode={'single'}
+      onSingleChange={setSingleValue}
+      valueSingle={singleValue}
+      variant={variant}
+    />
+  )
+}
 
 export const DefaultRangeStory: Story = {
-  render: () => <DefaultRange />,
-
-  // args: {
-  //   defaultRangeValue: { end: '2020-01-01', start: '2020-01-07' },
-  //   disabled: false,
-  //   mode: 'range',
-  //   variant: 'default',
-  // },
+  render: () => <DefaultRange variant={'default'} />,
 }
 
 export const DisabledRangeStory: Story = {
-  args: {
-    disabled: true,
-    mode: 'range',
-    variant: 'disabled',
-  },
+  render: () => <DefaultRange variant={'disabled'} />,
 }
 
 export const DefaultSingleStory: Story = {
-  args: {
-    defaultSingleValue: '2020-01-01',
-    disabled: false,
-    mode: 'single',
-    variant: 'default',
-  },
+  render: () => <DefaultSingle variant={'default'} />,
 }
 
 export const DisabledSingleStory: Story = {
-  args: {
-    disabled: true,
-    mode: 'single',
-    variant: 'disabled',
-  },
+  render: () => <DefaultSingle variant={'disabled'} />,
 }

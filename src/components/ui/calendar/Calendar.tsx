@@ -6,9 +6,9 @@ import clsx from 'clsx'
 
 import s from './baseCalendar/BaseCalendar.module.scss'
 
-import { RangeValue } from './baseCalendar/BaseCalendar'
 import { CalendarRange } from './calendarRange/CalendarRange'
 import { CalendarSingleDate } from './calendarSingleDate/CalendarSingleDate'
+import { CalendarVariant, RangeValue } from './utils'
 
 const locales = {
   en: {
@@ -33,11 +33,11 @@ export type MyDatePickerProps = {
   errorMessage?: string
   locale?: 'en' | 'ru'
   mode?: 'range' | 'single'
-  onRangeChange?: (date: { end?: Date; start?: Date }) => void
-  onSingleChange?: (date: Date) => void
+  onRangeChange?: (date: { end: DateValue; start: DateValue }) => void
+  onSingleChange?: (date: DateValue) => void
   valueRange?: RangeValue<DateValue>
   valueSingle?: DateValue
-  variant?: 'default' | 'disabled'
+  variant?: CalendarVariant
 } & ComponentPropsWithoutRef<'div'>
 
 export const MyDatePicker = forwardRef<ElementRef<'div'>, MyDatePickerProps>(
@@ -66,6 +66,16 @@ export const MyDatePicker = forwardRef<ElementRef<'div'>, MyDatePickerProps>(
         ? currentLocale.errorMessages.generalError
         : currentLocale.errorMessages.selectMonthError
 
+    const onRangeChangeHandler = (date: { end: DateValue; start: DateValue }) => {
+      setIsDateSelected(true)
+      onRangeChange?.(date)
+    }
+
+    const onSingleChangeHandler = (date: DateValue) => {
+      setIsDateSelected(true)
+      onSingleChange?.(date)
+    }
+
     return (
       <I18nProvider locale={locale === 'en' ? 'en-US' : 'ru-RU'}>
         <div
@@ -82,7 +92,7 @@ export const MyDatePicker = forwardRef<ElementRef<'div'>, MyDatePickerProps>(
               defaultErrorMessage={defaultErrorMessage}
               errorMessage={errorMessage}
               isDateSelected={isDateSelected}
-              onRangeChange={onRangeChange}
+              onRangeChange={onRangeChangeHandler}
               setCustomError={setCustomError}
               setIsDateSelected={setIsDateSelected}
               valueRange={valueRange}
@@ -93,7 +103,7 @@ export const MyDatePicker = forwardRef<ElementRef<'div'>, MyDatePickerProps>(
               customError={customError}
               dayNames={dayNames}
               isDateSelected={isDateSelected}
-              onSingleChange={onSingleChange}
+              onSingleChange={onSingleChangeHandler}
               setCustomError={setCustomError}
               setIsDateSelected={setIsDateSelected}
               valueSingle={valueSingle}

@@ -4,7 +4,8 @@ import { DateValue } from '@internationalized/date'
 
 import s from '../baseCalendar/BaseCalendar.module.scss'
 
-import { BaseCalendar, RangeValue, VariantType } from '../baseCalendar/BaseCalendar'
+import { BaseCalendar } from '../baseCalendar/BaseCalendar'
+import { CalendarVariant, RangeValue } from '../utils'
 
 interface IProps {
   customError?: string
@@ -12,11 +13,11 @@ interface IProps {
   defaultErrorMessage: string
   errorMessage?: string
   isDateSelected: boolean
-  onRangeChange?: (date: { end?: Date; start?: Date }) => void
+  onRangeChange?: (date: { end: DateValue; start: DateValue }) => void
   setCustomError: (customError: string) => void
   setIsDateSelected: (isDateSelected: boolean) => void
   valueRange?: RangeValue<DateValue>
-  variant?: VariantType
+  variant?: CalendarVariant
 }
 
 export const CalendarRange = ({
@@ -32,16 +33,20 @@ export const CalendarRange = ({
   variant,
 }: IProps) => {
   const onRangeDateChangeHandler = (range: RangeValue<DateValue>) => {
-    const start = new Date(range.start.year, range.start.month - 1, range.start.day)
-    const end = new Date(range.end.year, range.end.month - 1, range.end.day)
+    if (range.start && range.end) {
+      const start = range.start
+      const end = range.end
 
-    if (start > end) {
-      setCustomError(errorMessage || defaultErrorMessage)
+      if (start.compare(end) > 0) {
+        setCustomError(errorMessage || defaultErrorMessage)
+      } else {
+        setCustomError('')
+        setIsDateSelected(true)
+
+        onRangeChange && onRangeChange({ end, start })
+      }
     } else {
-      setCustomError('')
-      setIsDateSelected(true)
-
-      onRangeChange && onRangeChange({ end, start })
+      setCustomError(errorMessage || defaultErrorMessage)
     }
   }
 

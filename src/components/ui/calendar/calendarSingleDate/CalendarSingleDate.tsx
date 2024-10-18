@@ -4,18 +4,19 @@ import { DateValue } from '@internationalized/date'
 
 import s from '../baseCalendar/BaseCalendar.module.scss'
 
-import { BaseCalendar, VariantType } from '../baseCalendar/BaseCalendar'
+import { BaseCalendar } from '../baseCalendar/BaseCalendar'
+import { CalendarVariant } from '../utils'
 
 interface IProps {
   customError?: string
   dayNames: string[]
   defaultSingleValue?: string
   isDateSelected: boolean
-  onSingleChange?: (date: Date) => void
+  onSingleChange?: (date: DateValue) => void
   setCustomError: (customError: string) => void
   setIsDateSelected: (isDateSelected: boolean) => void
   valueSingle?: DateValue
-  variant?: VariantType
+  variant?: CalendarVariant
 }
 export const CalendarSingleDate = ({
   customError,
@@ -27,14 +28,15 @@ export const CalendarSingleDate = ({
   valueSingle,
   variant,
 }: IProps) => {
-  const onSingleDateChangeHandler = (dateValue: DateValue) => {
+  const onSingleDateChangeHandler = (dateValue: DateValue | null) => {
     if (dateValue) {
-      const selectedDate = new Date(dateValue.year, dateValue.month - 1, dateValue.day)
-
       setCustomError('')
       setIsDateSelected(true)
 
-      onSingleChange && onSingleChange(selectedDate)
+      onSingleChange && onSingleChange(dateValue)
+    } else {
+      setCustomError('')
+      setIsDateSelected(false)
     }
   }
 
