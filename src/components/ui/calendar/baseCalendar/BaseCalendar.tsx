@@ -21,6 +21,11 @@ import s from './BaseCalendar.module.scss'
 
 export type VariantType = 'default' | 'disabled'
 
+export type RangeValue<T> = {
+  end: T
+  start: T
+}
+
 interface IProps {
   CalendarComponent: ComponentType<{ children: ReactNode; className: string }>
   calendarCellCN?: string

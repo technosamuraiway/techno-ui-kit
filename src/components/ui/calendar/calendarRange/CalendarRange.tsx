@@ -1,22 +1,21 @@
-import { useEffect, useState } from 'react'
 import { DateRangePicker, RangeCalendar } from 'react-aria-components'
 
-import { CalendarDate, parseDate } from '@internationalized/date'
+import { DateValue } from '@internationalized/date'
 
 import s from '../baseCalendar/BaseCalendar.module.scss'
 
-import { BaseCalendar, VariantType } from '../baseCalendar/BaseCalendar'
+import { BaseCalendar, RangeValue, VariantType } from '../baseCalendar/BaseCalendar'
 
 interface IProps {
   customError?: string
   dayNames: string[]
   defaultErrorMessage: string
-  defaultRangeValue?: { end: string; start: string }
   errorMessage?: string
   isDateSelected: boolean
-  onDateChange?: (date: { end?: Date; start?: Date }) => void
+  onRangeChange?: (date: { end?: Date; start?: Date }) => void
   setCustomError: (customError: string) => void
   setIsDateSelected: (isDateSelected: boolean) => void
+  valueRange?: RangeValue<DateValue>
   variant?: VariantType
 }
 
@@ -24,35 +23,15 @@ export const CalendarRange = ({
   customError,
   dayNames,
   defaultErrorMessage,
-  defaultRangeValue,
   errorMessage,
   isDateSelected,
-  onDateChange,
+  onRangeChange,
   setCustomError,
   setIsDateSelected,
+  valueRange,
   variant,
 }: IProps) => {
-  const [value, setValue] = useState(() => {
-    if (defaultRangeValue) {
-      return {
-        end: parseDate(defaultRangeValue.end),
-        start: parseDate(defaultRangeValue.start),
-      }
-    }
-
-    return undefined
-  })
-
-  useEffect(() => {
-    if (defaultRangeValue && defaultRangeValue.start && defaultRangeValue.end) {
-      setValue({
-        end: parseDate(defaultRangeValue.end),
-        start: parseDate(defaultRangeValue.start),
-      })
-    }
-  }, [defaultRangeValue])
-
-  const onRangeDateChangeHandler = (range: { end: CalendarDate; start: CalendarDate }) => {
+  const onRangeDateChangeHandler = (range: RangeValue<DateValue>) => {
     const start = new Date(range.start.year, range.start.month - 1, range.start.day)
     const end = new Date(range.end.year, range.end.month - 1, range.end.day)
 
@@ -61,19 +40,17 @@ export const CalendarRange = ({
     } else {
       setCustomError('')
       setIsDateSelected(true)
-      if (onDateChange) {
-        onDateChange({ end, start })
-      }
+
+      onRangeChange && onRangeChange({ end, start })
     }
-    setValue(range)
   }
 
   return (
     <DateRangePicker
       aria-label={'Date picker range'}
       className={s.datePicker}
-      onChange={onRangeDateChangeHandler}
-      value={value}
+      onChange={range => onRangeDateChangeHandler(range)}
+      value={valueRange}
     >
       <BaseCalendar
         CalendarComponent={RangeCalendar}

@@ -1,10 +1,12 @@
 import { ComponentPropsWithoutRef, ElementRef, forwardRef, useState } from 'react'
 import { I18nProvider } from 'react-aria'
 
+import { DateValue } from '@internationalized/date'
 import clsx from 'clsx'
 
 import s from './baseCalendar/BaseCalendar.module.scss'
 
+import { RangeValue } from './baseCalendar/BaseCalendar'
 import { CalendarRange } from './calendarRange/CalendarRange'
 import { CalendarSingleDate } from './calendarSingleDate/CalendarSingleDate'
 
@@ -28,12 +30,13 @@ const locales = {
 }
 
 export type MyDatePickerProps = {
-  defaultRangeValue?: { end: string; start: string }
-  defaultSingleValue?: string
   errorMessage?: string
-  locale: 'en' | 'ru'
+  locale?: 'en' | 'ru'
   mode?: 'range' | 'single'
-  onDateChange?: (date: { end?: Date; start?: Date }) => void
+  onRangeChange?: (date: { end?: Date; start?: Date }) => void
+  onSingleChange?: (date: Date) => void
+  valueRange?: RangeValue<DateValue>
+  valueSingle?: DateValue
   variant?: 'default' | 'disabled'
 } & ComponentPropsWithoutRef<'div'>
 
@@ -41,12 +44,13 @@ export const MyDatePicker = forwardRef<ElementRef<'div'>, MyDatePickerProps>(
   (
     {
       className,
-      defaultRangeValue,
-      defaultSingleValue,
       errorMessage,
       locale = 'ru',
       mode = 'range',
-      onDateChange,
+      onRangeChange,
+      onSingleChange,
+      valueRange,
+      valueSingle,
       variant = 'default',
       ...rest
     },
@@ -76,23 +80,23 @@ export const MyDatePicker = forwardRef<ElementRef<'div'>, MyDatePickerProps>(
               customError={customError}
               dayNames={dayNames}
               defaultErrorMessage={defaultErrorMessage}
-              defaultRangeValue={defaultRangeValue}
               errorMessage={errorMessage}
               isDateSelected={isDateSelected}
-              onDateChange={onDateChange}
+              onRangeChange={onRangeChange}
               setCustomError={setCustomError}
               setIsDateSelected={setIsDateSelected}
+              valueRange={valueRange}
               variant={variant}
             />
           ) : (
             <CalendarSingleDate
               customError={customError}
               dayNames={dayNames}
-              defaultSingleValue={defaultSingleValue}
               isDateSelected={isDateSelected}
-              onDateChange={onDateChange}
+              onSingleChange={onSingleChange}
               setCustomError={setCustomError}
               setIsDateSelected={setIsDateSelected}
+              valueSingle={valueSingle}
               variant={variant}
             />
           )}
