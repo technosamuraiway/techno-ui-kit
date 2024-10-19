@@ -4,8 +4,6 @@ import {
   CalendarCell,
   CalendarGrid,
   CalendarGridBody,
-  DateInput,
-  DateSegment,
   Dialog,
   Group,
   Heading,
@@ -20,6 +18,7 @@ import clsx from 'clsx'
 import s from './BaseCalendar.module.scss'
 
 import { CalendarVariant } from '../utils'
+import { DateInputComponent } from './dateInputComponent/DateInputComponent'
 
 interface IProps {
   CalendarComponent: ComponentType<{ children: ReactNode; className: string }>
@@ -122,18 +121,5 @@ export const BaseCalendar = ({
         </Dialog>
       </Popover>
     </>
-  )
-}
-
-type DateInputComponentProps = {
-  slot?: string
-  variant: CalendarVariant
-}
-
-function DateInputComponent({ slot, variant }: DateInputComponentProps) {
-  return (
-    <DateInput className={clsx(s.dateInput, s[variant])} slot={slot}>
-      {segment => <DateSegment className={clsx(s.dateSegment, s[variant])} segment={segment} />}
-    </DateInput>
   )
 }

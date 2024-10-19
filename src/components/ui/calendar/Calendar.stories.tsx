@@ -40,7 +40,7 @@ const DefaultRange = ({ variant }: { variant: CalendarVariant }) => {
 }
 
 const DefaultSingle = ({ variant }: { variant: CalendarVariant }) => {
-  const [singleValue, setSingleValue] = useState<DateValue | undefined>()
+  const [singleValue, setSingleValue] = useState<DateValue | undefined>(undefined)
 
   return (
     <Calendar
