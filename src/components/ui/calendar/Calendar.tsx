@@ -23,6 +23,7 @@ export type CalendarProps = {
   variant?: CalendarVariant
 } & ComponentPropsWithoutRef<'div'>
 
+// Переименовал
 export const Calendar = forwardRef<ElementRef<'div'>, CalendarProps>(
   (
     {
