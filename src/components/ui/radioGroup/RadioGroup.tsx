@@ -6,7 +6,6 @@ import clsx from 'clsx'
 import s from './RadioGroup.module.scss'
 
 type Options = {
-  id: string
   label: string
   value: string
 }
@@ -30,16 +29,20 @@ export const RadioGroup = forwardRef<ElementRef<typeof Radio.Root>, RadioGroupPr
         ref={ref}
         value={value}
       >
-        {options.map(el => (
-          <div className={s.radioItemWrapper} key={el.id}>
-            <Radio.Item className={s.radioItem} disabled={disabled} id={el.id} value={el.value}>
-              <Radio.Indicator className={s.RadioGroupIndicator} />
-            </Radio.Item>
-            <label className={`${s.radioLabel} ${disabled ? s.disabledLabel : ''}`} htmlFor={el.id}>
-              {el.label}
-            </label>
-          </div>
-        ))}
+        {options.map(el => {
+          const id = el.value
+
+          return (
+            <div className={s.radioItemWrapper} key={id}>
+              <Radio.Item className={s.radioItem} disabled={disabled} id={id} value={el.value}>
+                <Radio.Indicator className={s.RadioGroupIndicator} />
+              </Radio.Item>
+              <label className={`${s.radioLabel} ${disabled ? s.disabledLabel : ''}`} htmlFor={id}>
+                {el.label}
+              </label>
+            </div>
+          )
+        })}
       </Radio.Root>
     )
   }
