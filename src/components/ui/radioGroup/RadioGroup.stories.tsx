@@ -37,7 +37,6 @@ const Template = (args: ComponentProps<typeof RadioGroup>) => {
 
 export const DefaultRadioGroup: Story = {
   args: {
-    disabled: false,
     options,
     value: options[0].value, // Initial selected value
   },
@@ -50,5 +49,28 @@ export const DisabledRadioGroup: Story = {
     options,
     value: options[0].value,
   },
-  render: (args: ComponentProps<typeof RadioGroup>) => <RadioGroup {...args} />,
+  render: args => <Template {...args} />,
+}
+
+export const DifferentPaddingRadioGroup: Story = {
+  args: {
+    itemStyle: { padding: '1rem' },
+    options,
+    value: options[0].value,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: `
+This story demonstrates how to use the \`itemStyle\` prop to apply **inline styles** to each radio item wrapper.
+
+- **Inline Styling:** Use the \`itemStyle\` prop to apply styles directly via inline styles.
+- **CSS Modules:** If you prefer to use CSS Modules, you can use the \`itemClassName\` prop to apply custom styles via CSS classes.
+
+Choose the method that best fits your project's styling strategy.
+        `,
+      },
+    },
+  },
+  render: args => <Template {...args} />,
 }
