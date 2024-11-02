@@ -1,0 +1,61 @@
+.radioRoot {
+  display: flex;
+  flex-direction: column;
+}
+
+.radioItemWrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.radioItem {
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 0.125rem solid var(--Light-100);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  margin-right: 0.75rem;
+
+  &[data-disabled='true'] {
+    cursor: not-allowed;
+    border-color: var(--Light-100);
+    background-color: #f2f2f2;
+  }
+
+  &[data-disabled='disabled'] {
+    cursor: not-allowed;
+    border-color: var(--Light-100);
+    background-color: #f2f2f2;
+    color: var(--Light-300);
+  }
+}
+
+.RadioGroupIndicator {
+  width: 0.75rem;
+  height: 0.75rem;
+  background-color: transparent;
+  border-radius: 50%;
+  transition: background-color 0.3s;
+}
+
+.radioItem[data-state='checked'] .RadioGroupIndicator {
+  background-color: var(--Light-100);
+}
+
+.radioLabel {
+  cursor: pointer;
+  color: var(--Light-100);
+  font-size: 15px;
+  line-height: 1;
+  user-select: none;
+}
+
+.disabledLabel {
+  color: var(--Light-900);
+  cursor: not-allowed;
+}
