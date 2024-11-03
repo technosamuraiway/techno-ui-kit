@@ -1,4 +1,4 @@
-import { ComponentPropsWithRef, ElementRef, forwardRef } from 'react'
+import { CSSProperties, ComponentPropsWithRef, ElementRef, forwardRef } from 'react'
 
 import * as Radio from '@radix-ui/react-radio-group'
 import clsx from 'clsx'
@@ -13,13 +13,27 @@ type Options = {
 export type RadioGroupProps = {
   className?: string
   disabled?: boolean
+  itemClassName?: string
+  itemStyle?: CSSProperties
   onValueChange: (value: string) => void
   options: Options[]
   value: string
 } & ComponentPropsWithRef<typeof Radio.Root>
 
 export const RadioGroup = forwardRef<ElementRef<typeof Radio.Root>, RadioGroupProps>(
-  ({ className, disabled = false, onValueChange, options, value, ...rest }, ref) => {
+  (
+    {
+      className,
+      disabled = false,
+      itemClassName,
+      itemStyle,
+      onValueChange,
+      options,
+      value,
+      ...rest
+    },
+    ref
+  ) => {
     return (
       <Radio.Root
         className={clsx(className, s.radioRoot)}
@@ -33,7 +47,7 @@ export const RadioGroup = forwardRef<ElementRef<typeof Radio.Root>, RadioGroupPr
           const id = el.value
 
           return (
-            <div className={s.radioItemWrapper} key={id}>
+            <div className={clsx(itemClassName, s.radioItemWrapper)} key={id} style={itemStyle}>
               <Radio.Item className={s.radioItem} disabled={disabled} id={id} value={el.value}>
                 <Radio.Indicator className={s.RadioGroupIndicator} />
               </Radio.Item>
