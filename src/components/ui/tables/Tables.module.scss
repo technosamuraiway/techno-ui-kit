@@ -1,0 +1,25 @@
+.table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 2.25rem;
+}
+
+.thead {
+  background-color: var(--Dark-500);
+}
+
+.tr {
+  border-right: 0.0625rem solid var(--Dark-500);
+  border-bottom: 0.0625rem solid var(--Dark-500);
+  border-left: 0.0625rem solid var(--Dark-500);
+
+  &:hover {
+    background-color: var(--Dark-700);
+  }
+}
+
+.th,
+.td {
+  min-width: 10.625rem;
+  padding: 0.75rem 1.5rem;
+}
