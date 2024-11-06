@@ -52,3 +52,7 @@ export const HeaderWithNotifications: Story = {
 export const HeaderWithAuthButtons: Story = {
   render: () => <HeaderWrapper withAuthButtons />,
 }
+
+export const HeaderWithAdditionalText: Story = {
+  render: () => <HeaderWrapper additionalLogoText={'Super'} additionalLogoTextBold={'Admin'} />,
+}
