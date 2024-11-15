@@ -7,6 +7,8 @@ import clsx from 'clsx'
 import s from './Header.module.scss'
 
 export type HeaderProps<T extends ElementType = 'header'> = {
+  additionalLogoText?: ReactNode
+  additionalLogoTextBold?: ReactNode
   as?: T
   changeLanguageBtn: (value: string) => void
   changeLanguageBtnCurrentValue: string
@@ -24,6 +26,8 @@ export type HeaderProps<T extends ElementType = 'header'> = {
 
 export const Header = <T extends ElementType = 'header'>(props: HeaderProps<T>) => {
   const {
+    additionalLogoText,
+    additionalLogoTextBold,
     as: Component = 'header',
     changeLanguageBtn,
     changeLanguageBtnCurrentValue,
@@ -47,6 +51,16 @@ export const Header = <T extends ElementType = 'header'>(props: HeaderProps<T>) 
           <Typography className={s.logo} variant={'large'}>
             Inctagram
           </Typography>
+          {additionalLogoText && (
+            <Typography className={s.additionalLogoText} variant={'small-text'}>
+              {additionalLogoText}
+            </Typography>
+          )}
+          {additionalLogoTextBold && (
+            <Typography className={s.additionalLogoTextBold} variant={'semi-bold-small-text'}>
+              {additionalLogoTextBold}
+            </Typography>
+          )}
         </div>
         <div className={s.rightSection}>
           {withNotifications && (
