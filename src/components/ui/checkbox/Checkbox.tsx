@@ -11,6 +11,7 @@ import s from './Checkbox.module.scss'
 export type CheckboxProps = {
   checked: boolean
   className?: string
+  containerCN?: string
   id?: string
   label?: string
   onCheckedChange: (checked: boolean) => void
@@ -19,10 +20,20 @@ export type CheckboxProps = {
 
 export const Checkbox = forwardRef<ElementRef<typeof CheckboxRadix.Root>, CheckboxProps>(
   (
-    { checked, className, disabled, id, label, onCheckedChange, position = 'default', ...rest },
+    {
+      checked,
+      className,
+      containerCN,
+      disabled,
+      id,
+      label,
+      onCheckedChange,
+      position = 'default',
+      ...rest
+    },
     ref
   ) => (
-    <div className={clsx(s.container, s[position])}>
+    <div className={clsx(s.container, s[position], containerCN)}>
       <LabelRadix.Root asChild>
         <Typography
           aria-disabled={disabled}
