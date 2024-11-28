@@ -1,7 +1,7 @@
 {
   "name": "@technosamurai/techno-ui-kit",
   "private": false,
-  "version": "0.0.55",
+  "version": "0.0.56",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
