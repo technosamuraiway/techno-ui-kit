@@ -54,7 +54,7 @@ export const CalendarRange = ({
     <DateRangePicker
       aria-label={'Date picker range'}
       className={s.datePicker}
-      onChange={range => onRangeDateChangeHandler(range)}
+      onChange={range => range && onRangeDateChangeHandler(range)}
       value={valueRange}
     >
       <BaseCalendar
