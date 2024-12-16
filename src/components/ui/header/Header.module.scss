@@ -1,6 +1,6 @@
 .header {
   box-sizing: border-box;
-  background-color: var(--Dark-300);
+  background-color: var(--Dark-700);
   border-bottom: 0.0625rem solid var(--Dark-300);
 }
 
@@ -8,6 +8,7 @@
   cursor: pointer;
 
   display: flex;
+  gap: 80px;
   align-items: center;
   justify-content: space-between;
 
@@ -15,6 +16,8 @@
   max-width: 74.375rem;
   margin: 0 auto;
   padding: 0.75rem 1.0625rem;
+
+ 
 
   .leftSection {
     display: flex;
@@ -32,6 +35,14 @@
     .additionalLogoTextBold {
       margin-top: 9px;
       color: var(--Light-100);
+    } 
+
+    @media (width <= 360px) {
+      gap: 0;
+    }
+
+    @media (width <= 320px) {
+      gap: 0;
     }
   }
 
@@ -39,6 +50,9 @@
     display: flex;
     gap: 3rem;
     align-items: center;
+    background-color: var(--Dark-700);
+
+    
 
     .notification {
       cursor: pointer;
@@ -65,6 +79,14 @@
         border-radius: 50%;
       }
     }
+
+    @media (width <= 320px) {
+      gap: 10px;
+    }
+
+    @media (width <= 360px) {
+      gap: 10px;
+    }
   }
 
   .authButtons {
@@ -77,4 +99,45 @@
   width: 1.5rem;
   height: 1.5rem;
   color: var(--Light-100);
+}  
+
+.menuIcon {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ 
+  width: 24px;
+  height: 24px;
+}
+
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+ 
+.popupMenu {
+  position: absolute;
+  z-index: 100;
+  top: 40px; 
+  right: 15px;
+  
+
+ 
+  padding: 5px;
+
+  background: var(--Dark-500);
+  border: 1px solid var(--Dark-100);
+ 
+  
+
+  @media (width <= 360px) {
+    top: 40px;
+  }
+}
+
+.signUpButton {
+  color:var(--Light-100) ;
 }
