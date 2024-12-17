@@ -17,7 +17,15 @@
   margin: 0 auto;
   padding: 0.75rem 1.0625rem;
 
- 
+  @media (width <= 360px) {
+    gap: 0 !important;
+  }
+
+  @media (width <= 320px) {
+    gap: 0 !important;
+  } 
+
+}
 
   .leftSection {
     display: flex;
@@ -37,13 +45,7 @@
       color: var(--Light-100);
     } 
 
-    @media (width <= 360px) {
-      gap: 0;
-    }
-
-    @media (width <= 320px) {
-      gap: 0;
-    }
+   
   }
 
   .rightSection {
@@ -93,7 +95,7 @@
     display: flex;
     gap: 0.625rem;
   }
-}
+
 
 .notificationIcon {
   width: 1.5rem;
@@ -126,7 +128,7 @@
   
 
  
-  padding: 5px;
+  padding: 12px;
 
   background: var(--Dark-500);
   border: 1px solid var(--Dark-100);
@@ -138,6 +140,12 @@
   }
 }
 
-.signUpButton {
+.mobileSignUpButton {
+  padding: 0;
   color:var(--Light-100) ;
+ 
+}
+
+.mobileLoginButton {
+  padding: 0;
 }

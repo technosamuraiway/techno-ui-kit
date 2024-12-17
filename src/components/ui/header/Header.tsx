@@ -2,7 +2,6 @@ import { ElementType, ReactNode, useEffect, useRef, useState } from 'react'
 import { useMediaQuery } from 'react-responsive'
 
 import { Burger } from '@/assets/icons/Burger'
-import { DefaultNotifications } from '@/assets/icons/DefaultNotifications'
 import { Button, Select, SelectOptionType, Typography } from '@/components'
 import clsx from 'clsx'
 
@@ -48,7 +47,7 @@ export const Header = <T extends ElementType = 'header'>(props: HeaderProps<T>) 
     ...rest
   } = props
 
-  const isMobile = useMediaQuery({ query: '(max-width: 360px)' })
+  const isMobile = useMediaQuery({ query: '(max-width: 700px)' })
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   const modalRef = useRef<HTMLDivElement>(null)
@@ -145,7 +144,7 @@ export const Header = <T extends ElementType = 'header'>(props: HeaderProps<T>) 
         <div className={clsx(s.popupMenu)} ref={modalRef}>
           <div className={s.modalContent}>
             <Button
-              className={s.loginButton}
+              className={s.mobileLoginButton}
               onClick={onLogInClick}
               type={'button'}
               variant={'textButton'}
@@ -153,7 +152,7 @@ export const Header = <T extends ElementType = 'header'>(props: HeaderProps<T>) 
               {logInBtnChildren}
             </Button>
             <Button
-              className={s.signUpButton}
+              className={s.mobileSignUpButton}
               fullWidth
               onClick={onSignUpClick}
               type={'button'}

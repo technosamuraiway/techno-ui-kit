@@ -28,11 +28,13 @@ button {
     color: var(--Dark-100);
   }
 
-  
+  @media (width <= 700px) {
+    column-gap: 0;
+    border: none !important;
+  }
 
   @media (width <= 360px) {
     column-gap: 0;
-    padding: 0;
     border: none !important;
   }
 
@@ -41,7 +43,9 @@ button {
     padding: 0;
     border: none;
    
-  }
+  } 
+
+ 
 }
 
 .trigger,
@@ -55,6 +59,10 @@ button {
     border-color: var(--Light-500);
   } 
 
+  @media (width <= 700px) {
+    border: none;
+  }
+
   @media (width <= 360px) {
     border: none;
   }
@@ -63,6 +71,8 @@ button {
     border: none;
   }
 }
+
+
 
 .label {
   cursor: pointer;
@@ -87,7 +97,9 @@ button {
   &[data-state='open'] {
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
-  }
+  } 
+
+ 
 }
 
 .item {
@@ -134,6 +146,8 @@ button {
   }
 
  
-}
+} 
+
+
 
 
