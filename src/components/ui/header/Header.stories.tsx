@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 
 import { useState } from 'react'
 
+import { DefaultNotifications } from '@/assets/icons'
 import EnFlagPng from '@/assets/icons/flags/enFlag.png'
 import EnFlagWebp from '@/assets/icons/flags/enFlag.webp'
 import RuFlagPng from '@/assets/icons/flags/ruFlag.png'
@@ -46,7 +47,13 @@ const HeaderWrapper = (
 }
 
 export const HeaderWithNotifications: Story = {
-  render: () => <HeaderWrapper withNotifications />,
+  render: () => (
+    <HeaderWrapper
+      notificationComponent={<DefaultNotifications />}
+      notificationNumber={12}
+      withNotifications
+    />
+  ),
 }
 
 export const HeaderWithAuthButtons: Story = {
