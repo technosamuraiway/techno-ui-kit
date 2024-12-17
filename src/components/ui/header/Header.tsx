@@ -1,6 +1,5 @@
 import { ComponentPropsWithoutRef, ElementType, ReactNode } from 'react'
 
-import { DefaultNotifications } from '@/assets/icons/DefaultNotifications'
 import { Button, Select, SelectOptionType, Typography } from '@/components'
 import clsx from 'clsx'
 
@@ -15,6 +14,7 @@ export type HeaderProps<T extends ElementType = 'header'> = {
   changeLanguageBtnOptions: SelectOptionType[]
   className?: string
   logInBtnChildren?: ReactNode
+  notificationComponent?: ReactNode
   notificationNumber?: number
   onLogInClick?: () => void
   onLogoClick?: () => void
@@ -34,7 +34,8 @@ export const Header = <T extends ElementType = 'header'>(props: HeaderProps<T>) 
     changeLanguageBtnOptions,
     className,
     logInBtnChildren = 'Log In',
-    notificationNumber = 3,
+    notificationComponent,
+    notificationNumber,
     onLogInClick,
     onLogoClick = () => {},
     onSignUpClick,
@@ -65,8 +66,8 @@ export const Header = <T extends ElementType = 'header'>(props: HeaderProps<T>) 
         <div className={s.rightSection}>
           {withNotifications && (
             <div className={s.notification}>
-              <DefaultNotifications className={s.notificationIcon} />
-              <span className={s.badge}>{notificationNumber}</span>
+              <div style={{ height: '24px', width: '24px' }}>{notificationComponent}</div>
+              {!!notificationNumber && <span className={s.badge}>{notificationNumber}</span>}
             </div>
           )}
           <div className={s.languageSwitcher}>
