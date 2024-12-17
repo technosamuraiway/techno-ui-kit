@@ -42,10 +42,7 @@ button {
     column-gap: 0;
     padding: 0;
     border: none;
-   
-  } 
-
- 
+  }
 }
 
 .trigger,
@@ -57,7 +54,7 @@ button {
   &[data-state='open'] {
     background-color: var(--Dark-300);
     border-color: var(--Light-500);
-  } 
+  }
 
   @media (width <= 700px) {
     border: none;
@@ -71,8 +68,6 @@ button {
     border: none;
   }
 }
-
-
 
 .label {
   cursor: pointer;
@@ -97,9 +92,7 @@ button {
   &[data-state='open'] {
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
-  } 
-
- 
+  }
 }
 
 .item {
@@ -144,10 +137,4 @@ button {
     width: 1.5rem;
     height: 1.5rem;
   }
-
- 
-} 
-
-
-
-
+}
