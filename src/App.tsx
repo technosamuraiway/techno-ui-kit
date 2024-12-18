@@ -1,25 +1,19 @@
 import { useState } from 'react'
 
-import { Button, TextArea } from '@/components'
+import { Header } from '@/components'
 
-import s from './styles/Home.module.scss'
-
-import { Select, SelectBox, TextField } from './components'
+import EnFlagPng from './assets/icons/flags/enFlag.png'
+import EnFlagWebp from './assets/icons/flags/enFlag.webp'
+import RuFlagPng from './assets/icons/flags/ruFlag.png'
+import RuFlagWebp from './assets/icons/flags/ruFlag.webp'
+// import { Select, SelectBox, TextField } from './components'
 export default function App() {
-  const allCities = [
-    { name: 'New York' },
-    { name: 'Los Angeles' },
-    { name: 'Toronto' },
-    { name: 'London' },
-    { name: 'Sydney' },
-  ]
+  // const formattedCityOptions = allCities.map(city => ({
+  //   label: city.name,
+  //   value: city.name.toLowerCase().replace(/\s+/g, '-'), // Преобразуем в формат, подходящий для value
+  // }))
 
-  const formattedCityOptions = allCities.map(city => ({
-    label: city.name,
-    value: city.name.toLowerCase().replace(/\s+/g, '-'), // Преобразуем в формат, подходящий для value
-  }))
-
-  const [currentValue, setCurrentValue] = useState(formattedCityOptions[0].value)
+  // const [currentValue, setCurrentValue] = useState(formattedCityOptions[0].value)
 
   // const checkAge = (birthDate: Date) => {
   //   const today = new Date()
@@ -47,59 +41,21 @@ export default function App() {
   //   }
   // }
 
-  // const languageSelectOptions = [
-  //   { icon: { png: EnFlagPng, webp: EnFlagWebp }, label: 'English', value: 'en' },
-  //   { icon: { png: RuFlagPng, webp: RuFlagWebp }, label: 'Русский', value: 'ru' },
-  // ]
+  const languageSelectOptions = [
+    { icon: { png: EnFlagPng, webp: EnFlagWebp }, label: 'English', value: 'en' },
+    { icon: { png: RuFlagPng, webp: RuFlagWebp }, label: 'Русский', value: 'ru' },
+  ]
 
-  // const [changeLanguageCurrentValue, setChangeLanguageCurrentValue] = useState(
-  //   languageSelectOptions[0].value
-  // )
+  const [languageValue, setLanguageValue] = useState(languageSelectOptions[0].value)
 
   return (
     <>
-      {/* <Header
-        // changeLanguageBtn={setChangeLanguageCurrentValue}
-        // changeLanguageBtnCurrentValue={changeLanguageCurrentValue}
-        // changeLanguageBtnOptions={languageSelectOptions}
+      <Header
+        changeLanguageBtn={setLanguageValue}
+        changeLanguageBtnCurrentValue={languageValue}
+        changeLanguageBtnOptions={languageSelectOptions}
         withAuthButtons
-        withNotifications
-      /> */}
-      <div className={s.body}>
-        <div className={s.container}>
-          <TextField className={s.input} />
-          <Button variant={'primary'}>Click me</Button>
-          <SelectBox className={s.select} options={[{ name: 'option1' }, { name: 'option2' }]} />
-          <div className={s.area}>
-            <TextArea />
-          </div>
-          {/*<Calendar locale={'en'} />*/}
-          {/*<Calendar*/}
-          {/*  errorMessage={errorMessage}*/}
-          {/*  locale={'en'}*/}
-          {/*  mode={'single'}*/}
-          {/*  onDateChange={handleDateChange}*/}
-          {/*/>*/}
-          {/*{errorMessage && (*/}
-          {/*  <Typography*/}
-          {/*    className={s.errorMessage}*/}
-          {/*    style={{ color: 'var(--Danger-500)', transition: 'none' }}*/}
-          {/*    variant={'small-text'}*/}
-          {/*  >*/}
-          {/*    {errorMessage}*/}
-          {/*  </Typography>*/}
-          {/*)}*/}
-
-          <div className={s.select}>
-            <Select
-              currentValue={currentValue}
-              label={'Choose a city'}
-              onValueChange={setCurrentValue}
-              options={formattedCityOptions}
-            />
-          </div>
-        </div>
-      </div>
+      />
     </>
   )
 }
