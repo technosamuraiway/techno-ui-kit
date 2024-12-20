@@ -2,7 +2,7 @@ import { ComponentPropsWithoutRef, ElementRef, forwardRef, useState } from 'reac
 import { I18nProvider } from 'react-aria'
 
 import { Typography } from '@/components'
-import { DateValue } from '@internationalized/date'
+import { DateValue as ReactDateValue } from '@react-types/datepicker'
 import clsx from 'clsx'
 
 import s from './baseCalendar/BaseCalendar.module.scss'
@@ -16,10 +16,10 @@ export type CalendarProps = {
   labelText?: string
   locale?: 'en' | 'ru'
   mode?: 'range' | 'single'
-  onRangeChange?: (date: { end: DateValue; start: DateValue }) => void
-  onSingleChange?: (date: DateValue) => void
-  valueRange?: RangeValue<DateValue>
-  valueSingle?: DateValue
+  onRangeChange?: (date: { end: ReactDateValue; start: ReactDateValue }) => void
+  onSingleChange?: (date: ReactDateValue) => void
+  valueRange?: RangeValue<ReactDateValue>
+  valueSingle?: ReactDateValue
   variant?: CalendarVariant
 } & ComponentPropsWithoutRef<'div'>
 
@@ -50,12 +50,12 @@ export const Calendar = forwardRef<ElementRef<'div'>, CalendarProps>(
         ? currentLocale.errorMessages.generalError
         : currentLocale.errorMessages.selectMonthError
 
-    const onRangeChangeHandler = (date: { end: DateValue; start: DateValue }) => {
+    const onRangeChangeHandler = (date: { end: ReactDateValue; start: ReactDateValue }) => {
       setIsDateSelected(true)
       onRangeChange?.(date)
     }
 
-    const onSingleChangeHandler = (date: DateValue) => {
+    const onSingleChangeHandler = (date: ReactDateValue) => {
       setIsDateSelected(true)
       onSingleChange?.(date)
     }

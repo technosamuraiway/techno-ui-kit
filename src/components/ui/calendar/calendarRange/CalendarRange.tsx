@@ -1,6 +1,6 @@
 import { DateRangePicker, RangeCalendar } from 'react-aria-components'
 
-import { DateValue } from '@internationalized/date'
+import { DateValue as ReactDateValue } from '@react-types/datepicker'
 
 import s from '../baseCalendar/BaseCalendar.module.scss'
 
@@ -13,10 +13,10 @@ interface IProps {
   defaultErrorMessage: string
   errorMessage?: string
   isDateSelected: boolean
-  onRangeChange?: (date: { end: DateValue; start: DateValue }) => void
+  onRangeChange?: (date: { end: ReactDateValue; start: ReactDateValue }) => void
   setCustomError: (customError: string) => void
   setIsDateSelected: (isDateSelected: boolean) => void
-  valueRange?: RangeValue<DateValue>
+  valueRange?: RangeValue<ReactDateValue>
   variant?: CalendarVariant
 }
 
@@ -32,7 +32,7 @@ export const CalendarRange = ({
   valueRange,
   variant,
 }: IProps) => {
-  const onRangeDateChangeHandler = (range: RangeValue<DateValue>) => {
+  const onRangeDateChangeHandler = (range: RangeValue<ReactDateValue>) => {
     if (range.start && range.end) {
       const start = range.start
       const end = range.end

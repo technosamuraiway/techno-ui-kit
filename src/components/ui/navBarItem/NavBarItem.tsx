@@ -18,10 +18,13 @@ export type NavItem = {
 type NavBarItemProps<T extends ElementType = 'a'> = {
   activeCondition: (itemPath: string) => boolean
   as?: T
+  countClassName?: string
+  digitsCondition?: boolean
   iconClassName?: string
   item: NavItem
   onNavBarItemClick?: (hrefLink: string) => void
   textClassName?: string
+  unReadCount?: number
 } & ComponentPropsWithoutRef<T>
 
 export const NavBarItem = <T extends ElementType = 'a'>(props: NavBarItemProps<T>) => {
@@ -29,10 +32,13 @@ export const NavBarItem = <T extends ElementType = 'a'>(props: NavBarItemProps<T
     activeCondition,
     as: Component = 'a',
     className,
+    countClassName,
+    digitsCondition = false,
     iconClassName,
     item,
     onNavBarItemClick,
     textClassName,
+    unReadCount = 0,
     ...rest
   } = props
 
@@ -59,6 +65,11 @@ export const NavBarItem = <T extends ElementType = 'a'>(props: NavBarItemProps<T
       <Typography className={clsx(s.text, textClassName)} variant={'medium-text-14'}>
         {item.text}
       </Typography>
+      {digitsCondition && unReadCount > 0 && (
+        <Typography className={clsx(s.count, countClassName)} variant={'bold-text-14'}>
+          +{unReadCount}
+        </Typography>
+      )}
     </Component>
   )
 }
