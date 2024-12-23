@@ -34,6 +34,7 @@ export type SelectOptionType = {
   disabled?: boolean
   icon?: { png: string; webp: string }
   label: number | string
+  onlyIcons?: boolean
   value: string
 }
 
@@ -45,6 +46,7 @@ interface ISelect extends ComponentPropsWithRef<typeof S.Root> {
   label?: string
   labelStyle?: CSSProperties | string
   onValueChange: (value: string) => void
+  onlyIcons?: boolean
   options: SelectOptionType[]
   selectHeight?: string
   selectWidth?: string
@@ -59,6 +61,7 @@ export const Select = ({
   label,
   labelStyle,
   onValueChange,
+  onlyIcons = false,
   options,
   selectHeight,
   selectWidth,
@@ -83,6 +86,7 @@ export const Select = ({
       handleOpenChange={handleOpenChange}
       isOpen={isOpen}
       onValueChange={onValueChange}
+      onlyIcons={onlyIcons}
       options={options}
       selectHeight={selectHeight}
       selectWidth={label ? undefined : selectWidth}
@@ -122,6 +126,7 @@ const SelectRoot = ({
   handleOpenChange,
   isOpen,
   onValueChange,
+  onlyIcons = false,
   options,
   selectHeight,
   selectWidth,
@@ -156,7 +161,7 @@ const SelectRoot = ({
       {...rest}
     >
       <S.Trigger className={clsx(s.trigger, triggerStyle)} style={{ width: selectWidth }}>
-        <SelectOption {...option} />
+        <SelectOption {...option} onlyIcons={onlyIcons} />
         {isOpen ? <UpIcon height={24} width={24} /> : <DownIcon height={24} width={24} />}
       </S.Trigger>
 
@@ -176,7 +181,7 @@ const SelectRoot = ({
                   key={item.value}
                   value={item.value}
                 >
-                  <SelectOption {...item} />
+                  <SelectOption {...item} onlyIcons={onlyIcons} />
                 </S.Item>
               ))}
             </Scrollbar>
@@ -188,7 +193,12 @@ const SelectRoot = ({
 }
 
 /* SelectOption для отображение контента в Trigger и Item */
-const SelectOption = ({ icon, label, value }: SelectOptionType) => {
+const SelectOption = ({
+  icon,
+  label,
+  onlyIcons = false,
+  value,
+}: { onlyIcons?: boolean } & SelectOptionType) => {
   return (
     <>
       {icon && (
@@ -198,9 +208,11 @@ const SelectOption = ({ icon, label, value }: SelectOptionType) => {
         </picture>
       )}
 
-      <Typography as={'span'} variant={'regular-text-14'}>
-        {label}
-      </Typography>
+      {!onlyIcons && ( // 🟢 Отображаем текст только если режим отключен
+        <Typography as={'span'} variant={'regular-text-14'}>
+          {label}
+        </Typography>
+      )}
     </>
   )
 }

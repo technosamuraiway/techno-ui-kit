@@ -27,6 +27,22 @@ button {
   &[data-disabled] {
     color: var(--Dark-100);
   }
+
+  @media (width <= 700px) {
+    column-gap: 0;
+    border: none !important;
+  }
+
+  @media (width <= 360px) {
+    column-gap: 0;
+    border: none !important;
+  }
+
+  @media (width <= 320px) {
+    column-gap: 0;
+    padding: 0;
+    border: none;
+  }
 }
 
 .trigger,
@@ -38,6 +54,18 @@ button {
   &[data-state='open'] {
     background-color: var(--Dark-300);
     border-color: var(--Light-500);
+  }
+
+  @media (width <= 700px) {
+    border: none;
+  }
+
+  @media (width <= 360px) {
+    border: none;
+  }
+
+  @media (width <= 320px) {
+    border: none;
   }
 }
 
@@ -68,7 +96,7 @@ button {
 }
 
 .item {
-  min-height: 2.375rem; // Подберите подходящее значение
+  min-height: 2.375rem;
   border: none;
   outline: none;
 

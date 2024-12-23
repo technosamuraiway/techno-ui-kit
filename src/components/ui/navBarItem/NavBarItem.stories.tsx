@@ -98,6 +98,18 @@ const navSecondItemsArray: NavItem[] = [
   },
 ]
 
+const navThirdItemsArray: NavItem[] = [
+  {
+    activeIconComponent: <ActiveMessengerIcon />,
+    altText: 'Messenger',
+    defaultIconComponent: <DefaultMessengerIcon />,
+    hrefLink: '#Messenger',
+    id: 14,
+    isDisabled: false,
+    text: 'Messenger',
+  },
+]
+
 const NavBarItemWrapper = () => {
   const [currentPath, setCurrentPath] = useState<string>('#Create')
 
@@ -146,6 +158,28 @@ const NavBarItemWrapper = () => {
               item={el}
               key={el.id}
               onNavBarItemClick={onSideBarItemClickHandler}
+            />
+          )
+        })}
+      </div>
+
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '0.75rem',
+          padding: '4.5rem',
+        }}
+      >
+        {navThirdItemsArray.map(el => {
+          return (
+            <NavBarItem
+              activeCondition={activeConditionFunction}
+              digitsCondition
+              item={el}
+              key={el.id}
+              onNavBarItemClick={onSideBarItemClickHandler}
+              unReadCount={3}
             />
           )
         })}
