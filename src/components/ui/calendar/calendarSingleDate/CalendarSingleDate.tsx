@@ -1,6 +1,6 @@
 import { Calendar, DatePicker } from 'react-aria-components'
 
-import { DateValue } from '@internationalized/date'
+import { DateValue as ReactDateValue } from '@react-types/datepicker'
 
 import s from '../baseCalendar/BaseCalendar.module.scss'
 
@@ -12,12 +12,13 @@ interface IProps {
   dayNames: string[]
   defaultSingleValue?: string
   isDateSelected: boolean
-  onSingleChange?: (date: DateValue) => void
+  onSingleChange?: (date: ReactDateValue) => void
   setCustomError: (customError: string) => void
   setIsDateSelected: (isDateSelected: boolean) => void
-  valueSingle?: DateValue
+  valueSingle?: ReactDateValue
   variant?: CalendarVariant
 }
+
 export const CalendarSingleDate = ({
   customError,
   dayNames,
@@ -28,12 +29,11 @@ export const CalendarSingleDate = ({
   valueSingle,
   variant,
 }: IProps) => {
-  const onSingleDateChangeHandler = (dateValue: DateValue | null) => {
-    if (dateValue) {
+  const onSingleDateChangeHandler = (value: ReactDateValue | null) => {
+    if (value) {
       setCustomError('')
       setIsDateSelected(true)
-
-      onSingleChange && onSingleChange(dateValue)
+      onSingleChange && onSingleChange(value)
     } else {
       setCustomError('')
       setIsDateSelected(false)

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 
 import { useState } from 'react'
 
-import { DateValue } from '@internationalized/date'
+import { DateValue as ReactDateValue } from '@react-types/datepicker'
 
 import { Calendar } from './Calendar'
 import { CalendarVariant, RangeValue } from './utils'
@@ -26,7 +26,7 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 const DefaultRange = ({ variant }: { variant: CalendarVariant }) => {
-  const [rangeValue, setRangeValue] = useState<RangeValue<DateValue> | undefined>(undefined)
+  const [rangeValue, setRangeValue] = useState<RangeValue<ReactDateValue> | undefined>(undefined)
 
   return (
     <Calendar
@@ -40,7 +40,7 @@ const DefaultRange = ({ variant }: { variant: CalendarVariant }) => {
 }
 
 const DefaultSingle = ({ variant }: { variant: CalendarVariant }) => {
-  const [singleValue, setSingleValue] = useState<DateValue | undefined>(undefined)
+  const [singleValue, setSingleValue] = useState<ReactDateValue | undefined>(undefined)
 
   return (
     <Calendar
