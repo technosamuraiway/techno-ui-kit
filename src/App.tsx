@@ -1,5 +1,6 @@
 import { useState } from 'react'
 
+import { DefaultNotifications } from '@/assets/icons'
 import { Header } from '@/components'
 
 import EnFlagPng from './assets/icons/flags/enFlag.png'
@@ -54,7 +55,9 @@ export default function App() {
         changeLanguageBtn={setLanguageValue}
         changeLanguageBtnCurrentValue={languageValue}
         changeLanguageBtnOptions={languageSelectOptions}
-        notificationComponent={<div>as</div>}
+        notificationComponent={
+          <DefaultNotifications style={{ height: '17px', marginTop: '5px', width: '17px' }} />
+        }
         notificationNumber={14}
         withAuthButtons
         withNotifications
