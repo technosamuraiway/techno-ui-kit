@@ -54,7 +54,10 @@ export default function App() {
         changeLanguageBtn={setLanguageValue}
         changeLanguageBtnCurrentValue={languageValue}
         changeLanguageBtnOptions={languageSelectOptions}
+        notificationComponent={<div>as</div>}
+        notificationNumber={14}
         withAuthButtons
+        withNotifications
       />
     </>
   )
